@@ -2,7 +2,6 @@ package agragacao_composicao;
 public class Departamento {
     private String nome;
     private int id;
-
     public int getId() {
         return id;
     }
