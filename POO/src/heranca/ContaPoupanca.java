@@ -14,6 +14,7 @@ public class ContaPoupanca extends Conta{
     public void setDataAniversario(String dataAniversario) {
         this.dataAniversario = dataAniversario;
     }
+    @Override
     public void imprimeDados(){
         super.imprimeDados();
         System.out.println("Data de aniversário: " + this.getDataAniversario());
