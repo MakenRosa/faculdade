@@ -3,12 +3,10 @@ package exs_associacao01;
 public class ItemDeCompra {
     private int quantidade;
     private Produto produto;
-    private Carrinho carrinho;
 
-    public ItemDeCompra(int quantidade, Produto produto, Carrinho carrinho) {
+    public ItemDeCompra(int quantidade, Produto produto) {
         this.quantidade = quantidade;
         this.produto = produto;
-        this.carrinho = carrinho;
     }
     public int getQuantidade() {
         return quantidade;
