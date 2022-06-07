@@ -5,27 +5,20 @@ public class Cliente {
     private String nome;
     private long cpf;
     private byte[] senha;
-    private Carrinho carrinho;
 
     public Cliente(String nome, long cpf, byte[] senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.senha = senha;
     }
-    public Cliente(String nome, long cpf, byte[] senha, Carrinho carrinho) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.senha = senha;
-        this.carrinho = carrinho;
-    }
     public String getNome() {
-        return nome;
+        return this.nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
     }
     public long getCpf() {
-        return cpf;
+        return this.cpf;
     }
     public void setCpf(long cpf) {
         this.cpf = cpf;
@@ -33,11 +26,5 @@ public class Cliente {
 
     public void setSenha(byte[] senha) {
         this.senha = senha;
-    }
-    public Carrinho getCarrinho() {
-        return carrinho;
-    }
-    public void setCarrinho(Carrinho carrinho) {
-        this.carrinho = carrinho;
     }
 }
