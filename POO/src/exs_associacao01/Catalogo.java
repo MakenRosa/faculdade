@@ -7,10 +7,6 @@ public class Catalogo {
     private String titulo;
     private List<Produto> produtos;
 
-    public Catalogo(String titulo) {
-        this.titulo = titulo;
-        this.produtos = new ArrayList<>();
-    }
 
     public Catalogo(String titulo, List<Produto> produtos) {
         this.titulo = titulo;

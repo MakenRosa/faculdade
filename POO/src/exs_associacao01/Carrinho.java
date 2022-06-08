@@ -15,21 +15,40 @@ public class Carrinho {
         this.cliente = cliente;
     }
     public void adicionar(Produto prod, int qtd){
-
+        ItemDeCompra itemDeCompra = new ItemDeCompra(prod, qtd);
+        itens.add(itemDeCompra);
     }
     public void remover(Produto prod, int qtd){
-
+        for (ItemDeCompra itemDeCompra : itens) {
+            if (itemDeCompra.getProduto().equals(prod)){
+                itemDeCompra.setQuantidade(itemDeCompra.getQuantidade() - qtd);
+            }
+        }
     }
     public void eliminar(Produto prod){
-
+        for (ItemDeCompra itemDeCompra : itens){
+            if (itemDeCompra.getProduto().equals(prod)){
+                itens.remove(itemDeCompra);
+                break;
+            }
+        }
     }
-    public double calcularTotal()
-    {
-        return 0;
+    public double calcularTotal(){
+        double valorTotal = 0.00;
+        for (ItemDeCompra item : itens) {
+            valorTotal += (item.getProduto().getPreco() * item.getQuantidade());
+        }
+        return valorTotal;
     }
-    public ItemDeCompra buscaItem(Produto prod){
+    public ItemDeCompra buscaItem(Produto prod) throws RuntimeException{
+        for (ItemDeCompra item : itens) {
+            if (item.getProduto().equals(prod)){
+                return item;
+            }
+        }
         return null;
     }
+
     public List<ItemDeCompra> getItens(){
         return this.itens;
     }
