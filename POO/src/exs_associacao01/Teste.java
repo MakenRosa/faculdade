@@ -50,6 +50,6 @@ public class Teste {
         cliente.setNome("Maken da Rosa");
         System.out.println("Nome: "+ cliente.getNome()+"\n"
                 + "CPF: "+ cliente.getCpf());
-    
+        carrinho.setCliente(cliente);
     }
 }
