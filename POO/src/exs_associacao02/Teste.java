@@ -55,7 +55,5 @@ public class Teste {
         //Criando bilhete
         Bilhete makenBilhete = new Bilhete(e_02, makenReserva);
         
-        
-        
     }
 }
