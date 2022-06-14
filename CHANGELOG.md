@@ -1,3 +1,7 @@
+14/06/2022 -  Perfeito ex ass 02
+14/06/2022 -  Merge branch 'main' of https://github.com/MakenRosa/Faculdade
+14/06/2022 -  Terminado ex 2 associacao
+13/06/2022 -  Recursividade
 13/06/2022 -  Merge branch 'main' of https://github.com/MakenRosa/Faculdade
 13/06/2022 -  Quase finalizado ex2 associacao
 09/06/2022 -  Merge branch 'main' of https://github.com/MakenRosa/Faculdade

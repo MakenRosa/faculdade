@@ -63,7 +63,7 @@ public class Teste {
         
         
         System.out.println("O passageiro " + makenBilhete.getPassageiro().getNome() +
-                "\nPegará o voo de número:" + makenBilhete.getVoo().getNumero()+ 
+                "\nPegará o voo de número " + makenBilhete.getVoo().getNumero()+ 
                 "\nQue sairá de " + makenBilhete.getVoo().getOrigem().getNome() +"\nNo dia: " 
                 + diaVooStr
                 + "\nCom destino para " + makenBilhete.getVoo().getDestino().getNome() + 
