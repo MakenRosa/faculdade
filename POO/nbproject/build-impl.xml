@@ -1,11 +1,40 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@MakenRosa 
+MakenRosa
+/
+Faculdade
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Faculdade/POO/nbproject/build-impl.xml
+@MakenRosa
+MakenRosa Terminei o primeiro ex p entregar dia 15
+…
+Latest commit 2a33e64 5 days ago
+ History
+ 1 contributor
+1771 lines (1768 sloc)  96.6 KB
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 *** GENERATED FROM project.xml - DO NOT EDIT  ***
 ***         EDIT ../build.xml INSTEAD         ***
-
 For the purpose of easier reading the script
 is divided into following sections:
-
   - initialization
   - compilation
   - jar
@@ -17,7 +46,6 @@ is divided into following sections:
   - test debugging
   - applet
   - cleanup
-
         -->
 <project xmlns:if="ant:if" xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" xmlns:unless="ant:unless" basedir=".." default="default" name="ex_associacao1-impl">
     <fail message="Please build using Ant 1.8.0 or higher.">
@@ -1769,3 +1797,16 @@ is divided into following sections:
         </ant>
     </target>
 </project>
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete

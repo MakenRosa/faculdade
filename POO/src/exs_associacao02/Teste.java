@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Teste {
     public static void main(String[] args) {
         List<String> names = Arrays.asList("John", "Jack", "Hamilton", "George");
-        List<String> resultados = names.stream().filter(name -> name.startsWith("J")).collect(Collectors.toList());
+        List<String> resultados = names.stream().filter(name -> name.startsWith("G")).collect(Collectors.toList());
         resultados.forEach(element -> System.out.println(element));
     }
 }
