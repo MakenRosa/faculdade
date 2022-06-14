@@ -8,6 +8,8 @@ public class Bilhete {
     public Bilhete(Assento assento, Reserva reserva) {
         this.assento = assento;
         this.reserva = reserva;
+        this.passageiro = reserva.getPassageiro();
+        this.voo = reserva.getVoo();
     }
 
     public Passageiro getPassageiro() {

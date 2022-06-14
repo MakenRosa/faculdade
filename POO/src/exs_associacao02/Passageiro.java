@@ -65,5 +65,8 @@ public class Passageiro {
         this.reservas = reservas;
     }
     
+    public void setReservas(Reserva reserva){
+        this.reservas.add(reserva);
+    }
     
 }
