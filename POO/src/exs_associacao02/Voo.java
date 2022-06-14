@@ -25,7 +25,7 @@ public class Voo {
         this.destino = destino;
     }
 
-    public Voo(int numero, int duracao, Date data, double precoBase, int milhas, Cidade origem, Cidade destino) {
+    public Voo(int numero, int duracao, Date data, double precoBase, int milhas, Aeronave aeronave, Cidade origem, Cidade destino) {
         this.numero = numero;
         this.duracao = duracao;
         this.data = data;
@@ -34,6 +34,7 @@ public class Voo {
         this.origem = origem;
         this.destino = destino;
         this.aeronaves = new ArrayList();
+        this.aeronaves.add(aeronave);
     }
 
     public int getNumero() {

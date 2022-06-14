@@ -34,10 +34,10 @@ public class Teste {
         Aeronave latamBrasil = new Aeronave(5, "A320", 45121, "Airbus", assentosA320);
         
         //Criando voo
-        String dataStr = "20/06/2022";
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date data = format.parse(dataStr);
-        Voo latamBrasil12 = new Voo(13, 8, data, 1200.00, 20, sjsc, riobranco);
+        String dataStr = "20062022";
+        SimpleDateFormat formatStrToDate = new SimpleDateFormat("ddMMyyyy");
+        Date data = formatStrToDate.parse(dataStr);
+        Voo latamBrasil12 = new Voo(13, 8, data, 1200.00, 20, latamBrasil, sjsc, riobranco);
         
         //Criando cartao
         CartaoFidelidade nuBank = new CartaoFidelidade("4512421533", 50, CategoriaCartao.SILVER);
@@ -49,11 +49,25 @@ public class Teste {
         PagamentoCartaoCredito pagamentoMaken = new PagamentoCartaoCredito("Cartão de crédito 12x sem juros", nuBank); 
         
         //Criando reserva
-        Reserva makenReserva = new Reserva(121, 8072022, 15072022, StatusReserva.CONFIRMADA, latamBrasil12, maken, pagamentoMaken);
+        Reserva makenReserva = new Reserva(121, 17082022, 15082022, StatusReserva.CONFIRMADA, latamBrasil12, maken, pagamentoMaken);
         maken.setReservas(makenReserva);
         
         //Criando bilhete
         Bilhete makenBilhete = new Bilhete(e_02, makenReserva);
+        
+        SimpleDateFormat formatBr = new SimpleDateFormat("d/MM/yyyy");
+        
+        String diaVooDate = Integer.toString(makenBilhete.getReserva().getData());
+        Date date = formatStrToDate.parse(diaVooDate);
+        String diaVooStr = formatBr.format(date);
+        
+        
+        System.out.println("O passageiro " + makenBilhete.getPassageiro().getNome() +
+                "\nPegará o voo de número:" + makenBilhete.getVoo().getNumero()+ 
+                "\nQue sairá de " + makenBilhete.getVoo().getOrigem().getNome() +"\nNo dia: " 
+                + diaVooStr
+                + "\nCom destino para " + makenBilhete.getVoo().getDestino().getNome() + 
+                "\nCom a duração de "+ makenBilhete.getVoo().getDuracao()+ " horas\n ");
         
     }
 }
