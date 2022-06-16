@@ -1,3 +1,5 @@
 POO/build.xml
 POO/build/*
 *.class
+/AOO/MVC/nbproject/private/
+/AOO/MVC/build/
