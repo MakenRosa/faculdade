@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 
-public class Main {
+public class EscreverMailMain {
     public static void main(String[] args) {
         List<String> emails = GravarEmail.getPessoas();
         Path caminho = Paths.get(GravarEmail.getHOME_DIR(), GravarEmail.getFILE_NAME());
@@ -18,7 +18,7 @@ public class Main {
                 writer.newLine();
             }
         } catch (IOException ex) {
-            System.err.println("Deu merda");
+            System.err.println("Deu ruim! "+ ex);
         }
     }
 }
