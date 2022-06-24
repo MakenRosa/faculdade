@@ -1,9 +1,19 @@
 package trabalho_final_poo;
 public enum DiasDaSemana {
-    SEGUNDA_FEIRA,
-    TERCA_FEIRA,
-    QUARTA_FEIRA,
-    QUINTA_FEIRA,
-    SEXTA_FEIRA;
+    SEGUNDA_FEIRA("Segunda Feira"),
+    TERCA_FEIRA("Terça Feira"),
+    QUARTA_FEIRA("Quarta Feira"),
+    QUINTA_FEIRA("Quinta Feira"),
+    SEXTA_FEIRA("Sexta Feira");
+    
+    private final String dia;
+    
+    DiasDaSemana(String dia){
+        this.dia = dia;
+    }
+
+    public String getDia() {
+        return this.dia;
+    }
     
 }

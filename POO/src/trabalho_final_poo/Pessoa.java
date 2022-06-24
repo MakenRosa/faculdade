@@ -50,13 +50,14 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
-    public String getTelefone() {
+    public String getFone() {
         return fone;
     }
 
-    public void setTelefone(String telefone) {
-        this.fone = telefone;
+    public void setFone(String fone) {
+        this.fone = fone;
     }
+
 
     public String getEndereco() {
         return endereco;
