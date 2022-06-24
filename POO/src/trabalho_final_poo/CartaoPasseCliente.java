@@ -1,18 +1,16 @@
 package trabalho_final_poo;
 class CartaoPasseCliente {
     private String codCartao;
-    private int entradasHoje;
+    private int entradasHoje = 0;
     private boolean ativo;
     private CatracaAcademia catraca;
 
     public CartaoPasseCliente(String codCartao) {
         this.codCartao = codCartao;
-        setAtivo(true);
     }
 
     public CartaoPasseCliente(String codCartao, CatracaAcademia catraca) {
         this.codCartao = codCartao;
-        this.ativo = true;
         this.catraca = catraca;
     }
     
@@ -36,7 +34,7 @@ class CartaoPasseCliente {
         this.entradasHoje = entradasHoje;
     }
 
-    public CatracaAcademia getCatraca() {
+    public CatracaAcademia getCatraca(){
         return catraca;
     }
 

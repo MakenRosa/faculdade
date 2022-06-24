@@ -13,6 +13,10 @@ class Treinamento {
         this.exercicios = exercicios;
         this.diaDaSemana = diaDaSemana;
     }
+    public Treinamento(String nome, List<Exercicio> exercicios) {
+        this.nome = nome;
+        this.exercicios = exercicios;
+    }
     
     public Treinamento(String nome, Exercicio exercicio, DiasDaSemana diaDaSemana) {
         this.nome = nome;
@@ -37,7 +41,7 @@ class Treinamento {
             }
         }
         if (isInLista == false){
-            System.err.println("O exercício não está na lista!");
+            System.out.println("O exercício não está na lista!");
         }
     }
     

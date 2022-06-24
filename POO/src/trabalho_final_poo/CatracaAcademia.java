@@ -3,7 +3,7 @@ package trabalho_final_poo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatracaAcademia{
+public class CatracaAcademia implements ControladorDeEntrada{
     private List<CartaoPasseCliente> cartoesCadastrados;
     private boolean fechada = true;
     private static final int ENTRADAS_POR_DIA = 1;
@@ -16,11 +16,13 @@ public class CatracaAcademia{
         this.cartoesCadastrados = new ArrayList();
     }
     
+    @Override
     public void adicionarCartao(CartaoPasseCliente cartao){
         this.cartoesCadastrados.add(cartao);
         System.out.println("Cartão adicionado!");
     }
     
+    @Override
     public void excluirCartao(String CodigoDoCartao){
         boolean isInLista = false;
         for (CartaoPasseCliente cartao : this.getCartoesCadastrados()){
@@ -36,21 +38,29 @@ public class CatracaAcademia{
         }
     }
     
-    public void passarCartao(String CodigoDoCartao){
+    public void resetarEntradas(){
+        for (CartaoPasseCliente cartao : this.getCartoesCadastrados()){
+            cartao.setEntradasHoje(0);
+        }
+    }
+
+    public void passarCartao(String CodigoDoCartao) throws NaoCadastradoException, ExcedeuLimiteDeEntradaException, CartaoDesativadoException {
         boolean isInLista = false;
         for (CartaoPasseCliente cartao : this.getCartoesCadastrados()){
             if (cartao.getCodCartao().equals(CodigoDoCartao)){
-                if (cartao.getEntradasHoje() < CatracaAcademia.ENTRADAS_POR_DIA){
+                isInLista = true;
+                if (cartao.getEntradasHoje() < CatracaAcademia.ENTRADAS_POR_DIA && cartao.isAtivo()){
                     this.registrarEntrada(cartao);
                     this.liberarCatraca();
-                } else{
-                    System.err.println("Você já excedeu o limite de entrada!\n"
-                            + "Volte amanhã!");
-                }
+                } else if (cartao.getEntradasHoje() >= CatracaAcademia.ENTRADAS_POR_DIA){
+                    throw new ExcedeuLimiteDeEntradaException("Você já excedeu o limite de entrada!\nVolte amanhã!");
+                } else if (cartao.isAtivo() == false){
+                    throw new CartaoDesativadoException("Esse cartão está desativado!");
+                } break;
             }
         }
         if (isInLista == false){
-            System.err.println("Cartão Invalido!");
+            throw new NaoCadastradoException("Não cadastrado na catraca!");
         }
     }
     
@@ -74,6 +84,18 @@ public class CatracaAcademia{
 
     public void setCartoesCadastrados(List<CartaoPasseCliente> cartoesCadastrados) {
         this.cartoesCadastrados = cartoesCadastrados;
+    }
+
+    public boolean isFechada() {
+        return fechada;
+    }
+
+    public void setFechada(boolean fechada) {
+        this.fechada = fechada;
+    }
+
+    public static int getENTRADAS_POR_DIA() {
+        return ENTRADAS_POR_DIA;
     }
     
 }

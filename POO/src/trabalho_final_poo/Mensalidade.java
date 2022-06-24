@@ -1,24 +1,18 @@
 package trabalho_final_poo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 class Mensalidade {
     private String mes;
     private double valor;
-    private String status;
+    private StatusPagamento status;
     private LocalDate dataDoPagamento;
 
-    public Mensalidade(String mes, double valor, String status) {
+    public Mensalidade(String mes, double valor, StatusPagamento status) {
         this.mes = mes;
         this.valor = valor;
         this.status = status;
-    }
-    
-    public void pagar(){
-        setStatus("pago");
-        LocalDate dataPagamento= LocalDate.now();
-        setDataDoPagamento(dataPagamento);
-        System.out.println("Pagou!");
     }
     
     public String getMes() {
@@ -38,14 +32,19 @@ class Mensalidade {
     }
 
     public String getStatus() {
-        return status;
+        return status.getStatus();
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusPagamento status) {
         this.status = status;
     }
 
-    public LocalDate getDataDoPagamento() {
+    public String getDataDoPagamentoSTR() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dataDoPagamento.format(formato);
+    }
+    
+    public LocalDate getDataDoPagamento(){
         return dataDoPagamento;
     }
 
