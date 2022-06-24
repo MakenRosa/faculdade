@@ -17,6 +17,9 @@ public class EscreverPessoaMain {
         String HOME_DIR = System.getProperty("user.home");
         Path diretorio = Paths.get(HOME_DIR, "Pessoas");
         PessoaIO.criarArquivoPessoa(diretorio, pessoas, "pessoas.txt");
-        LerArquivoTxt.lerTxt();
+        pessoas = LerArquivoTxt.lerTxt();
+        for (Pessoa pessoa :pessoas){
+            System.out.println(pessoa.getNome() + " e " + pessoa.getEmail());
+        }
     }
 }
