@@ -4,23 +4,20 @@ public class ClienteExperimental extends Pessoa{
     private String dataAulaExperimental;
     private Treinamento treinamento;
 
-    public ClienteExperimental(String nome, String cpf, int idade,
-            String telefone, String endereco, String dataAulaExperimental,
+    public ClienteExperimental(String nome, String cpf, int idade, String dataAulaExperimental,
             Treinamento treinamento) {
-        super(nome, cpf, idade, telefone, endereco);
+        super(nome, cpf, idade);
         this.dataAulaExperimental = dataAulaExperimental;
         this.treinamento = treinamento;
     }
 
-    public ClienteExperimental(String nome, String cpf, int idade,
-            String telefone, String endereco, String dataAulaExperimental) {
-        super(nome, cpf, idade, telefone, endereco);
+    public ClienteExperimental(String nome, String cpf, int idade, String dataAulaExperimental) {
+        super(nome, cpf, idade);
         this.dataAulaExperimental = dataAulaExperimental;
     }
 
-    public ClienteExperimental(String nome, String cpf, int idade,
-            String telefone, String endereco) {
-        super(nome, cpf, idade, telefone, endereco);
+    public ClienteExperimental(String nome, String cpf, int idade) {
+        super(nome, cpf, idade);
     }
     
     public String getDataAulaExperimental() {

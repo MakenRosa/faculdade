@@ -10,15 +10,15 @@ public class Cliente extends Pessoa{
     private Mensalidade mensalidade;
     private CartaoPasseCliente cartao;
 
-    public Cliente(int codInscricao, String nome, String cpf, int idade, String telefone, String endereco, Mensalidade mensalidade) {
-        super(nome, cpf, idade, telefone, endereco);
+    public Cliente(int codInscricao, String nome, String cpf, int idade, Mensalidade mensalidade) {
+        super(nome, cpf, idade);
         this.codInscricao = codInscricao;
         this.treinamentos = new ArrayList();
         this.mensalidade = mensalidade;
     }
 
-    public Cliente(int codInscricao, CartaoPasseCliente cartao, String nome, String cpf, int idade, String telefone, String endereco, Mensalidade mensalidade) {
-        super(nome, cpf, idade, telefone, endereco);
+    public Cliente(int codInscricao, CartaoPasseCliente cartao, String nome, String cpf, int idade, Mensalidade mensalidade) {
+        super(nome, cpf, idade);
         this.codInscricao = codInscricao;
         this.cartao = cartao;
         this.treinamentos = new ArrayList();
@@ -72,9 +72,9 @@ public class Cliente extends Pessoa{
     }
         
     public void mostrarTreinos(){
-        for (Treinamento treino : this.treinamentos){
+        this.treinamentos.forEach((treino) -> {
             System.out.println(treino.getNome());
-        }
+        });
     }
 
     public void pagarMensalidade(){

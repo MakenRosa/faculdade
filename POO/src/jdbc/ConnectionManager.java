@@ -2,7 +2,9 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionManager {
      private static final String USUARIO_BD = "root";
@@ -22,5 +24,29 @@ public class ConnectionManager {
             throw new Exception("Erro ao obter conexão: "+ e.getMessage(), e);
         }
         return conexao;
+    }
+    public static void fechar(Connection connection, Statement statement, ResultSet resultset) throws SQLException{
+        if (connection != null){
+            connection.close();
+        }
+        if (statement != null){
+            statement.close();
+        }
+        if (resultset != null){
+            resultset.close();
+        }
+    }
+    public static void fechar(Connection connection, Statement statement ) throws SQLException{
+        if (connection != null){
+            connection.close();
+        }
+        if (statement != null){
+            statement.close();
+        }
+    }
+    public static void fechar(Connection connection) throws SQLException{
+        if (connection != null){
+            connection.close();
+        }
     }
 }

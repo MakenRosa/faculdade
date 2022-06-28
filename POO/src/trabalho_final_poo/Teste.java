@@ -61,11 +61,10 @@ public class Teste {
         Mensalidade julho = new Mensalidade("Julho", 125.00, StatusPagamento.PAGAMENTO_EM_ESPERA);
         
         // Instanciando pessoas
-        Cliente maken = new Cliente(02101, "Maken da Rosa", 
-                "545.666.412-58", 19, "48991774524", "Rua geral, 2343, São José, SC", julho);
+        Cliente maken = new Cliente(02101, "Maken da Rosa", "45125454787", 19, julho);
         
         ClienteExperimental leonardo = new ClienteExperimental("Leonardo Fulano",
-                "789.332.458-88", 17, "485547125452", "Rua Principal, 123, Biguaçu, SC");
+                "789.332.458-88", 17, "485547125452");
         leonardo.setTreinamento(experimental);
         
         // Adicionando os Treinamentos as Pessoas
@@ -82,6 +81,6 @@ public class Teste {
         
         // Utilizando o sistema
         maken.pagarMensalidade();
-        maken.mostrarTreinos();
+        maken.entrarNaAcademia();
     }
 }
