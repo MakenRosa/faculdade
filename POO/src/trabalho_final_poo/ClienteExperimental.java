@@ -9,16 +9,19 @@ public class ClienteExperimental extends Pessoa{
         super(nome, cpf, idade);
         this.dataAulaExperimental = dataAulaExperimental;
         this.treinamento = treinamento;
+        System.out.println("Cliente Experimental criado!");
     }
 
     public ClienteExperimental(String nome, String cpf, int idade, String dataAulaExperimental) {
         super(nome, cpf, idade);
         this.dataAulaExperimental = dataAulaExperimental;
-    }
+        System.out.println("Cliente Experimental criado!");
+}
 
     public ClienteExperimental(String nome, String cpf, int idade) {
         super(nome, cpf, idade);
-    }
+        System.out.println("Cliente Experimental criado!");
+}
     
     public String getDataAulaExperimental() {
         return dataAulaExperimental;
@@ -30,10 +33,12 @@ public class ClienteExperimental extends Pessoa{
 
     public void setDataAulaExperimental(String dataAulaExperimental) {
         this.dataAulaExperimental = dataAulaExperimental;
+        System.out.println("Data da aula experimental definida!");
     }
 
     public void setTreinamento(Treinamento treinamento) {
         this.treinamento = treinamento;
+        System.out.println("Treinamento setado (experimental)");
     }
     
 }

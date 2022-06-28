@@ -7,11 +7,13 @@ class CartaoPasseCliente {
 
     public CartaoPasseCliente(String codCartao) {
         this.codCartao = codCartao;
+        System.out.println("Cartão criado!");
     }
 
     public CartaoPasseCliente(String codCartao, CatracaAcademia catraca) {
         this.codCartao = codCartao;
         this.catraca = catraca;
+        System.out.println("Cartão criado!");
     }
     
     public void registrarEntrada(){
@@ -24,6 +26,7 @@ class CartaoPasseCliente {
 
     public void setCodCartao(String codCartao) {
         this.codCartao = codCartao;
+        System.out.println("Código do cartão atribuído ao cartão!");
     }
 
     public int getEntradasHoje() {
@@ -40,6 +43,7 @@ class CartaoPasseCliente {
 
     public void setCatraca(CatracaAcademia catraca) {
         this.catraca = catraca;
+        System.out.println("Cartão atribuído a catraca!");
     }
 
     public boolean isAtivo() {

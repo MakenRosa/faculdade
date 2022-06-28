@@ -12,10 +12,12 @@ class Treinamento {
         this.nome = nome;
         this.exercicios = exercicios;
         this.diaDaSemana = diaDaSemana;
+        System.out.println("Treinamento criado!");
     }
     public Treinamento(String nome, List<Exercicio> exercicios) {
         this.nome = nome;
         this.exercicios = exercicios;
+        System.out.println("Treinamento criado!");
     }
     
     public Treinamento(String nome, Exercicio exercicio, DiasDaSemana diaDaSemana) {
@@ -23,6 +25,7 @@ class Treinamento {
         this.exercicios = new ArrayList();
         this.exercicios.add(exercicio);
         this.diaDaSemana = diaDaSemana;
+        System.out.println("Treinamento criado!");
     }
     
     public void adicionarExercicio(Exercicio exercicio){

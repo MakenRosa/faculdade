@@ -61,10 +61,12 @@ public class Teste {
         Mensalidade julho = new Mensalidade("Julho", 125.00, StatusPagamento.PAGAMENTO_EM_ESPERA);
         
         // Instanciando pessoas
-        Cliente maken = new Cliente(02101, "Maken da Rosa", "45125454787", 19, julho);
-        
+
+        Cliente maken = new Cliente(02101, "Maken da Rosa", "78969647990", 19, julho);
+
         ClienteExperimental leonardo = new ClienteExperimental("Leonardo Fulano",
-                "789.332.458-88", 17, "485547125452");
+                "78933245888", 17);
+        leonardo.setDataAulaExperimental("07/07/2022");
         leonardo.setTreinamento(experimental);
         
         // Adicionando os Treinamentos as Pessoas
@@ -72,12 +74,11 @@ public class Teste {
         maken.adicionarTreinamento(makenQuarta);
         maken.adicionarTreinamento(makenSexta);
         
-        leonardo.setTreinamento(experimental);
-        
         // Instanciando e Adicionando Cartao de Passe do Cliente na catraca
         CartaoPasseCliente cartaoMaken = new CartaoPasseCliente("451A32X5", catraca);
         catraca.adicionarCartao(cartaoMaken);
         maken.setCartao(cartaoMaken);
+        
         
         // Utilizando o sistema
         maken.pagarMensalidade();

@@ -18,6 +18,7 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+        System.out.println("Nome mudado!");
     }
 
     public String getCpf() {
@@ -34,5 +35,6 @@ public class Pessoa {
 
     public void setIdade(int idade) {
         this.idade = idade;
+        System.out.println("Idade trocada!");
     }
 }

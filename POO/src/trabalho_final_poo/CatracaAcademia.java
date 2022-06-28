@@ -10,16 +10,18 @@ public class CatracaAcademia implements ControladorDeEntrada{
 
     public CatracaAcademia(List<CartaoPasseCliente> cartoesCadastrados) {
         this.cartoesCadastrados = cartoesCadastrados;
+        System.out.println("Catraca criada!");
     }
 
     public CatracaAcademia() {
         this.cartoesCadastrados = new ArrayList();
+        System.out.println("Catraca criada!");
     }
     
     @Override
     public void adicionarCartao(CartaoPasseCliente cartao){
         this.cartoesCadastrados.add(cartao);
-        System.out.println("Cartão adicionado!");
+        System.out.println("Cartão adicionado ao cliente!");
     }
     
     @Override
@@ -34,13 +36,18 @@ public class CatracaAcademia implements ControladorDeEntrada{
             }
         }
         if (isInLista == false){
-            System.err.println("O cartão não está cadastrado!");
+            System.out.println("Código errado ou cartão não está cadastrado!");
         }
     }
     
     public void resetarEntradas(){
+        try {
         for (CartaoPasseCliente cartao : this.getCartoesCadastrados()){
             cartao.setEntradasHoje(0);
+        }
+            System.out.println("Cartões da catraca resetados!");
+        } catch (Exception ex){
+            System.out.println("Ocorreu um erro! " + ex.getMessage());
         }
     }
 
@@ -70,12 +77,20 @@ public class CatracaAcademia implements ControladorDeEntrada{
     }
 
     private void liberarCatraca() {
-        this.fechada = false;
-        System.out.println("Catraca liberada!");
+        if (this.fechada == false){
+            System.out.println("Catraca já está liberada!");
+        } else{
+            this.fechada = false;
+            System.out.println("Catraca liberada!");    
+        }
     }
     public void fecharCatraca(){
-        this.fechada = true;
-        System.out.println("Catraca fechada!");
+        if (this.fechada){
+            System.out.println("Catraca já está fechada!");
+        } else{
+            this.fechada = true;
+            System.out.println("Catraca fechada!");
+        }
     }
     
     public List<CartaoPasseCliente> getCartoesCadastrados() {
@@ -84,6 +99,7 @@ public class CatracaAcademia implements ControladorDeEntrada{
 
     public void setCartoesCadastrados(List<CartaoPasseCliente> cartoesCadastrados) {
         this.cartoesCadastrados = cartoesCadastrados;
+        System.out.println("Cartões cadastrados na catraca!");
     }
 
     public boolean isFechada() {
