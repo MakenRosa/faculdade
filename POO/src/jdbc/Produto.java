@@ -12,6 +12,12 @@ public class Produto {
         return id;
     }
 
+    public Produto(String nome, double preco, LocalDate dataVencimento) {
+        this.nome = nome;
+        this.preco = preco;
+        this.dataVencimento = dataVencimento;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

@@ -1,10 +1,34 @@
 package jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ProdutoDAO {
-    public Produto criar(Produto produto){
+    public Produto criar(Produto produto) throws Exception{
+        String sql = "INSERT INTO produto(nome, preco, vencimento) VALUES(?, ?, ?)";
+        Connection conexao = null;
+        PreparedStatement prepararSql = null;
+        ResultSet resultado = null;
+        try {
+            conexao = ConnectionManager.abrirConexao();
+            prepararSql = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            prepararSql.setString(1, produto.getNome());
+            prepararSql.setDouble(2, produto.getPreco());
+            prepararSql.setDate(3, Date.valueOf(produto.getDataVencimento()));
+            prepararSql.executeUpdate();
+            resultado = prepararSql.getGeneratedKeys();
+            resultado.next();
+            produto.setId(resultado.getLong("id"));
+            
+        } catch (Exception ex){
+            System.err.println("Erro ao adicionar valores");
+            throw new Exception(ex);
+        } finally {
+            ConnectionManager.fechar(conexao, prepararSql, resultado);
+        }
         return null;
     }
     public Produto buscarPeloId(long id){
