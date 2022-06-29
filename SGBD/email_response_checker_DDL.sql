@@ -24,14 +24,16 @@ create table mensagens_inbox(
                     body VARCHAR(1000),
                     remet VARCHAR(40) not null,
                     dest VARCHAR(256) not null,
-                    assunto VARCHAR(160));
+                    assunto VARCHAR(160),
+                    flags VARCHAR(32));
                     
  create table mensagens_residuos(
 					id_msg_residuos INT primary key not null unique auto_increment,
                     body VARCHAR(1000),
                     remet VARCHAR(40) not null,
                     dest VARCHAR(256) not null,
-                    assunto VARCHAR(160));
+                    assunto VARCHAR(160),
+                    flags VARCHAR(32));
                     
 create table relatorio_nao_respondidas(
 					id_relatorio INT primary key not null unique auto_increment,
@@ -80,3 +82,4 @@ create table relatorio_mensagens_residuos(
 -- ====================================== Criando relacionamento: ================================
 alter table enderecos_email
 add foreign key (id_pessoa) references pessoas(id_pessoa);
+

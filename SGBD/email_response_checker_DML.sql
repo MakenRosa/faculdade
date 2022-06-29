@@ -14,7 +14,6 @@ values 	("Eduardo Silva", 78412414521, "Gerente da qualidade", 0236),
         ("Carlos Eduardo", 78421457411, "Gerente de TI", 3215),
         ("Fernando Albuquerque", 45179366587, "Diretor Executivo", 6666),
         ("Eraldo Rodrigues", 33315420666, "Diretor Geral", 0666);
-select * from pessoas;
 
 -- =================== Adicionando Emails ===============================
 insert into enderecos_email (endereco_email, senha_email, departamento, id_pessoa)
@@ -28,7 +27,6 @@ values 	("administrativo@teste.com", "&abc*", "Administrativo", 5),
         ("contabil01@teste.com", "&dsb%", "Contabil", 6);
 insert into enderecos_email (endereco_email, senha_email, departamento)
 values ("rh@teste.com", "&hgn$", "RH");
-select * from enderecos_email;
 
 -- ==================== Adicionando exceções ==============================
 insert into remetente_excecoes (excecao)
@@ -36,12 +34,10 @@ values 	("gov.br"),
 		("ctc@exemplo.com"),
         ("@cloud"),
         ("testes");
-select * from remetente_excecoes;
 
 -- ==================== Adicionando a data ===============================
 insert into ultima_data (dia)
 values ("2022-06-28");
-select * from ultima_data;
 
 -- ==================== Adicionando mensagens inbox ======================
 insert into mensagens_inbox (body, remet, dest, assunto)
@@ -65,7 +61,6 @@ values 	("ITC@teste.com", "fiscal01@teste.com"),
         ("ITC@teste.com", "contabil01@teste.com");
 insert into mensagens_inbox (remet, dest, assunto)
 values ("Colarhst", "fiscal01@teste.com, fiscal02@teste.com", "fiscalização");
-select * from mensagens_inbox;
 
 -- ==================== Adicionando mensagens residuos ======================
 insert into mensagens_residuos (remet, dest)
@@ -74,7 +69,6 @@ values 	("ITC@teste.com", "fiscal02@teste.com"),
         ("ITC@teste.com", "rh@teste.com"),
         ("ITC@teste.com", "fiscal01@teste.com"),
         ("ITC@teste.com", "contabil01@teste.com");
-select * from mensagens_residuos;
 
 -- ==================== Associando mensagens da inbox com enderecos ==============
 insert into mensagens_inbox_endereco (id_endereco, id_msg_inbox)
@@ -96,7 +90,6 @@ values 	(3, 1),
         (8, 16),
         (2, 17),
         (6, 17);
-select * from mensagens_inbox_endereco;
 
 -- ==================== Associando mensagens do residuos com enderecos ==============
 insert into mensagens_residuos_endereco (id_endereco, id_msg_residuos)
@@ -105,4 +98,25 @@ values 	(6, 1),
         (9, 3),
         (2, 4),
         (8, 5);
-select * from mensagens_residuos;
+
+-- =================== Adicionando relatorios de mensagens não respondidas ===========
+insert into relatorio_nao_respondidas (dt_hr_relatorio, user_relatorio, descricao_relatorio)
+values 	("2022-06-30 09:50:03", "Murilo Rodrigues", "Relatorio das mensagens não respondidas ontem pelo departamento fiscal"),
+		("2022-06-29 14:45:33", "Murilo Rodrigues", "Relatorio das mensagens não respondidas e excluídas do departamento fiscal");
+
+-- ================== Associando relatorio a mensagens inbox =========================
+insert into relatorio_mensagens_inbox (id_relatorio, id_msg_inbox)
+values 	(1, 4),
+		(1, 10),
+        (1, 12),
+        (1, 5),
+        (1, 9),
+        (1, 13),
+        (1, 17);
+
+-- ================== Associando relatorio a mensagens residuos ========================
+insert into relatorio_mensagens_residuos (id_relatorio, id_msg_residuos)
+values 	(2, 4),
+		(2, 1),
+        (2, 2);
+
