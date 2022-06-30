@@ -90,6 +90,7 @@ public class Teste {
         
         
         // Utilizando o sistema
+        maken.pagarMensalidade();
         maken.entrarNaAcademia();
     }
 }
