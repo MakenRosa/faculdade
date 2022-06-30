@@ -4,11 +4,11 @@ import br.com.senac.gym_manager.enums.DiasDaSemana;
 import br.com.senac.gym_manager.enums.StatusPagamento;
 import br.com.senac.gym_manager.entidades.Cliente;
 import br.com.senac.gym_manager.entidades.ClienteExperimental;
-import br.com.senac.gym_manager.controle_entrada.CartaoPasseCliente;
-import br.com.senac.gym_manager.controle_entrada.CatracaAcademia;
-import br.com.senac.gym_manager.substants.Exercicio;
-import br.com.senac.gym_manager.substants.Mensalidade;
-import br.com.senac.gym_manager.substants.Treinamento;
+import br.com.senac.gym_manager.entidades.CartaoPasseCliente;
+import br.com.senac.gym_manager.entidades.CatracaAcademia;
+import br.com.senac.gym_manager.entidades.Exercicio;
+import br.com.senac.gym_manager.entidades.Mensalidade;
+import br.com.senac.gym_manager.entidades.Treinamento;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +90,6 @@ public class Teste {
         
         
         // Utilizando o sistema
-        maken.pagarMensalidade();
         maken.entrarNaAcademia();
     }
 }

@@ -1,12 +1,9 @@
 package br.com.senac.gym_manager.entidades;
 
-import br.com.senac.gym_manager.controle_entrada.CartaoPasseCliente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.senac.gym_manager.substants.Mensalidade;
 import br.com.senac.gym_manager.enums.StatusPagamento;
-import br.com.senac.gym_manager.substants.Treinamento;
 import br.com.senac.gym_manager.exceptions.CartaoDesativadoException;
 import br.com.senac.gym_manager.exceptions.ExcedeuLimiteDeEntradaException;
 import br.com.senac.gym_manager.exceptions.NaoCadastradoException;

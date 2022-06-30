@@ -1,7 +1,5 @@
 package br.com.senac.gym_manager.entidades;
 
-import br.com.senac.gym_manager.substants.Treinamento;
-
 public class ClienteExperimental extends Pessoa{
     private String dataAulaExperimental;
     private Treinamento treinamento;

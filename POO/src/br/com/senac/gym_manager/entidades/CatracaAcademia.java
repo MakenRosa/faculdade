@@ -1,5 +1,6 @@
-package br.com.senac.gym_manager.controle_entrada;
+package br.com.senac.gym_manager.entidades;
 
+import br.com.senac.gym_manager.interfaces.ControladorDeEntrada;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.senac.gym_manager.exceptions.CartaoDesativadoException;

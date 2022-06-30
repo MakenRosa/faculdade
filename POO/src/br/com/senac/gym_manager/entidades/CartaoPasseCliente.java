@@ -1,4 +1,4 @@
-package br.com.senac.gym_manager.controle_entrada;
+package br.com.senac.gym_manager.entidades;
 public class CartaoPasseCliente {
     private String codCartao;
     private int entradasHoje = 0;

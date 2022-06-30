@@ -1,4 +1,4 @@
-package br.com.senac.gym_manager.substants;
+package br.com.senac.gym_manager.entidades;
 public class Exercicio {
      private String nome;
      private int repeticoes;

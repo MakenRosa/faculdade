@@ -1,4 +1,4 @@
-package br.com.senac.gym_manager.substants;
+package br.com.senac.gym_manager.entidades;
 
 import br.com.senac.gym_manager.enums.StatusPagamento;
 import java.time.LocalDate;
