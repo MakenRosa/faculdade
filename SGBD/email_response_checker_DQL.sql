@@ -1,3 +1,5 @@
+use email_response_checker;
+
 -- ====================== selects simples ====================
 select * from pessoas;
 select * from enderecos_email;
