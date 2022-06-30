@@ -1,4 +1,4 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.exceptions;
 public class ExcedeuLimiteDeEntradaException extends Exception {
     public  ExcedeuLimiteDeEntradaException(String message){
         super(message);

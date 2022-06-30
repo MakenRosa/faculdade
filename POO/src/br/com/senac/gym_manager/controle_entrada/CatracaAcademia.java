@@ -1,7 +1,10 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.controle_entrada;
 
 import java.util.ArrayList;
 import java.util.List;
+import br.com.senac.gym_manager.exceptions.CartaoDesativadoException;
+import br.com.senac.gym_manager.exceptions.ExcedeuLimiteDeEntradaException;
+import br.com.senac.gym_manager.exceptions.NaoCadastradoException;
 
 public class CatracaAcademia implements ControladorDeEntrada{
     private List<CartaoPasseCliente> cartoesCadastrados;
@@ -21,7 +24,7 @@ public class CatracaAcademia implements ControladorDeEntrada{
     @Override
     public void adicionarCartao(CartaoPasseCliente cartao){
         this.cartoesCadastrados.add(cartao);
-        System.out.println("Cartão adicionado ao cliente!");
+        System.out.println("Cartão adicionado a catraca!");
     }
     
     @Override

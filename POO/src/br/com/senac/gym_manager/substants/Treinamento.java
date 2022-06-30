@@ -1,9 +1,10 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.substants;
 
+import br.com.senac.gym_manager.enums.DiasDaSemana;
 import java.util.ArrayList;
 import java.util.List;
 
-class Treinamento {
+public class Treinamento {
      private String nome;
      private List<Exercicio> exercicios;
      private DiasDaSemana diaDaSemana;

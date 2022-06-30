@@ -1,5 +1,5 @@
-package trabalho_final_poo;
-class Exercicio {
+package br.com.senac.gym_manager.substants;
+public class Exercicio {
      private String nome;
      private int repeticoes;
      private int series;

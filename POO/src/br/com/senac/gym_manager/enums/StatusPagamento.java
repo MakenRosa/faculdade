@@ -1,4 +1,4 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.enums;
 public enum StatusPagamento {
     PAGAMENTO_EM_ESPERA("Em espera"),
     PAGAMENTO_REALIZADO("Realizado"),

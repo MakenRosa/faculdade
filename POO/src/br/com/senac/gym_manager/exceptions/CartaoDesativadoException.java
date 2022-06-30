@@ -1,5 +1,5 @@
 
-package trabalho_final_poo;
+package br.com.senac.gym_manager.exceptions;
 
 public class CartaoDesativadoException extends Exception {
     public CartaoDesativadoException(String message){

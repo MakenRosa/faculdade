@@ -1,9 +1,10 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.substants;
 
+import br.com.senac.gym_manager.enums.StatusPagamento;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-class Mensalidade {
+public class Mensalidade {
     private String mes;
     private double valor;
     private StatusPagamento status;

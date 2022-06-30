@@ -1,5 +1,14 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.main;
 
+import br.com.senac.gym_manager.enums.DiasDaSemana;
+import br.com.senac.gym_manager.enums.StatusPagamento;
+import br.com.senac.gym_manager.entidades.Cliente;
+import br.com.senac.gym_manager.entidades.ClienteExperimental;
+import br.com.senac.gym_manager.controle_entrada.CartaoPasseCliente;
+import br.com.senac.gym_manager.controle_entrada.CatracaAcademia;
+import br.com.senac.gym_manager.substants.Exercicio;
+import br.com.senac.gym_manager.substants.Mensalidade;
+import br.com.senac.gym_manager.substants.Treinamento;
 import java.util.ArrayList;
 import java.util.List;
 

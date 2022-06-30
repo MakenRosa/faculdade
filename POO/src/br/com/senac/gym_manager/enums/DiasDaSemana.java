@@ -1,4 +1,4 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.enums;
 public enum DiasDaSemana {
     SEGUNDA_FEIRA("Segunda Feira"),
     TERCA_FEIRA("Terça Feira"),

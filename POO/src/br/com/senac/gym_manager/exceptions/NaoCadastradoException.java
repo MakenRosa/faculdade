@@ -1,4 +1,4 @@
-package trabalho_final_poo;
+package br.com.senac.gym_manager.exceptions;
 public class NaoCadastradoException extends Exception{
     public  NaoCadastradoException(String message){
         super(message);

@@ -1,5 +1,5 @@
 
-package trabalho_final_poo;
+package br.com.senac.gym_manager.entidades;
 
 public class Pessoa {
     private String nome;

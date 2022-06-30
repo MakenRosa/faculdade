@@ -1,5 +1,5 @@
-package trabalho_final_poo;
-class CartaoPasseCliente {
+package br.com.senac.gym_manager.controle_entrada;
+public class CartaoPasseCliente {
     private String codCartao;
     private int entradasHoje = 0;
     private boolean ativo;
