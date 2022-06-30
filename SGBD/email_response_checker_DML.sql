@@ -49,6 +49,7 @@ values 	("Boa tarde gostaria de falar sobre o desenvolvimento do sistema de moni
         ("Preciso das cópias do emails dos colaboradores o quanto antes for possível", "carh@teste.com", "ti@teste.com", "backup emails"),
         ("Fernando sua encomenda esta a caminho", "magalu@exemplo.com", "direcaoex@teste.com", "Status encomenda"),
         ("Preciso do relatório da revisão dos documentos enviados pela amazon ontem", "Cuclan@teste.com.br", "fiscal02@teste.com", "Revisão de documentos");
+update mensagens_inbox set flags = "Answered" where mensagens_inbox.id_msg_inbox = 8;
 insert into mensagens_inbox (remet, dest, assunto)
 values 	("Kling@teste.com", "fiscal02@teste.com", "Re: análise de documentos"),
 		("cliente@teste.com", "fiscal01@teste.com", "Um teste apenas"),
