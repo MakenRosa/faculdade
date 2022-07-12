@@ -1,4 +1,4 @@
-package jdbc;
+package crud.entidades;
 
 import java.time.LocalDate;
 
