@@ -3,7 +3,7 @@ package crud.entidades;
 import java.time.LocalDate;
 
 public class Produto {
-    private long id;
+    private Long id;
     private String nome;
     private double preco;
     private LocalDate dataVencimento;
@@ -47,6 +47,11 @@ public class Produto {
 
     public void setDataVencimento(LocalDate dataVencimento) {
         this.dataVencimento = dataVencimento;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "id: " + id + ", nome: " + nome + ", preco: " + preco + ", dataVencimento: " + dataVencimento + '}';
     }
     
 }

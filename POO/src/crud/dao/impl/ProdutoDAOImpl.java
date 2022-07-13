@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,39 +57,127 @@ public class ProdutoDAOImpl implements ProdutoDAO{
             statement.setDate(3, Date.valueOf(produto.getDataVencimento()));
             statement.executeUpdate();
             resultado = statement.getGeneratedKeys();
-            resultado.next();
-            produto.setId(resultado.getLong(1));
+            if (resultado.next()){
+                produto.setId(resultado.getLong(1));
+            }
         } catch (SQLException ex){
             System.err.println("Erro ao criar produto! " + ex.getMessage());
         } finally {
-            crud.dao.ConnectionManager.closeConnection(connection, statement);
+            crud.dao.ConnectionManager.closeConnection(connection, statement, resultado);
         }
         return produto;
     }
 
     @Override
-    public Produto buscarPeloId(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Produto buscarPeloId(long id) throws Exception{
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        Produto produto = null;
+        try {
+            connection = ConnectionManager.openConnection();
+            String sql = "SELECT * FROM produto WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setLong(1, id);
+            resultado = statement.executeQuery();
+            if (resultado.next()){
+                produto = new Produto();
+                produto.setId(id);
+                produto.setNome(resultado.getString("nome"));
+                produto.setPreco(resultado.getDouble("preco"));
+                produto.setDataVencimento(resultado.getDate("vencimento").toLocalDate());
+            }
+        } catch (SQLException ex){
+            System.err.println("Erro ao buscar pelo id: "+ ex.getMessage());
+        } finally{
+            ConnectionManager.closeConnection(connection, statement, resultado);
+        }
+        return produto;
     }
 
     @Override
-    public List<Produto> pesquisarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Produto> pesquisarTodos() throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        List<Produto> produtos = new ArrayList();
+        try {
+            connection = ConnectionManager.openConnection();
+            String sql = "SELECT * FROM produto ORDER BY vencimento ASC";
+            statement = connection.prepareStatement(sql);
+            resultado = statement.executeQuery();
+            while (resultado.next()){
+                Produto produto = new Produto();
+                produto.setId(resultado.getLong("id"));
+                produto.setNome(resultado.getString("nome"));
+                produto.setPreco(resultado.getDouble("preco"));
+                produto.setDataVencimento(resultado.getDate("vencimento").toLocalDate());
+                produtos.add(produto);
+            }
+        } catch (SQLException ex){
+            System.err.println("Erro ao buscar todos: "+ ex.getMessage());
+        } finally{
+            ConnectionManager.closeConnection(connection, statement, resultado);
+        }
+        return produtos;
+    
     }
 
     @Override
-    public Produto atualizar(Produto produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Produto atualizar(Produto produto) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        try {
+            connection = ConnectionManager.openConnection();
+            String sql = "UPDATE produto SET nome = ?, preco = ?, vencimento = ? WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, produto.getNome());
+            statement.setDouble(2, produto.getPreco());
+            statement.setDate(3, Date.valueOf(produto.getDataVencimento()));
+            statement.setLong(4, produto.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex){
+            System.err.println("Erro ao buscar pelo id: "+ ex.getMessage());
+        } finally{
+            ConnectionManager.closeConnection(connection, statement, resultado);
+        }
+        return produto;
     }
 
     @Override
-    public void remover(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remover(long id) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        try {
+            connection = ConnectionManager.openConnection();
+            String sql = "DELETE produto from produto WHERE id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex){
+            System.err.println("Erro ao buscar pelo id: "+ ex.getMessage());
+        } finally{
+            ConnectionManager.closeConnection(connection, statement, resultado);
+        }
     }
 
     @Override
-    public void removerRegistros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removerRegistros() throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultado = null;
+        try {
+            connection = ConnectionManager.openConnection();
+            String sql = "DELETE produto from produto";
+            statement = connection.prepareStatement(sql);
+            statement.executeUpdate();
+        } catch (SQLException ex){
+            System.err.println("Erro ao buscar pelo id: "+ ex.getMessage());
+        } finally{
+            ConnectionManager.closeConnection(connection, statement, resultado);
+        }
     }
 
     
