@@ -2,7 +2,6 @@ package crud.dao.impl;
 
 import crud.dao.ConnectionManager;
 import crud.dao.EnderecoDAO;
-import crud.dao.PacienteDAO;
 import crud.entidades.Endereco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +16,7 @@ public class EnderecoDAOImpl implements EnderecoDAO{
     public void criar(Endereco endereco, long idPaciente) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "INSERT INTO produto (logradouro, cep, id_paciente, numero) values(?, ?, ?, ?)";
+        String sql = "INSERT INTO endereco (logradouro, cep, id_paciente, numero) values(?, ?, ?, ?)";
         try {
             connection = ConnectionManager.openConnection();
             statement = connection.prepareStatement(sql);
@@ -40,13 +39,12 @@ public class EnderecoDAOImpl implements EnderecoDAO{
         ResultSet resultado = null;
         try {
             connection = ConnectionManager.openConnection();
-            String sql = "UPDATE endereco SET logradouro = ?, cep = ?, id_pessoa = ?, numero = ? WHERE id = ?";
+            String sql = "UPDATE endereco SET logradouro = ?, cep = ?, numero = ? WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, endereco.getLogradouro());
             statement.setString(2, endereco.getCep());
-            statement.setLong(3, endereco.getPaciente().getId());
-            statement.setInt(4, endereco.getNumero());
-            statement.setLong(5, endereco.getId());
+            statement.setInt(3, endereco.getNumero());
+            statement.setLong(4, endereco.getId());
             statement.executeUpdate();
         } catch (SQLException ex){
             System.err.println("Erro ao alterar Endereco: "+ ex.getMessage());
@@ -62,7 +60,6 @@ public class EnderecoDAOImpl implements EnderecoDAO{
         PreparedStatement statement = null;
         ResultSet resultado = null;
         Endereco endereco = null;
-        PacienteDAO daoPaciente = new PacienteDAOImpl();
         try {
             connection = ConnectionManager.openConnection();
             String sql = "SELECT * FROM endereco WHERE id = ?";
@@ -74,7 +71,6 @@ public class EnderecoDAOImpl implements EnderecoDAO{
                 endereco.setId(id);
                 endereco.setLogradouro(resultado.getString("logradouro"));
                 endereco.setCep(resultado.getString("cep"));
-                endereco.setPaciente(daoPaciente.pesquisarPorId(resultado.getLong("id_paciente")));
                 endereco.setNumero(resultado.getInt("numero"));
             }
         } catch (SQLException ex){
@@ -91,7 +87,6 @@ public class EnderecoDAOImpl implements EnderecoDAO{
         PreparedStatement statement = null;
         ResultSet resultado = null;
         List<Endereco> enderecos = new ArrayList();
-        PacienteDAO daoPaciente = new PacienteDAOImpl();
         try {
             connection = ConnectionManager.openConnection();
             String sql = "SELECT * FROM endereco WHERE id_paciente = ?";
@@ -103,7 +98,6 @@ public class EnderecoDAOImpl implements EnderecoDAO{
                 endereco.setId(resultado.getLong("id"));
                 endereco.setLogradouro(resultado.getString("logradouro"));
                 endereco.setCep(resultado.getString("cep"));
-                endereco.setPaciente(daoPaciente.pesquisarPorId(idPaciente));
                 endereco.setNumero(resultado.getInt("numero"));
                 enderecos.add(endereco);
             }

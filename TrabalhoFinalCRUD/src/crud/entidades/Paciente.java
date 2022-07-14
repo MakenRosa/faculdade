@@ -10,6 +10,15 @@ public class Paciente {
     private LocalDate nascimento;
     private List<Endereco> enderecos;
 
+    public Paciente() {
+    }
+    
+    public Paciente(String nome, String cpf, LocalDate nascimento) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+    }
+
     public Long getId() {
         return id;
     }

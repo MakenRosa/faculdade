@@ -4,7 +4,16 @@ public class Endereco {
     private String cep;
     private String Logradouro;
     private int numero;
-    private Paciente paciente;
+
+    public Endereco(String cep, String Logradouro, int numero) {
+        this.cep = cep;
+        this.Logradouro = Logradouro;
+        this.numero = numero;
+    }
+
+    public Endereco() {
+    }
+
 
     public Long getId() {
         return id;
@@ -37,14 +46,4 @@ public class Endereco {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-    
-    
 }
