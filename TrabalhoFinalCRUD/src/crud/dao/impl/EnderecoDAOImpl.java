@@ -14,6 +14,9 @@ public class EnderecoDAOImpl implements EnderecoDAO{
 
     @Override
     public void criar(Endereco endereco, long idPaciente) throws Exception {
+        if (endereco.getLogradouro() == null){
+            throw new Exception("Logradouro não pode ser nulo!");
+        }
         Connection connection = null;
         PreparedStatement statement = null;
         String sql = "INSERT INTO endereco (logradouro, cep, id_paciente, numero) values(?, ?, ?, ?)";
@@ -34,6 +37,9 @@ public class EnderecoDAOImpl implements EnderecoDAO{
 
     @Override
     public Endereco alterar(Endereco endereco) throws Exception {
+        if (endereco.getLogradouro() == null){
+            throw new Exception("Logradouro não pode ser nulo!");
+        }
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultado = null;

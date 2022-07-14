@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,24 +20,26 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     public Paciente criar(Paciente paciente) throws Exception{
         Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultado = null;
-        String sql = "INSERT INTO paciente (nome, cpf, nascimento) values(?, ?, ?)";
+        PreparedStatement statementInsert = null;
+        ResultSet resultadoInsert = null;
+        String sqlInsert = "INSERT INTO paciente (nome, cpf, nascimento) values(?, ?, ?)";
         try {
             connection = ConnectionManager.openConnection();
-            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, paciente.getNome());
-            statement.setString(2, paciente.getCpf());
-            statement.setDate(3, Date.valueOf(paciente.getNascimento()));
-            statement.executeUpdate();
-            resultado = statement.getGeneratedKeys();
-            if (resultado.next()){
-                paciente.setId(resultado.getLong(1));
+            statementInsert = connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            statementInsert.setString(1, paciente.getNome());
+            statementInsert.setString(2, paciente.getCpf());
+            statementInsert.setDate(3, Date.valueOf(paciente.getNascimento()));
+            statementInsert.executeUpdate();
+            resultadoInsert = statementInsert.getGeneratedKeys();
+            if (resultadoInsert.next()){
+                paciente.setId(resultadoInsert.getLong(1));
             }
+        } catch (SQLIntegrityConstraintViolationException ex){
+            System.err.println("CPF informado já está cadastrado no banco de dados! " +ex.getMessage());
         } catch (SQLException ex){
-            System.err.println("Erro ao criar paciente! " + ex.getMessage());
+            System.err.println("Erro ao criar paciente! " + ex);
         } finally {
-            crud.dao.ConnectionManager.closeConnection(connection, statement, resultado);
+            ConnectionManager.closeConnection(connection, statementInsert, resultadoInsert);
         }
         return paciente;
     }
@@ -55,6 +58,9 @@ public class PacienteDAOImpl implements PacienteDAO{
             statement.setDate(3, Date.valueOf(paciente.getNascimento()));
             statement.setLong(4, paciente.getId());
             statement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException ex){
+            System.err.println("CPF informado já está cadastrado no banco de dados! " +ex.getMessage());
+            throw new Exception(ex);
         } catch (SQLException ex){
             System.err.println("Erro ao alterar paciente: "+ ex.getMessage());
         } finally{
