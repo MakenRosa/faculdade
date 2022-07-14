@@ -103,7 +103,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         List<Produto> produtos = new ArrayList();
         try {
             connection = ConnectionManager.openConnection();
-            String sql = "SELECT * FROM produto ORDER BY vencimento ASC";
+            String sql = "SELECT * FROM produto ORDER BY nome ASC";
             statement = connection.prepareStatement(sql);
             resultado = statement.executeQuery();
             while (resultado.next()){
@@ -115,7 +115,8 @@ public class ProdutoDAOImpl implements ProdutoDAO{
                 produtos.add(produto);
             }
         } catch (SQLException ex){
-            System.err.println("Erro ao buscar todos: "+ ex.getMessage());
+            System.err.println("Erro ao buscar produtos: "+ ex.getMessage());
+            throw new Exception(ex);
         } finally{
             ConnectionManager.closeConnection(connection, statement, resultado);
         }
@@ -152,7 +153,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         ResultSet resultado = null;
         try {
             connection = ConnectionManager.openConnection();
-            String sql = "DELETE produto from produto WHERE id = ?";
+            String sql = "DELETE from produto WHERE id = ?";
             statement = connection.prepareStatement(sql);
             statement.setLong(1, id);
             statement.executeUpdate();
@@ -170,7 +171,7 @@ public class ProdutoDAOImpl implements ProdutoDAO{
         ResultSet resultado = null;
         try {
             connection = ConnectionManager.openConnection();
-            String sql = "DELETE produto from produto";
+            String sql = "DELETE from produto";
             statement = connection.prepareStatement(sql);
             statement.executeUpdate();
         } catch (SQLException ex){
