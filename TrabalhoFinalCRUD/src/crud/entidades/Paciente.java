@@ -1,6 +1,7 @@
 package crud.entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente {
@@ -11,12 +12,14 @@ public class Paciente {
     private List<Endereco> enderecos;
 
     public Paciente() {
+        this.enderecos = new ArrayList();
     }
     
     public Paciente(String nome, String cpf, LocalDate nascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
+        this.enderecos = new ArrayList();
     }
 
     public Long getId() {
