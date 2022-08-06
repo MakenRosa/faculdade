@@ -1,5 +1,7 @@
 package aula2;
-import
+
+import util.Gerador;
+
 public class TesteJar {
     public static void main(String[] args) {
         System.out.println(Gerador.gerarNome());
