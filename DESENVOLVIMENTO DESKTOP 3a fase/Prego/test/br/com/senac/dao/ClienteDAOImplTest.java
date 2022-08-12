@@ -5,42 +5,39 @@
  */
 package br.com.senac.dao;
 
-import br.com.senac.entidade.Usuario;
+import br.com.senac.entidade.Cliente;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import util.Gerador;
-
 /**
  *
  * @author maken.rosa
  */
-public class UsuarioDAOImplTest {
+public class ClienteDAOImplTest {
+    private Cliente cliente;
+    private final ClienteDAOImpl clienteDAO;
     
-    private Usuario usuario;
-    private final UsuarioDAO usuarioDAO;
-    
-    public UsuarioDAOImplTest() {
-        usuarioDAO = new UsuarioDAOImpl();
+    public ClienteDAOImplTest() {
+        clienteDAO = new ClienteDAOImpl();
     }
 
     @Test
     public void testSalvar() throws Exception {
-        System.out.println("salvar");
-        usuario = new Usuario(
-                Gerador.gerarNome(), 
-                Gerador.gerarLogin(), 
-                Gerador.gerarSenha(8));
-        usuarioDAO.salvar(usuario);
-        assertNotNull(usuario.getId());
+        String salario = Gerador.gerarNumero(1) + "." + Gerador.gerarNumero(3);
+        cliente = new Cliente(Gerador.gerarNome(),
+        Gerador.gerarCpf(),
+        Gerador.gerarNumero(8),
+        Double.parseDouble(salario));
+        clienteDAO.salvar(cliente);
     }
 
 //    @Test
     public void testAlterar() throws Exception {
         System.out.println("alterar");
-        Usuario usuario = null;
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        instance.alterar(usuario);
+        Cliente cliente = null;
+        ClienteDAOImpl instance = new ClienteDAOImpl();
+        instance.alterar(cliente);
         fail("The test case is a prototype.");
     }
 
@@ -48,7 +45,7 @@ public class UsuarioDAOImplTest {
     public void testExcluir() throws Exception {
         System.out.println("excluir");
         Integer id = null;
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
+        ClienteDAOImpl instance = new ClienteDAOImpl();
         instance.excluir(id);
         fail("The test case is a prototype.");
     }
@@ -57,9 +54,9 @@ public class UsuarioDAOImplTest {
     public void testPesquisarPorId() throws Exception {
         System.out.println("pesquisarPorId");
         Integer id = null;
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        Usuario expResult = null;
-        Usuario result = instance.pesquisarPorId(id);
+        ClienteDAOImpl instance = new ClienteDAOImpl();
+        Cliente expResult = null;
+        Cliente result = instance.pesquisarPorId(id);
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
@@ -67,9 +64,9 @@ public class UsuarioDAOImplTest {
 //    @Test
     public void testPesquisarTodos() throws Exception {
         System.out.println("pesquisarTodos");
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        List<Usuario> expResult = null;
-        List<Usuario> result = instance.pesquisarTodos();
+        ClienteDAOImpl instance = new ClienteDAOImpl();
+        List<Cliente> expResult = null;
+        List<Cliente> result = instance.pesquisarTodos();
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
@@ -78,9 +75,9 @@ public class UsuarioDAOImplTest {
     public void testPesquisarPorNome() throws Exception {
         System.out.println("PesquisarPorNome");
         String nome = "";
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        List<Usuario> expResult = null;
-        List<Usuario> result = instance.PesquisarPorNome(nome);
+        ClienteDAOImpl instance = new ClienteDAOImpl();
+        List<Cliente> expResult = null;
+        List<Cliente> result = instance.PesquisarPorNome(nome);
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
