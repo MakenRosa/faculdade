@@ -8,6 +8,9 @@ public class Cliente {
     private String rg;
     private double salario;
 
+    public Cliente() {
+    }
+
     public Cliente(String nome, String cpf, String rg, double salario) {
         this.nome = nome;
         this.cpf = cpf;

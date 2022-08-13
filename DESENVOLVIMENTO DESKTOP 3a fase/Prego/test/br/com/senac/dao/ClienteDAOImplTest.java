@@ -22,7 +22,7 @@ public class ClienteDAOImplTest {
         clienteDAO = new ClienteDAOImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() throws Exception {
         String salario = Gerador.gerarNumero(1) + "." + Gerador.gerarNumero(3);
         cliente = new Cliente(Gerador.gerarNome(),
@@ -30,6 +30,7 @@ public class ClienteDAOImplTest {
         Gerador.gerarNumero(8),
         Double.parseDouble(salario));
         clienteDAO.salvar(cliente);
+        assertNotNull(cliente.getId());
     }
 
 //    @Test
@@ -50,15 +51,12 @@ public class ClienteDAOImplTest {
         fail("The test case is a prototype.");
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorId() throws Exception {
-        System.out.println("pesquisarPorId");
-        Integer id = null;
-        ClienteDAOImpl instance = new ClienteDAOImpl();
-        Cliente expResult = null;
-        Cliente result = instance.pesquisarPorId(id);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        System.out.println("pesquisar por id!");
+        cliente = clienteDAO.pesquisarPorId(5);
+        System.out.println(cliente.getNome());
+        assertNotNull(cliente.getId());
     }
 
 //    @Test

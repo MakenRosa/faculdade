@@ -32,22 +32,45 @@ public class ClienteDAOImpl implements ClienteDAO{
             System.out.println(cliente.getId());
         } catch (SQLException e) {
             System.err.println("Erro ao salvar! " + e.getMessage());
+        } finally {
+            FabricaConexao.fecharConexao(connection, statement, resultSet);
         }
     }
 
     @Override
     public void alterar(Cliente cliente) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void excluir(Integer id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public Cliente pesquisarPorId(Integer id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM cliente WHERE id = ?";
+        Cliente cliente = null;
+        try{
+            connection = FabricaConexao.abrirConexao();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                cliente = new Cliente();
+                cliente.setId(id);
+                cliente.setCpf(resultSet.getString("cpf"));
+                cliente.setNome(resultSet.getString("nome"));
+                cliente.setRg(resultSet.getString("rg"));
+                cliente.setSalario(resultSet.getDouble("salario"));
+                return cliente;
+            }
+        } catch(SQLException ex){
+            System.err.println("Erro ao pesquisar por id! "+ ex.getMessage());
+        } finally {
+            FabricaConexao.fecharConexao(connection, statement, resultSet);
+        }
+        return null;
     }
 
     @Override

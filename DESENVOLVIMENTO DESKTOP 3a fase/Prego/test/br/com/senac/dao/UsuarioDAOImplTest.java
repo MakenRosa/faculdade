@@ -6,9 +6,12 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Usuario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 import util.Gerador;
 
 /**
@@ -24,7 +27,7 @@ public class UsuarioDAOImplTest {
         usuarioDAO = new UsuarioDAOImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         usuario = new Usuario(
@@ -38,51 +41,56 @@ public class UsuarioDAOImplTest {
 //    @Test
     public void testAlterar() throws Exception {
         System.out.println("alterar");
-        Usuario usuario = null;
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        instance.alterar(usuario);
-        fail("The test case is a prototype.");
+        usuario = pesquisarUsuarioBD();
+        usuario.setNome(Gerador.gerarNome());
+        usuarioDAO.alterar(usuario);
     }
 
 //    @Test
     public void testExcluir() throws Exception {
         System.out.println("excluir");
-        Integer id = null;
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        instance.excluir(id);
-        fail("The test case is a prototype.");
+        usuarioDAO.excluir(2);
     }
 
 //    @Test
     public void testPesquisarPorId() throws Exception {
-        System.out.println("pesquisarPorId");
-        Integer id = null;
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        Usuario expResult = null;
-        Usuario result = instance.pesquisarPorId(id);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        System.out.println("pesquisar por id!");
+        usuario = usuarioDAO.pesquisarPorId(67);
+        System.out.println(usuario.getNome());
+        assertNotNull(usuario.getId());
     }
 
 //    @Test
     public void testPesquisarTodos() throws Exception {
         System.out.println("pesquisarTodos");
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        List<Usuario> expResult = null;
-        List<Usuario> result = instance.pesquisarTodos();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        List<Usuario> usuarios = usuarioDAO.pesquisarTodos();
+        for (Usuario usuario1 : usuarios) {
+            System.out.println(usuario1.getNome());
+        }
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorNome() throws Exception {
         System.out.println("PesquisarPorNome");
-        String nome = "";
-        UsuarioDAOImpl instance = new UsuarioDAOImpl();
-        List<Usuario> expResult = null;
-        List<Usuario> result = instance.PesquisarPorNome(nome);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        List<Usuario> usuarios = usuarioDAO.PesquisarPorNome(Gerador.gerarNome());
+        for (Usuario usuario1 : usuarios) {
+            System.out.println(usuario1.getNome());
+        }
     }
-    
+    private Usuario pesquisarUsuarioBD() throws Exception {
+        String sql = "SELECT * FROM usuario LIMIT 1";
+        Connection conexao = FabricaConexao.abrirConexao();
+        PreparedStatement pstm = conexao.prepareStatement(sql);
+        ResultSet res = pstm.executeQuery();
+        if (res.next()){
+            Usuario user = new Usuario(res.getString("nome"),
+                    res.getString("login"),
+                    res.getString("senha"));
+            user.setId(res.getInt("id_usuario"));
+            return user;
+        } else{
+            testSalvar();
+        }
+        return null;
+    }
 }

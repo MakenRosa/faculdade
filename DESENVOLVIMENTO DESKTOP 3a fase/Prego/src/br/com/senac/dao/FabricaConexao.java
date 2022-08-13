@@ -2,7 +2,10 @@ package br.com.senac.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Objects;
 
 public class FabricaConexao {
     public static Connection abrirConexao() throws SQLException{
@@ -13,6 +16,13 @@ public class FabricaConexao {
             System.err.println("Erro ao abrir conexão! " + ex.getMessage());
         }
         return null;
+    }
+    public static void fecharConexao(Connection conexao, Statement statement, ResultSet resultSet) throws SQLException{
+        if (Objects.nonNull(conexao)){
+            conexao.close();
+        } if (Objects.nonNull(statement)){
+            statement.close();
+        } if (Objects.nonNull(resultSet));
     }
     
 }
