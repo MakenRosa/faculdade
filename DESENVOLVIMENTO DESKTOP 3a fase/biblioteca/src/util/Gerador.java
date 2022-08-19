@@ -3,6 +3,7 @@ package util;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Gerador {
     
@@ -81,6 +82,10 @@ public class Gerador {
         Collections.shuffle(nomes);
         return nomes.get(0) + " " + gerarSobrenome();
     }
+    public static String gerarIdade(){
+        Random random = new Random();
+        return "" + (random.nextInt(48)+18);
+    }
     private static String gerarSobrenome(){
         List<String> nomes = Arrays.asList("da Rosa", "Faria", "Silva", "Abreu",
                 "Paulo", "Costa", "Neto", "Xavier", "Mattes", "Henrique",
@@ -89,4 +94,5 @@ public class Gerador {
         Collections.shuffle(nomes);
         return nomes.get(0);
     }
+    
 }

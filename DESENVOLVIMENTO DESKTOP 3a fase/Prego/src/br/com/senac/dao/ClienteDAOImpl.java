@@ -2,12 +2,12 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Cliente;
-import br.com.senac.entidade.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAOImpl implements ClienteDAO{
@@ -39,12 +39,36 @@ public class ClienteDAOImpl implements ClienteDAO{
 
     @Override
     public void alterar(Cliente cliente) throws SQLException {
-        
+        String sql = "UPDATE cliente SET nome = ? , rg = ? , cpf = ? , salario = ? WHERE id = ?";
+        try{
+            connection = FabricaConexao.abrirConexao();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, cliente.getNome());
+            statement.setString(2, cliente.getRg());
+            statement.setString(3, cliente.getCpf());
+            statement.setDouble(4, cliente.getSalario());
+            statement.setInt(5, cliente.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex){
+            System.err.println("Erro ao alterar cliente! " + ex.getMessage());
+        } finally {
+            FabricaConexao.fecharConexao(connection, statement, resultSet);
+        }
     }
 
     @Override
     public void excluir(Integer id) throws SQLException {
-        
+        String sql = "DELETE FROM cliente WHERE id = ?";
+        try{
+            connection = FabricaConexao.abrirConexao();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex){
+            System.err.println("Erro ao excluir Cliente! " + ex.getMessage());
+        } finally{
+            FabricaConexao.fecharConexao(connection, statement, resultSet);
+        }
     }
 
     @Override
@@ -75,11 +99,51 @@ public class ClienteDAOImpl implements ClienteDAO{
 
     @Override
     public List<Cliente> pesquisarTodos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String sql = "SELECT * FROM cliente";
+        List<Cliente> clientes = new ArrayList();
+        try {
+            connection = FabricaConexao.abrirConexao();
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Cliente cliente = new Cliente(resultSet.getString("nome"),
+                        resultSet.getString("cpf"),
+                        resultSet.getString("rg"),
+                        resultSet.getDouble("salario"));
+                cliente.setId(resultSet.getInt("id"));
+                clientes.add(cliente);
+            }
+            return clientes;
+        } catch(SQLException ex){
+            System.err.println("Erro ao pesquisar todos! "+ ex.getMessage());
+        } finally {
+            FabricaConexao.fecharConexao(connection, statement, resultSet);
+        }
+        return null;}
 
     @Override
     public List<Cliente> PesquisarPorNome(String nome) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
+        List<Cliente> clientes = new ArrayList();
+        try {
+            connection = FabricaConexao.abrirConexao();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1,"%" + nome.replace(' ', '%') + "%");
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Cliente cliente = new Cliente(resultSet.getString("nome"),
+                        resultSet.getString("cpf"),
+                        resultSet.getString("rg"),
+                        resultSet.getFloat("salario"));
+                cliente.setId(resultSet.getInt("id"));
+                clientes.add(cliente);
+            }
+            return clientes;
+        } catch(SQLException ex){
+            System.err.println("Erro ao pesquisar todos! "+ ex.getMessage());
+        } finally {
+            FabricaConexao.fecharConexao(connection, statement, resultSet);
+        }
+        return null;
     }
 }
