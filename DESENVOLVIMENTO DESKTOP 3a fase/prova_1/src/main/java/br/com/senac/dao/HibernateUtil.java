@@ -7,6 +7,7 @@ package br.com.senac.dao;
 
 //import br.com.senac.entidade.Usuario;
 import br.com.senac.entidade.Cliente;
+import br.com.senac.entidade.Produto;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -15,7 +16,7 @@ import org.hibernate.cfg.Configuration;
  * Hibernate Utility class with a convenient method to get Session Factory
  * object.
  *
- * @author Silvio
+ * @author maken.rosa
  */
 public class HibernateUtil {
 
@@ -25,6 +26,7 @@ public class HibernateUtil {
         try {
             Configuration cfg = new Configuration();
             cfg.addAnnotatedClass(Cliente.class);
+            cfg.addAnnotatedClass(Produto.class);
 
             cfg.configure("/META-INF/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().

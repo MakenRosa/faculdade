@@ -94,5 +94,4 @@ public class Gerador {
         Collections.shuffle(nomes);
         return nomes.get(0);
     }
-    
 }

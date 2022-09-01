@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Truen
+ * @author maken.rosa
  */
 @Table(name = "clientes")
 @Entity

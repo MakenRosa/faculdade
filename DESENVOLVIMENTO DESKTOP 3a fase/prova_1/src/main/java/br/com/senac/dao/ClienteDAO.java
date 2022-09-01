@@ -5,11 +5,13 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Cliente;
+import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
- * @author Truen
+ * @author maken.rosa
  */
 public interface ClienteDAO extends BaseDAO<Cliente, Long>{
-    
+    public List<Cliente> pesquisarPorNome(String nome, Session sessao);
 }
