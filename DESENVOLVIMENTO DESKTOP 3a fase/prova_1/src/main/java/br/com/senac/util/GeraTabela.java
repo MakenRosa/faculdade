@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Silvio
+ * @author maken.rosa
  */
 public class GeraTabela {
     public static void main(String[] args) {
