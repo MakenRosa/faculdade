@@ -24,7 +24,7 @@ public class ItemEntrada implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "entrada_id_produto", referencedColumnName = "id_produto", nullable = false)
-    private Produto idProduto;
+    private Produto produto;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "data_entrada", nullable = false)
@@ -37,14 +37,14 @@ public class ItemEntrada implements Serializable {
     @Column(name = "data_validade", nullable = false)
     private Date dataValidade;
     
-    @Column(length = 45, nullable = false)
+    @Column(length = 45, nullable = false, unique = true)
     private String lote;
     
     @Column(nullable = false)
     private Double preco;
 
-    public ItemEntrada(Produto idProduto, Date dataEntrada, Integer qtdProduto, Date dataValidade, String lote, Double preco) {
-        this.idProduto = idProduto;
+    public ItemEntrada(Produto produto, Date dataEntrada, Integer qtdProduto, Date dataValidade, String lote, Double preco) {
+        this.produto = produto;
         this.dataEntrada = dataEntrada;
         this.qtdProduto = qtdProduto;
         this.dataValidade = dataValidade;
@@ -63,12 +63,12 @@ public class ItemEntrada implements Serializable {
         this.idItemEntrada = idItemEntrada;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Date getDataEntrada() {
