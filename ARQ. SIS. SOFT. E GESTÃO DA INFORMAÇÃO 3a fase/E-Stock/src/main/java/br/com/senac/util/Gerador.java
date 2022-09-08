@@ -86,6 +86,18 @@ public class Gerador {
         Random random = new Random();
         return "" + (random.nextInt(48)+18);
     }
+    public static List<String> gerarProduto(){
+        List<String> produtos = Arrays.asList("Sabão em pó", "Sabonete barra",
+                "Shampoo", "Alcool em gel", "Bolacha", "Caixa de leite",
+                "Açúcar", "Leite em pó", "Sal grosso", "Arroz");
+        List<String> descricoes = Arrays.asList("pacote 5kg OMO edição ABC",
+                "Nivea tamanho X", "Seda 1 litro tipo X", "70% 2 litros com burrifador",
+                "Trakinas chocolate branco 120g", "Italac 16 unidades",
+                "Mascavo 3kg", "Ninho 1kg integral", "Sal lebre 2kg", "Tio joão 2kg");
+        Random random = new Random();
+        int index = random.nextInt(11);
+        return Arrays.asList(produtos.get(index), descricoes.get(index));
+    }
     private static String gerarSobrenome(){
         List<String> nomes = Arrays.asList("da Rosa", "Faria", "Silva", "Abreu",
                 "Paulo", "Costa", "Neto", "Xavier", "Mattes", "Henrique",
@@ -94,5 +106,4 @@ public class Gerador {
         Collections.shuffle(nomes);
         return nomes.get(0);
     }
-    
 }

@@ -25,7 +25,7 @@ public class Produto implements Serializable {
     @Column(length = 255, nullable = false)
     private String nome;
     
-    @Column(length = 255, nullable = false)
+    @Column(unique = true, length = 255, nullable = false)
     private String descricao;
     
     @OneToMany(mappedBy = "idProduto")
