@@ -25,7 +25,7 @@ public class UsuarioDAOImplTest {
     public UsuarioDAOImplTest() {
         usuarioDAO = new UsuarioDAOImpl();
     }
-//    @Test
+    @Test
     public void testSalvar(){
         System.out.println("salvar");
         usuario = new Usuario(gerarNome(), gerarLogin(), gerarSenha(7));
@@ -34,7 +34,7 @@ public class UsuarioDAOImplTest {
         sessao.close();
         assertNotNull(usuario.getId());
     }
-//    @Test
+    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
         buscarUsuarioBd();
@@ -44,7 +44,7 @@ public class UsuarioDAOImplTest {
         System.out.println(usuarioPesquisado.getNome());
         assertNotNull(usuarioPesquisado);
     }
-//    @Test
+    @Test
     public void testExcluir(){
         System.out.println("excluir");
         buscarUsuarioBd();
@@ -79,5 +79,33 @@ public class UsuarioDAOImplTest {
             usuario = usuarios.get(0);
         }
         return usuario;
+    }
+
+    @Test
+    public void testPesquisarTodos() {
+        System.out.println("pesquisarTodos");
+        sessao = HibernateUtil.abrirConexao();
+        assertTrue(!usuarioDAO.pesquisarTodos(sessao).isEmpty());
+        sessao.close();
+    }
+
+    @Test
+    public void testPesquisarPorNome() {
+        System.out.println("pesquisarPorNome");
+        buscarUsuarioBd();
+        sessao = HibernateUtil.abrirConexao();
+        List<Usuario> usuarios = usuarioDAO.pesquisarPorNome(usuario.getNome(), sessao);
+        sessao.close();
+        assertTrue(!usuarios.isEmpty());
+    }   
+
+    @Test
+    public void testFazerLogin() {
+        System.out.println("fazerLogin");
+        buscarUsuarioBd();
+        sessao = HibernateUtil.abrirConexao();
+        Usuario usuarioLogado = usuarioDAO.fazerLogin(usuario.getLogin(), usuario.getSenha(), sessao);
+        sessao.close();
+        assertEquals(usuario, usuarioLogado);
     }
 }
