@@ -24,7 +24,7 @@ public class UsuarioDAOImpl extends BaseDAOImpl<Usuario, Long> implements Usuari
 
     @Override
     public List<Usuario> pesquisarTodos(Session sessao) throws HibernateException {
-        Query<Usuario> consulta = sessao.createQuery("FROM Usuario u");
+        Query<Usuario> consulta = sessao.createQuery("FROM Usuario u ORDER BY u.nome");
         return consulta.getResultList();
         
     }

@@ -25,7 +25,7 @@ public class UsuarioDAOImplTest {
     public UsuarioDAOImplTest() {
         usuarioDAO = new UsuarioDAOImpl();
     }
-    @Test
+//    @Test
     public void testSalvar(){
         System.out.println("salvar");
         usuario = new Usuario(gerarNome(), gerarLogin(), gerarSenha(7));
@@ -34,7 +34,7 @@ public class UsuarioDAOImplTest {
         sessao.close();
         assertNotNull(usuario.getId());
     }
-    @Test
+//    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
         buscarUsuarioBd();
@@ -44,7 +44,7 @@ public class UsuarioDAOImplTest {
         System.out.println(usuarioPesquisado.getNome());
         assertNotNull(usuarioPesquisado);
     }
-    @Test
+//    @Test
     public void testExcluir(){
         System.out.println("excluir");
         buscarUsuarioBd();
@@ -54,7 +54,16 @@ public class UsuarioDAOImplTest {
         sessao.close();
         assertNull(usuarioExcluido);
     }
-    @Test
+//    @Test
+    public void testFazerLogin() {
+        System.out.println("fazerLogin");
+        buscarUsuarioBd();
+        sessao = HibernateUtil.abrirConexao();
+        Usuario usuarioLogado = usuarioDAO.fazerLogin(usuario.getLogin(), usuario.getSenha(), sessao);
+        sessao.close();
+        assertEquals(usuario, usuarioLogado);
+    }
+//    @Test
     public void testAlterar(){
         System.out.println("alterar");
         buscarUsuarioBd();
@@ -67,6 +76,26 @@ public class UsuarioDAOImplTest {
         sessao.close();
         assertEquals(usuario.getNome(), usuarioPesquisado.getNome());
     }
+
+    @Test
+    public void testPesquisarTodos() {
+        System.out.println("pesquisarTodos");
+        sessao = HibernateUtil.abrirConexao();
+        List<Usuario> usuarios = usuarioDAO.pesquisarTodos(sessao);
+        sessao.close();
+        mostrarUsuario(usuarios);
+        assertTrue(!usuarios.isEmpty());
+    }
+
+//    @Test
+    public void testPesquisarPorNome() {
+        System.out.println("pesquisarPorNome");
+        buscarUsuarioBd();
+        sessao = HibernateUtil.abrirConexao();
+        List<Usuario> usuarios = usuarioDAO.pesquisarPorNome(usuario.getNome(), sessao);
+        sessao.close();
+        assertTrue(!usuarios.isEmpty());
+    }   
     
     public Usuario buscarUsuarioBd(){
         sessao = HibernateUtil.abrirConexao();
@@ -80,32 +109,23 @@ public class UsuarioDAOImplTest {
         }
         return usuario;
     }
-
-    @Test
-    public void testPesquisarTodos() {
-        System.out.println("pesquisarTodos");
-        sessao = HibernateUtil.abrirConexao();
-        assertTrue(!usuarioDAO.pesquisarTodos(sessao).isEmpty());
-        sessao.close();
+    private void mostrarUsuario(List<Usuario> usuarios){
+        usuarios.stream()
+                .forEach(user -> {
+            System.out.println("ID: " + user.getId()+
+                    "\nNome: " + user.getNome()+
+                    "\nUsuario: " + user.getLogin()+
+                    "\nSenha: "+user.getSenha() + "\n");
+        });
     }
-
-    @Test
-    public void testPesquisarPorNome() {
-        System.out.println("pesquisarPorNome");
-        buscarUsuarioBd();
-        sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDAO.pesquisarPorNome(usuario.getNome(), sessao);
-        sessao.close();
-        assertTrue(!usuarios.isEmpty());
-    }   
-
-    @Test
-    public void testFazerLogin() {
-        System.out.println("fazerLogin");
-        buscarUsuarioBd();
-        sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioLogado = usuarioDAO.fazerLogin(usuario.getLogin(), usuario.getSenha(), sessao);
-        sessao.close();
-        assertEquals(usuario, usuarioLogado);
+    private void mostrarUsuarioSorted(List<Usuario> usuarios){
+        usuarios.stream()
+                .sorted((user1, user2)-> user1.getNome().compareTo(user2.getNome()))
+                .forEach(user -> {
+            System.out.println("ID: " + user.getId()+
+                    "\nNome: " + user.getNome()+
+                    "\nUsuario: " + user.getLogin()+
+                    "\nSenha: "+user.getSenha() + "\n");
+        });
     }
 }
