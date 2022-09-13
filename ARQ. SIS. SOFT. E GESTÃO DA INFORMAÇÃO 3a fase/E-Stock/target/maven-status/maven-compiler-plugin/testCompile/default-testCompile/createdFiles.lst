@@ -1,0 +1,4 @@
+br\com\senac\dao\ProdutoDAOImplTest.class
+br\com\senac\dao\ItemEntradaDAOImplTest.class
+br\com\senac\dao\ItemSaidaDAOImplTest.class
+br\com\senac\dao\ClienteDAOImplTest.class

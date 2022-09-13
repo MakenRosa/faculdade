@@ -7,6 +7,7 @@ package br.com.senac.dao;
 import br.com.senac.entidade.ItemEntrada;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -17,6 +18,14 @@ public class ItemEntradaDAOImpl extends BaseDAOImpl<ItemEntrada, Long> implement
     @Override
     public ItemEntrada pesquisarPorId(Long id, Session sessao) throws HibernateException {
         return sessao.find(ItemEntrada.class, id);
+    }
+    
+    @Override
+    public ItemEntrada gerarItemEntradaBd(Session sessao) throws HibernateException{
+    Query<ItemEntrada> consulta = sessao.createQuery("from ItemEntrada ie");
+    consulta.setMaxResults(1);
+    ItemEntrada item = consulta.getSingleResult();
+        return item;
     }
     
 }

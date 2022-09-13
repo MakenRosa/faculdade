@@ -7,6 +7,7 @@ package br.com.senac.dao;
 import br.com.senac.entidade.Produto;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -17,6 +18,14 @@ public class ProdutoDAOImpl extends BaseDAOImpl<Produto, Long> implements Produt
     @Override
     public Produto pesquisarPorId(Long id, Session sessao) throws HibernateException {
         return sessao.find(Produto.class, id);
+    }
+    
+    @Override
+    public Produto buscarProdutoBd(Session sessao) throws HibernateException{
+        Query<Produto> consulta = sessao.createQuery("from Produto p");
+        consulta.setMaxResults(1);
+        Produto produto = consulta.getSingleResult();
+        return produto;
     }
     
 }

@@ -12,7 +12,7 @@ import org.hibernate.Session;
  *
  * @author Truen
  */
-public class ItemSaidaDAOImpl extends BaseDAOImpl<ItemSaida, Long>{
+public class ItemSaidaDAOImpl extends BaseDAOImpl<ItemSaida, Long> implements ItemSaidaDAO{
 
     @Override
     public ItemSaida pesquisarPorId(Long id, Session sessao) throws HibernateException {

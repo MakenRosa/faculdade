@@ -1,3 +1,18 @@
-F:\Documentos\Documents\NetBeansProjects\Modelo_hibernate\src\main\java\br\com\senac\util\GeraTabela.java
-F:\Documentos\Documents\NetBeansProjects\Modelo_hibernate\src\main\java\br\com\senac\dao\HibernateUtil.java
-F:\Documentos\Documents\NetBeansProjects\Modelo_hibernate\src\main\java\br\com\senac\tela\Principal.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\entidade\ItemEntrada.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ProdutoDAOImpl.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ItemSaidaDAOImpl.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\BaseDAO.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\entidade\ItemSaida.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\entidade\Cliente.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ItemEntradaDAOImpl.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ClienteDAOImpl.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\entidade\Produto.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\BaseDAOImpl.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ProdutoDAO.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\HibernateUtil.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ClienteDAO.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\util\Gerador.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\util\GeraTabela.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ItemEntradaDAO.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\dao\ItemSaidaDAO.java
+C:\Users\Truen\Documents\GitHub\Faculdade\ARQ. SIS. SOFT. E GESTÃO DA INFORMAÇÃO 3a fase\E-Stock\src\main\java\br\com\senac\tela\Principal.java

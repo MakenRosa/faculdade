@@ -5,6 +5,7 @@
 package br.com.senac.entidade;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -18,8 +19,8 @@ public class ItemSaida implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "id_item_saida")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item_saida")
     private Long idItemSaida;
     
     @ManyToOne
@@ -30,9 +31,8 @@ public class ItemSaida implements Serializable {
     @JoinColumn(name = "saida_id_cliente", referencedColumnName = "id_cliente", nullable = false)
     private Cliente idCliente;
     
-    @Temporal(TemporalType.DATE)
     @Column(name = "data_saida", nullable = false)
-    private Date dataSaida;
+    private LocalDate dataSaida;
     
     @Column(nullable = false, name = "qtd")
     private Integer qtdProduto;
@@ -46,7 +46,7 @@ public class ItemSaida implements Serializable {
     public ItemSaida() {
     }
 
-    public ItemSaida(Produto idProduto, Cliente idCliente, Date dataSaida, Integer qtdProduto, String lote, Double preco) {
+    public ItemSaida(Produto idProduto, Cliente idCliente, LocalDate dataSaida, Integer qtdProduto, String lote, Double preco) {
         this.idProduto = idProduto;
         this.idCliente = idCliente;
         this.dataSaida = dataSaida;
@@ -79,11 +79,11 @@ public class ItemSaida implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Date getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 

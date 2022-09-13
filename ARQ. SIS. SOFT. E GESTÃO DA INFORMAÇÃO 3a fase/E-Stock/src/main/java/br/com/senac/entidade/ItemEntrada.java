@@ -5,6 +5,7 @@
 package br.com.senac.entidade;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -26,16 +27,14 @@ public class ItemEntrada implements Serializable {
     @JoinColumn(name = "entrada_id_produto", referencedColumnName = "id_produto", nullable = false)
     private Produto idProduto;
     
-    @Temporal(TemporalType.DATE)
     @Column(name = "data_entrada", nullable = false)
-    private Date dataEntrada;
+    private LocalDate dataEntrada;
     
     @Column(name = "qtd", nullable = false)
     private Integer qtdProduto;
     
-    @Temporal(TemporalType.DATE)
     @Column(name = "data_validade", nullable = false)
-    private Date dataValidade;
+    private LocalDate dataValidade;
     
     @Column(length = 45, nullable = false)
     private String lote;
@@ -43,7 +42,7 @@ public class ItemEntrada implements Serializable {
     @Column(nullable = false)
     private Double preco;
 
-    public ItemEntrada(Produto idProduto, Date dataEntrada, Integer qtdProduto, Date dataValidade, String lote, Double preco) {
+    public ItemEntrada(Produto idProduto, LocalDate dataEntrada, Integer qtdProduto, LocalDate dataValidade, String lote, Double preco) {
         this.idProduto = idProduto;
         this.dataEntrada = dataEntrada;
         this.qtdProduto = qtdProduto;
@@ -71,11 +70,11 @@ public class ItemEntrada implements Serializable {
         this.idProduto = idProduto;
     }
 
-    public Date getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
@@ -87,11 +86,11 @@ public class ItemEntrada implements Serializable {
         this.qtdProduto = qtdProduto;
     }
 
-    public Date getDataValidade() {
+    public LocalDate getDataValidade() {
         return dataValidade;
     }
 
-    public void setDataValidade(Date dataValidade) {
+    public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
     }
 
