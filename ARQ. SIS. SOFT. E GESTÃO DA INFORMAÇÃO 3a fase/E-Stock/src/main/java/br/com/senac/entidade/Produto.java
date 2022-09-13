@@ -28,10 +28,10 @@ public class Produto implements Serializable {
     @Column(unique = true, length = 255, nullable = false)
     private String descricao;
     
-    @OneToMany(mappedBy = "idProduto")
+    @OneToMany(mappedBy = "produto")
     private List<ItemEntrada> itensEntrada;
     
-    @OneToMany(mappedBy = "idProduto")
+    @OneToMany(mappedBy = "produto")
     private List<ItemSaida> itensSaida;
 
     public Produto(String nome, String descricao) {
