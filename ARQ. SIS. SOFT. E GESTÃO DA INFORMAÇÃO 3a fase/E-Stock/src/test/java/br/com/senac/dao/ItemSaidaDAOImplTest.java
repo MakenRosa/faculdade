@@ -6,7 +6,9 @@ package br.com.senac.dao;
 
 import br.com.senac.entidade.*;
 import java.time.LocalDate;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -33,9 +35,9 @@ public class ItemSaidaDAOImplTest {
     public void testSalvar(){
         System.out.println("salvar");
         sessao = HibernateUtil.abrirConexao();
-        Produto produto = produtoDAO.buscarProdutoBd(sessao);
-        Cliente cliente = clienteDAO.gerarClienteBd(sessao);
-        ItemEntrada itemEntrada = entradaDAO.gerarItemEntradaBd(sessao);
+        Produto produto = buscarProdutoBd(sessao);
+        Cliente cliente = gerarClienteBd(sessao);
+        ItemEntrada itemEntrada = gerarItemEntradaBd(sessao);
         sessao.close();
         item = new ItemSaida(produto, 
                 cliente, LocalDate.now(), itemEntrada.getQtdProduto()-1, 
@@ -92,4 +94,22 @@ public class ItemSaidaDAOImplTest {
 //            testSalvar();
 //        }
 //    }
+    public Produto buscarProdutoBd(Session sessao) throws HibernateException{
+        Query<Produto> consulta = sessao.createQuery("from Produto p");
+        consulta.setMaxResults(1);
+        Produto produto = consulta.getSingleResult();
+        return produto;
+    }
+    public Cliente gerarClienteBd(Session sessao) throws HibernateException{
+        Query<Cliente> consulta = sessao.createQuery("from Cliente c");
+        consulta.setMaxResults(1);
+        Cliente cliente = consulta.getSingleResult();
+        return cliente;
+    }
+    public ItemEntrada gerarItemEntradaBd(Session sessao) throws HibernateException{
+    Query<ItemEntrada> consulta = sessao.createQuery("from ItemEntrada ie");
+    consulta.setMaxResults(1);
+    return consulta.getSingleResult();
+     
+    }
 }

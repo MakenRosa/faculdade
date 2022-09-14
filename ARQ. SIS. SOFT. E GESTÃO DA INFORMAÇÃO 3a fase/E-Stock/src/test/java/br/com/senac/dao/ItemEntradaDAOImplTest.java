@@ -8,6 +8,7 @@ import br.com.senac.entidade.ItemEntrada;
 import br.com.senac.entidade.Produto;
 import br.com.senac.util.Gerador;
 import java.time.LocalDate;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.junit.Test;
@@ -18,21 +19,19 @@ import static org.junit.Assert.*;
  * @author Truen
  */
 public class ItemEntradaDAOImplTest {
-    private ItemEntradaDAO itemDAO;
+    private final ItemEntradaDAO itemDAO;
     private ItemEntrada item;
     private Session sessao;
-    private ProdutoDAO produtoDAO;
     
     public ItemEntradaDAOImplTest() {
         itemDAO = new ItemEntradaDAOImpl();
-        produtoDAO = new ProdutoDAOImpl();
     }
 
         @Test
     public void testSalvar(){
         System.out.println("salvar");
         sessao = HibernateUtil.abrirConexao();
-        Produto produto = produtoDAO.buscarProdutoBd(sessao);
+        Produto produto = buscarProdutoBd(sessao);
         sessao.close();
         item = new ItemEntrada(produto, 
                 LocalDate.now(),
@@ -90,5 +89,10 @@ public class ItemEntradaDAOImplTest {
             testSalvar();
         }
     }
-  
+  public Produto buscarProdutoBd(Session sessao) throws HibernateException{
+        Query<Produto> consulta = sessao.createQuery("from Produto p");
+        consulta.setMaxResults(1);
+        Produto produto = consulta.getSingleResult();
+        return produto;
+    }
 }

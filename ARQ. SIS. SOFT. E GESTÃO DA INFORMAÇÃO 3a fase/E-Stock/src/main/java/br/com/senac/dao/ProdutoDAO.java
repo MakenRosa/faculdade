@@ -13,5 +13,4 @@ import org.hibernate.Session;
  * @author Truen
  */
 public interface ProdutoDAO extends BaseDAO<Produto, Long>{
-    public Produto buscarProdutoBd(Session sessao) throws HibernateException;
 }

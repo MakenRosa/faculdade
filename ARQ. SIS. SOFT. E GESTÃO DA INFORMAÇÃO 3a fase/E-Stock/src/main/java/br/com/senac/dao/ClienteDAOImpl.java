@@ -20,12 +20,4 @@ public class ClienteDAOImpl extends BaseDAOImpl<Cliente, Long> implements Client
         return sessao.find(Cliente.class, id);
     }
     
-    public Cliente gerarClienteBd(Session sessao) throws HibernateException{
-        Query<Cliente> consulta = sessao.createQuery("from Cliente c");
-        consulta.setMaxResults(1);
-        Cliente cliente = consulta.getSingleResult();
-        sessao.close();
-        return cliente;
-    }
-    
 }

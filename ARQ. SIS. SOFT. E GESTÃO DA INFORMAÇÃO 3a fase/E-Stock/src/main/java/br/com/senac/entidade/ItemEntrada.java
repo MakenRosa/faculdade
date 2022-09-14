@@ -6,7 +6,6 @@ package br.com.senac.entidade;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -25,7 +24,7 @@ public class ItemEntrada implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "entrada_id_produto", referencedColumnName = "id_produto", nullable = false)
-    private Produto idProduto;
+    private Produto produto;
     
     @Column(name = "data_entrada", nullable = false)
     private LocalDate dataEntrada;
@@ -42,8 +41,8 @@ public class ItemEntrada implements Serializable {
     @Column(nullable = false)
     private Double preco;
 
-    public ItemEntrada(Produto idProduto, LocalDate dataEntrada, Integer qtdProduto, LocalDate dataValidade, String lote, Double preco) {
-        this.idProduto = idProduto;
+    public ItemEntrada(Produto produto, LocalDate dataEntrada, Integer qtdProduto, LocalDate dataValidade, String lote, Double preco) {
+        this.produto = produto;
         this.dataEntrada = dataEntrada;
         this.qtdProduto = qtdProduto;
         this.dataValidade = dataValidade;
@@ -62,12 +61,12 @@ public class ItemEntrada implements Serializable {
         this.idItemEntrada = idItemEntrada;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto Produto) {
+        this.produto = Produto;
     }
 
     public LocalDate getDataEntrada() {
