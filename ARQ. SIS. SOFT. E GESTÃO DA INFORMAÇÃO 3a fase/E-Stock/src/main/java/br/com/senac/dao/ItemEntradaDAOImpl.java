@@ -6,7 +6,10 @@ package br.com.senac.dao;
 
 import br.com.senac.entidade.ItemEntrada;
 import br.com.senac.entidade.Produto;
+import java.sql.Date ;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -24,10 +27,11 @@ public class ItemEntradaDAOImpl extends BaseDAOImpl<ItemEntrada, Long> implement
     }
     
     @Override
-    public List<Produto> gerarRelatorioEntrada(LocalDate de, LocalDate ate, Session sessao) throws HibernateException{
-        Query<Produto> consulta = sessao.createQuery("SELECT p.nome, ie.qtdProduto " +
-"FROM Produto p " +
-"JOIN p.itensEntrada ie");
+    public List<ItemEntrada> gerarRelatorioEntrada(String de, String ate, Session sessao) throws HibernateException{
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        Query<ItemEntrada> consulta = sessao.createQuery("FROM ItemEntrada ie WHERE ie.dataEntrada BETWEEN :de AND :ate");
+        consulta.setParameter("de", LocalDate.parse(de, formatter));
+        consulta.setParameter("ate", LocalDate.parse(ate, formatter));
         return consulta.getResultList();
     }
     

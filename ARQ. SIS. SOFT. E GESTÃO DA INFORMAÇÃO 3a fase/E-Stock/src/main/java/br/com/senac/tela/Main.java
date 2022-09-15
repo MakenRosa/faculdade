@@ -26,15 +26,15 @@ public class Main {
      * @param de
      * @param ate
      */
-    public static void gerarRelatorioEntrada(LocalDate de, LocalDate ate){
+    public static void gerarRelatorioEntrada(String de, String ate){
         ItemEntradaDAO itemEntradaDAO = new ItemEntradaDAOImpl();
         Session sessao = HibernateUtil.abrirConexao();
-        List<Produto> produtos = itemEntradaDAO.gerarRelatorioEntrada(de, ate, sessao);
-        for (Produto produto : produtos) {
-            System.out.println(produto.getNome());
-        }
+        List<ItemEntrada> itens = itemEntradaDAO.gerarRelatorioEntrada(de, ate, sessao);
+        itens.forEach(item -> {
+            System.out.println(item.getProduto().getNome() + item.getQtdProduto());
+        });
     }
     public static void main(String[] args) {
-        gerarRelatorioEntrada(LocalDate.of(2022, 9, 1), LocalDate.of(2022, 9, 30));
+        gerarRelatorioEntrada("16/09/2022", "30/09/2022");
     }
 }
