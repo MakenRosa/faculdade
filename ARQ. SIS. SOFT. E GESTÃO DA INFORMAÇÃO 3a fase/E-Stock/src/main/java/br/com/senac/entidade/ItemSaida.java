@@ -5,7 +5,7 @@
 package br.com.senac.entidade;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.*;
 
 /**
@@ -18,8 +18,8 @@ public class ItemSaida implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "id_item_saida")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item_saida")
     private Long idItemSaida;
     
     @ManyToOne
@@ -28,11 +28,10 @@ public class ItemSaida implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "saida_id_cliente", referencedColumnName = "id_cliente", nullable = false)
-    private Cliente idCliente;
+    private Cliente cliente;
     
-    @Temporal(TemporalType.DATE)
     @Column(name = "data_saida", nullable = false)
-    private Date dataSaida;
+    private LocalDate dataSaida;
     
     @Column(nullable = false, name = "qtd")
     private Integer qtdProduto;
@@ -46,9 +45,9 @@ public class ItemSaida implements Serializable {
     public ItemSaida() {
     }
 
-    public ItemSaida(Produto produto, Cliente idCliente, Date dataSaida, Integer qtdProduto, String lote, Double preco) {
+    public ItemSaida(Produto produto, Cliente cliente, LocalDate dataSaida, Integer qtdProduto, String lote, Double preco) {
         this.produto = produto;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
         this.dataSaida = dataSaida;
         this.qtdProduto = qtdProduto;
         this.lote = lote;
@@ -71,19 +70,19 @@ public class ItemSaida implements Serializable {
         this.produto = produto;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Date getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 

@@ -12,6 +12,8 @@ import org.hibernate.Transaction;
 /**
  *
  * @author maken.rosa
+ * @param <T>
+ * @param <ID>
  */
 public abstract class BaseDAOImpl<T, ID> implements BaseDAO<T, ID>{
     private Transaction transaction;

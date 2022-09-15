@@ -17,14 +17,14 @@ import static org.junit.Assert.*;
  * @author Truen
  */
 public class ProdutoDAOImplTest {
-    private ProdutoDAO produtoDAO;
+    private final ProdutoDAO produtoDAO;
     private Produto produto;
     private Session sessao;
     
     public ProdutoDAOImplTest() {
         produtoDAO = new ProdutoDAOImpl();
     }
-//    @Test
+    @Test
     public void testSalvar(){
         List<String> produtoList= Gerador.gerarProduto();
         System.out.println("salvar");
@@ -73,7 +73,7 @@ public class ProdutoDAOImplTest {
         assertNull(produtoExcluido);
     }
     
-    private void buscarProdutoBd(){
+    private Produto buscarProdutoBd(){
         sessao = HibernateUtil.abrirConexao();
         Query<Produto> consulta = sessao.createQuery("from Produto p");
         consulta.setMaxResults(1);
@@ -81,6 +81,7 @@ public class ProdutoDAOImplTest {
         sessao.close();
         if (produto == null){
             testSalvar();
-        }
+        } 
+        return produto;
     }
 }
