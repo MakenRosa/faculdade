@@ -5,6 +5,7 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Produto;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -18,6 +19,12 @@ public class ProdutoDAOImpl extends BaseDAOImpl<Produto, Long> implements Produt
     @Override
     public Produto pesquisarPorId(Long id, Session sessao) throws HibernateException {
         return sessao.find(Produto.class, id);
+    }
+    
+    @Override
+    public List<Produto> pesquisarTodos(Session sessao) throws HibernateException{
+        Query<Produto> consulta = sessao.createQuery("FROM Produto p");
+        return consulta.getResultList();
     }
     
 }

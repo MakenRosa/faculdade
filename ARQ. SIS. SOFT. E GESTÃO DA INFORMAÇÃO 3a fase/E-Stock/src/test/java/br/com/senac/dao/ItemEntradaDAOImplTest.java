@@ -27,7 +27,7 @@ public class ItemEntradaDAOImplTest {
         itemDAO = new ItemEntradaDAOImpl();
     }
 
-        @Test
+    @Test
     public void testSalvar(){
         System.out.println("salvar");
         sessao = HibernateUtil.abrirConexao();
@@ -38,7 +38,7 @@ public class ItemEntradaDAOImplTest {
                 Integer.valueOf(Gerador.gerarNumero(1)), 
                 LocalDate.now(), 
                 Gerador.gerarSenha(6), 
-                Double.valueOf(Gerador.gerarNumero(4)));
+                Double.valueOf(Gerador.gerarNumero(3)));
         sessao = HibernateUtil.abrirConexao();
         itemDAO.salvarOuAlterar(item, sessao);
         sessao.close();

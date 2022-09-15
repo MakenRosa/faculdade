@@ -18,17 +18,11 @@ import static org.junit.Assert.*;
  */
 public class ItemSaidaDAOImplTest {
     private final ItemSaidaDAO itemDAO;
-    private final ProdutoDAO produtoDAO;
-    private final ClienteDAO clienteDAO;
-    private final ItemEntradaDAO entradaDAO;
     private ItemSaida item;
     private Session sessao;
 
     public ItemSaidaDAOImplTest() {
         itemDAO = new ItemSaidaDAOImpl();
-        produtoDAO = new ProdutoDAOImpl();
-        clienteDAO = new ClienteDAOImpl();
-        entradaDAO = new ItemEntradaDAOImpl();
     }
     
     @Test
@@ -49,51 +43,51 @@ public class ItemSaidaDAOImplTest {
         assertNotNull(produto.getIdProduto());
     }
     
-////    @Test
-//    public void testAlterar(){
-//        System.out.println("alterar");
-//        gerarItemEntradaBd();
-//        item.setQtdProduto(Integer.valueOf(gerarNumero(1)));
-//        sessao = HibernateUtil.abrirConexao();
-//        itemDAO.salvarOuAlterar(item, sessao);
-//        sessao.close();
-//        sessao = HibernateUtil.abrirConexao();
-//        ItemEntrada itemPesquisado = itemDAO.pesquisarPorId(item.getIdItemEntrada(), sessao);
-//        sessao.close();
-//        assertEquals(item.getIdItemEntrada(), itemPesquisado.getIdItemEntrada());
-//    }
-//
-////    @Test
-//    public void testPesquisarPorId() {
-//        System.out.println("pesquisarPorId");
-//        gerarItemEntradaBd();
-//        sessao = HibernateUtil.abrirConexao();
-//        ItemEntrada itemPesquisado = itemDAO.pesquisarPorId(item.getIdItemEntrada(), sessao);
-//        sessao.close();
-//        System.out.println(itemPesquisado.getLote());
-//        assertNotNull(itemPesquisado);
-//    }
-//    
-////    @Test
-//    public void testExcluir(){
-//        System.out.println("excluir");
-//        gerarItemEntradaBd();
-//        sessao = HibernateUtil.abrirConexao();
-//        itemDAO.excluir(item, sessao);
-//        ItemEntrada itemExcluido = itemDAO.pesquisarPorId(item.getIdItemEntrada(), sessao);
-//        sessao.close();
-//        assertNull(itemExcluido);
-//    }
-//    public void gerarItemEntradaBd(){
-//        sessao = HibernateUtil.abrirConexao();
-//        Query<ItemSaida> consulta = sessao.createQuery("from ItemSaida i");
-//        consulta.setMaxResults(1);
-//        item = consulta.getSingleResult();
-//        sessao.close();
-//        if (item == null){
-//            testSalvar();
-//        }
-//    }
+//    @Test
+    public void testAlterar(){
+        System.out.println("alterar");
+        gerarItemSaidaBd();
+        item.setQtdProduto(item.getQtdProduto()-1);
+        sessao = HibernateUtil.abrirConexao();
+        itemDAO.salvarOuAlterar(item, sessao);
+        sessao.close();
+        sessao = HibernateUtil.abrirConexao();
+        ItemSaida itemPesquisado = itemDAO.pesquisarPorId(item.getIdItemSaida(), sessao);
+        sessao.close();
+        assertEquals(item.getIdItemSaida(), itemPesquisado.getIdItemSaida());
+    }
+
+//    @Test
+    public void testPesquisarPorId() {
+        System.out.println("pesquisarPorId");
+        gerarItemSaidaBd();
+        sessao = HibernateUtil.abrirConexao();
+        ItemSaida itemPesquisado = itemDAO.pesquisarPorId(item.getIdItemSaida(), sessao);
+        sessao.close();
+        System.out.println(itemPesquisado.getLote());
+        assertNotNull(itemPesquisado);
+    }
+    
+//    @Test
+    public void testExcluir(){
+        System.out.println("excluir");
+        gerarItemSaidaBd();
+        sessao = HibernateUtil.abrirConexao();
+        itemDAO.excluir(item, sessao);
+        ItemSaida itemExcluido = itemDAO.pesquisarPorId(item.getIdItemSaida(), sessao);
+        sessao.close();
+        assertNull(itemExcluido);
+    }
+    public void gerarItemSaidaBd(){
+        sessao = HibernateUtil.abrirConexao();
+        Query<ItemSaida> consulta = sessao.createQuery("from ItemSaida i");
+        consulta.setMaxResults(1);
+        item = consulta.getSingleResult();
+        sessao.close();
+        if (item == null){
+            testSalvar();
+        }
+    }
     public Produto buscarProdutoBd(Session sessao) throws HibernateException{
         Query<Produto> consulta = sessao.createQuery("from Produto p");
         consulta.setMaxResults(1);
