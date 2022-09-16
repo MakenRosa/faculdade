@@ -29,7 +29,7 @@ public class ItemEntradaDAOImpl extends BaseDAOImpl<ItemEntrada, Long> implement
     @Override
     public List<ItemEntrada> gerarRelatorioEntrada(String de, String ate, Session sessao) throws HibernateException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        Query<ItemEntrada> consulta = sessao.createQuery("FROM ItemEntrada ie WHERE ie.dataEntrada BETWEEN :de AND :ate");
+        Query<ItemEntrada> consulta = sessao.createQuery("FROM ItemEntrada ie WHERE ie.dataEntrada BETWEEN :de AND :ate ORDER BY ie.produto.nome");
         consulta.setParameter("de", LocalDate.parse(de, formatter));
         consulta.setParameter("ate", LocalDate.parse(ate, formatter));
         return consulta.getResultList();

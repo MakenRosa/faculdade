@@ -5,21 +5,17 @@
  */
 package br.com.senac.dao;
 
+import br.com.senac.entidade.Cliente;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
  *
  * @author Maken.Rosa
- * @param <T>
- * @param <ID>
  */
-public interface BaseDao<T, ID> {
+public interface ClienteDAO extends BaseDao<Cliente, Long> {
 
-    void salvarOuAlterar(T entidade, Session sessao) throws HibernateException;
-
-    void excluir(T entidade, Session sessao) throws HibernateException;
-
-    T pesquisarPorId(Long id, Session sessao) throws HibernateException;
-
+    List<Cliente> pesquisarPorNome(String nome, Session sessao)
+            throws HibernateException;
 }

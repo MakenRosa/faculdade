@@ -11,41 +11,44 @@ import javax.persistence.*;
 
 /**
  *
- * @author maken.rosa
+ * @author Maken.Rosa
  */
-@Entity
+@Entity  //anotações do JPA
 @Table(name = "usuario")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false, length = 100)
     private String nome;
-    
+
     @Column(nullable = false, length = 100, unique = true)
     private String login;
-    
-    @Column(nullable = false, length = 255)
+
+    @Column(nullable = false, length = 100)
     private String senha;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ultimo_acesso")
     private Date ultimoAcesso;
 
+    @ManyToOne
+    @JoinColumn(name = "id_perfil")
+    private Perfil perfil;
+
     public Usuario() {
     }
-    
+
     public Usuario(String nome, String login, String senha) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
     }
 
-    
-    
     public Long getId() {
         return id;
     }
@@ -85,9 +88,15 @@ public class Usuario implements Serializable {
     public void setUltimoAcesso(Date ultimoAcesso) {
         this.ultimoAcesso = ultimoAcesso;
     }
-    
-    
-    
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -106,7 +115,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", ultimoAcesso=" + ultimoAcesso + '}';
+        return "br.com.senac.entidade.Usuario[ id=" + id + " ]";
     }
 
 }

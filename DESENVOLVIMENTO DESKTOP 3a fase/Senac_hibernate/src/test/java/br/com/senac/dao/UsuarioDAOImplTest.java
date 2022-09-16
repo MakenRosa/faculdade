@@ -15,76 +15,67 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author maken.rosa
+ * @author silvio.junior
  */
-public class UsuarioDAOImplTest {
+public class UsuarioDaoImplTest {
+
     private Usuario usuario;
-    private final UsuarioDAO usuarioDAO;
+    private final UsuarioDao usuarioDao;
     private Session sessao;
-    
-    public UsuarioDAOImplTest() {
-        usuarioDAO = new UsuarioDAOImpl();
+
+    public UsuarioDaoImplTest() {
+        usuarioDao = new UsuarioDaoImpl();
     }
+
 //    @Test
-    public void testSalvar(){
-        System.out.println("salvar");
-        usuario = new Usuario(gerarNome(), gerarLogin(), gerarSenha(7));
+    public void testExcluir() {
+        System.out.println("excluir");
+        buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        usuarioDAO.salvarOuAlterar(this.usuario, this.sessao);
+        usuarioDao.excluir(usuario, sessao);
+
+        Usuario usuExc = usuarioDao
+                .pesquisarPorId(usuario.getId(), sessao);
+        sessao.close();
+        assertNull(usuExc);
+    }
+
+//    @Test
+    public void testSalvar() {
+        System.out.println("salvar");
+        usuario = new Usuario(gerarNome(), (gerarLogin() + gerarSenha(4)),
+                gerarSenha(8));
+        sessao = HibernateUtil.abrirConexao();
+        usuarioDao.salvarOuAlterar(usuario, sessao);
         sessao.close();
         assertNotNull(usuario.getId());
     }
+
+//    @Test
+    public void testAlterar() {
+        System.out.println("alterar");
+        buscarUsuarioBd();
+        usuario.setNome(gerarNome());
+        sessao = HibernateUtil.abrirConexao();
+        usuarioDao.salvarOuAlterar(usuario, sessao);
+        sessao.close();
+
+        sessao = HibernateUtil.abrirConexao();
+        Usuario usuarioPesq = usuarioDao
+                .pesquisarPorId(usuario.getId(), sessao);
+        sessao.close();
+        assertEquals(usuarioPesq.getNome(), usuario.getNome());
+    }
+
 //    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
         buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioPesquisado = usuarioDAO.pesquisarPorId(usuario.getId(), sessao);
+        Usuario usuarioPesq = usuarioDao
+                .pesquisarPorId(usuario.getId(), sessao);
         sessao.close();
-        System.out.println(usuarioPesquisado.getNome());
-        assertNotNull(usuarioPesquisado);
-    }
-//    @Test
-    public void testExcluir(){
-        System.out.println("excluir");
-        buscarUsuarioBd();
-        sessao = HibernateUtil.abrirConexao();
-        usuarioDAO.excluir(usuario, sessao);
-        Usuario usuarioExcluido = usuarioDAO.pesquisarPorId(usuario.getId(), sessao);
-        sessao.close();
-        assertNull(usuarioExcluido);
-    }
-//    @Test
-    public void testFazerLogin() {
-        System.out.println("fazerLogin");
-        buscarUsuarioBd();
-        sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioLogado = usuarioDAO.fazerLogin(usuario.getLogin(), usuario.getSenha(), sessao);
-        sessao.close();
-        assertEquals(usuario, usuarioLogado);
-    }
-//    @Test
-    public void testAlterar(){
-        System.out.println("alterar");
-        buscarUsuarioBd();
-        usuario.setNome(gerarNome());
-        sessao = HibernateUtil.abrirConexao();
-        usuarioDAO.salvarOuAlterar(usuario, sessao);
-        sessao.close();
-        sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioPesquisado = usuarioDAO.pesquisarPorId(usuario.getId(), sessao);
-        sessao.close();
-        assertEquals(usuario.getNome(), usuarioPesquisado.getNome());
-    }
-
-    @Test
-    public void testPesquisarTodos() {
-        System.out.println("pesquisarTodos");
-        sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDAO.pesquisarTodos(sessao);
-        sessao.close();
-        mostrarUsuario(usuarios);
-        assertTrue(!usuarios.isEmpty());
+        assertNotNull(usuarioPesq);
     }
 
 //    @Test
@@ -92,40 +83,74 @@ public class UsuarioDAOImplTest {
         System.out.println("pesquisarPorNome");
         buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDAO.pesquisarPorNome(usuario.getNome(), sessao);
+        List<Usuario> usuarios = usuarioDao
+                .pesquisarPorNome(usuario.getNome(), sessao);
         sessao.close();
-        assertTrue(!usuarios.isEmpty());
-    }   
-    
-    public Usuario buscarUsuarioBd(){
+        assertTrue(usuarios.size() > 0);
+
+    }
+
+    @Test
+    public void testPesquisarTodos() {
+        System.out.println("pesquisarTodos");
+        buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        Query<Usuario> consulta = sessao.createQuery("from Usuario u"); //HQL
+        List<Usuario> usuarios = usuarioDao
+                .pesquisarTodos(sessao);
+        sessao.close();
+        mostrar(usuarios);
+        assertTrue(!usuarios.isEmpty());
+    }
+
+    private void mostrar(List<Usuario> usuarios) {
+
+        usuarios.stream()
+                .forEach(usu -> {
+                    System.out.println("ID " + usu.getId());
+                    System.out.println("Nome " + usu.getNome());
+                    System.out.println("Login " + usu.getLogin());
+                    System.out.println("Senha " + usu.getSenha());
+                    System.out.println("");
+                });
+    }
+
+    private void mostrarSorted(List<Usuario> usuarios) {
+        usuarios.stream()
+                .sorted((usu1, us2)
+                        -> usu1.getNome().compareTo(us2.getNome()))
+                .forEach(usu -> {
+                    System.out.println("ID " + usu.getId());
+                    System.out.println("Nome " + usu.getNome());
+                    System.out.println("Login " + usu.getLogin());
+                    System.out.println("Senha " + usu.getSenha());
+                    System.out.println("");
+                });
+    }
+
+//    @Test
+    public void testLogar() {
+        System.out.println("logar");
+        buscarUsuarioBd();
+        sessao = HibernateUtil.abrirConexao();
+        Usuario usuarioLogado = usuarioDao
+                .logar(usuario.getLogin(), usuario.getSenha(), sessao);
+        sessao.close();
+        assertNotNull(usuarioLogado);
+
+    }
+
+    public Usuario buscarUsuarioBd() {
+        sessao = HibernateUtil.abrirConexao();
+        Query<Usuario> consulta = sessao
+                .createQuery("from Usuario u"); //HQL
         List<Usuario> usuarios = consulta.getResultList();
         sessao.close();
-        if (usuarios.isEmpty()){
+        if (usuarios.isEmpty()) {
             testSalvar();
-        } else{
+        } else {
             usuario = usuarios.get(0);
         }
         return usuario;
     }
-    private void mostrarUsuario(List<Usuario> usuarios){
-        usuarios.stream()
-                .forEach(user -> {
-            System.out.println("ID: " + user.getId()+
-                    "\nNome: " + user.getNome()+
-                    "\nUsuario: " + user.getLogin()+
-                    "\nSenha: "+user.getSenha() + "\n");
-        });
-    }
-    private void mostrarUsuarioSorted(List<Usuario> usuarios){
-        usuarios.stream()
-                .sorted((user1, user2)-> user1.getNome().compareTo(user2.getNome()))
-                .forEach(user -> {
-            System.out.println("ID: " + user.getId()+
-                    "\nNome: " + user.getNome()+
-                    "\nUsuario: " + user.getLogin()+
-                    "\nSenha: "+user.getSenha() + "\n");
-        });
-    }
+
 }

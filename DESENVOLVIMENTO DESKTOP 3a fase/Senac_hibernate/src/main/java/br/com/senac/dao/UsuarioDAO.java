@@ -12,10 +12,15 @@ import org.hibernate.Session;
 
 /**
  *
- * @author maken.rosa
+ * @author Maken.Rosa
  */
-public interface UsuarioDAO extends BaseDAO<Usuario, Long>{
-    public List<Usuario> pesquisarTodos(Session sessao)throws HibernateException;
-    public List<Usuario> pesquisarPorNome(String nome, Session sessao)throws HibernateException;
-    public Usuario fazerLogin(String nomeUsuario, String senha, Session sessao) throws HibernateException;
+public interface UsuarioDao extends BaseDao<Usuario, Long> {
+
+    List<Usuario> pesquisarPorNome(String nome,
+            Session sessao) throws HibernateException;
+
+    List<Usuario> pesquisarTodos(Session sessao) throws HibernateException;
+
+    Usuario logar(String login, String senha,
+            Session sessao) throws HibernateException;
 }

@@ -35,6 +35,6 @@ public class Main {
         });
     }
     public static void main(String[] args) {
-        gerarRelatorioEntrada("16/09/2022", "30/09/2022");
+        gerarRelatorioEntrada("10/09/2022", "30/09/2022");
     }
 }

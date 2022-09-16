@@ -13,9 +13,10 @@ import org.hibernate.query.Query;
 
 /**
  *
- * @author maken.rosa
+ * @author @Maken.Rosa
  */
-public class UsuarioDAOImpl extends BaseDAOImpl<Usuario, Long> implements UsuarioDAO{
+public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long>
+        implements UsuarioDao {
 
     @Override
     public Usuario pesquisarPorId(Long id, Session sessao) throws HibernateException {
@@ -23,27 +24,29 @@ public class UsuarioDAOImpl extends BaseDAOImpl<Usuario, Long> implements Usuari
     }
 
     @Override
+    public List<Usuario> pesquisarPorNome(String nome,
+            Session sessao) throws HibernateException {
+        Query<Usuario> consulta = sessao
+                .createQuery("FROM Usuario u WHERE u.nome LIKE :vNome");
+        consulta.setParameter("vNome", "%" + nome + "%");
+        return consulta.getResultList();
+    }
+
+    @Override
     public List<Usuario> pesquisarTodos(Session sessao) throws HibernateException {
-        Query<Usuario> consulta = sessao.createQuery("FROM Usuario u ORDER BY u.nome");
-        return consulta.getResultList();
-        
-    }
-
-    @Override
-    public List<Usuario> pesquisarPorNome(String nome, Session sessao) throws HibernateException {
-        Query<Usuario> consulta = sessao.createQuery("FROM Usuario u WHERE "
-                + "u.nome LIKE :nome");
-        consulta.setParameter("nome", "%" + nome + "%");
+        Query<Usuario> consulta = sessao
+                .createQuery("FROM Usuario u order by u.nome");
         return consulta.getResultList();
     }
 
     @Override
-    public Usuario fazerLogin(String nomeUsuario, String senha, Session sessao) throws HibernateException {
-        Query<Usuario> consulta = sessao.createQuery("FROM Usuario u WHERE u.login = :usuario "
-                + "AND u.senha = :senha");
-        consulta.setParameter("usuario", nomeUsuario);
+    public Usuario logar(String login, String senha, Session sessao) throws HibernateException {
+        Query<Usuario> consulta = sessao
+                .createQuery("FROM Usuario u "
+                        + "WHERE u.login = :login AND u.senha = :senha");
+        consulta.setParameter("login", login);
         consulta.setParameter("senha", senha);
         return consulta.uniqueResult();
     }
-    
+
 }
