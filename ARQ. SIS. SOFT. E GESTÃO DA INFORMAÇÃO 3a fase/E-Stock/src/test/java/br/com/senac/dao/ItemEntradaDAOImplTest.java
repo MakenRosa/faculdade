@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public class ItemEntradaDAOImplTest {
     private final ItemEntradaDAO itemDAO;
@@ -35,7 +35,7 @@ public class ItemEntradaDAOImplTest {
         sessao.close();
         item = new ItemEntrada(produto, 
                 LocalDate.now(),
-                Integer.valueOf(Gerador.gerarNumero(1)), 
+                Integer.valueOf(Gerador.gerarNumero(2)), 
                 LocalDate.now(), 
                 Gerador.gerarSenha(6), 
                 Double.valueOf(Gerador.gerarNumero(3)));

@@ -5,11 +5,17 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.ItemSaida;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
-public interface ItemSaidaDAO extends BaseDAO<ItemSaida, Long>{
-    
+public interface ItemSaidaDAO extends BaseDAO<ItemSaida, Long> {
+
+    public List<ItemSaida> pesquisarPorPeriodo(String de, String ate, Session sessao) throws HibernateException;
+
+    public void gerarRelatorioSaida(String de, String ate) throws HibernateException;
 }

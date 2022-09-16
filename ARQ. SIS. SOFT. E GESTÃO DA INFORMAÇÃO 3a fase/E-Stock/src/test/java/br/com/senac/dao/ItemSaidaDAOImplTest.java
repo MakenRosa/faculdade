@@ -11,10 +11,11 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static br.com.senac.util.Gerador.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public class ItemSaidaDAOImplTest {
     private final ItemSaidaDAO itemDAO;
@@ -34,7 +35,7 @@ public class ItemSaidaDAOImplTest {
         ItemEntrada itemEntrada = gerarItemEntradaBd(sessao);
         sessao.close();
         item = new ItemSaida(produto, 
-                cliente, LocalDate.now(), itemEntrada.getQtdProduto()-1, 
+                cliente, LocalDate.now(), Integer.valueOf(gerarNumero(1)), 
                 itemEntrada.getLote(), 
                 (itemEntrada.getPreco()-(itemEntrada.getPreco()/itemEntrada.getQtdProduto())));
         sessao = HibernateUtil.abrirConexao();

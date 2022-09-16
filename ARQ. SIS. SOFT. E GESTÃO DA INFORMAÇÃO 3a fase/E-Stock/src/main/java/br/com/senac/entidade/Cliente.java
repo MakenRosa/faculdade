@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 @Table(name = "cliente")
 @Entity

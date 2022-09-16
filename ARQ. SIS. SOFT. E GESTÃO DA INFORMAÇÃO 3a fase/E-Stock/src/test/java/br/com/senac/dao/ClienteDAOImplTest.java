@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public class ClienteDAOImplTest {
     private final ClienteDAO clienteDAO;

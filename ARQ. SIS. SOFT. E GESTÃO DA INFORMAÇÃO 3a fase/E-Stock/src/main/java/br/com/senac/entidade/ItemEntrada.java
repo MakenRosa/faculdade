@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 @Table(name = "item_entrada")
 @Entity
@@ -35,7 +35,7 @@ public class ItemEntrada implements Serializable {
     @Column(name = "data_validade", nullable = false)
     private LocalDate dataValidade;
     
-    @Column(length = 45, nullable = false)
+    @Column(length = 45, nullable = false, unique = true)
     private String lote;
     
     @Column(nullable = false)

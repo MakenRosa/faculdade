@@ -5,9 +5,6 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.ItemEntrada;
-import br.com.senac.entidade.Produto;
-import java.sql.Date ;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -17,22 +14,37 @@ import org.hibernate.query.Query;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
-public class ItemEntradaDAOImpl extends BaseDAOImpl<ItemEntrada, Long> implements ItemEntradaDAO{
+public class ItemEntradaDAOImpl extends BaseDAOImpl<ItemEntrada, Long> implements ItemEntradaDAO {
 
     @Override
     public ItemEntrada pesquisarPorId(Long id, Session sessao) throws HibernateException {
         return sessao.find(ItemEntrada.class, id);
     }
-    
+
     @Override
-    public List<ItemEntrada> gerarRelatorioEntrada(String de, String ate, Session sessao) throws HibernateException{
+    public List<ItemEntrada> pesquisarPorPeriodo(String de, String ate, Session sessao) throws HibernateException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         Query<ItemEntrada> consulta = sessao.createQuery("FROM ItemEntrada ie WHERE ie.dataEntrada BETWEEN :de AND :ate ORDER BY ie.produto.nome");
         consulta.setParameter("de", LocalDate.parse(de, formatter));
         consulta.setParameter("ate", LocalDate.parse(ate, formatter));
         return consulta.getResultList();
     }
-    
+
+    @Override
+    public void gerarRelatorioEntrada(String de, String ate) throws HibernateException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        Session sessao = HibernateUtil.abrirConexao();
+        List<ItemEntrada> itens = pesquisarPorPeriodo(de, ate, sessao);
+        System.out.println("===================================================\n"
+                + "||             Relatório de Entrada            \n"
+                + "===================================================\n"
+                + "|| Produto            || Uni|| Data      || Lote   \n"
+                + "===================================================");
+        itens.forEach(item -> {
+            System.out.println("| " + item.getProduto().getNome() + "         | " + item.getQtdProduto()
+                    + " | " + item.getDataEntrada().format(formatter) + "| " + item.getLote());
+        });
+    }
 }

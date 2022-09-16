@@ -11,8 +11,9 @@ import org.hibernate.Session;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public interface ProdutoDAO extends BaseDAO<Produto, Long>{
     public List<Produto> pesquisarTodos(Session sessao) throws HibernateException;
+    public void verProdutosDisponiveis();
 }
