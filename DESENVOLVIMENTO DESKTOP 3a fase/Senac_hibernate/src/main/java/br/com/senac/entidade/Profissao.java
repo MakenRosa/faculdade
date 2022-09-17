@@ -10,27 +10,27 @@ import javax.persistence.*;
 
 /**
  *
- * @author Maken.Rosa
+ * @author maken.rosa
  */
 @Entity
-@Table(name = "perfil")
-public class Perfil implements Serializable {
+public class Profissao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "id_profissao")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 255, nullable = false)
+    @Column(length = 100, nullable = false)
     private String nome;
 
-    @Lob @Column
+    @Lob
     private String descricao;
 
-    public Perfil() {
+    public Profissao() {
     }
 
-    public Perfil(String nome, String descricao) {
+    public Profissao(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -58,7 +58,6 @@ public class Perfil implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
 
     @Override
     public int hashCode() {
@@ -70,10 +69,10 @@ public class Perfil implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Perfil)) {
+        if (!(object instanceof Profissao)) {
             return false;
         }
-        Perfil other = (Perfil) object;
+        Profissao other = (Profissao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -82,7 +81,7 @@ public class Perfil implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.senac.entidade.Perfil[ id=" + id + " ]";
+        return "br.com.senac.entidade.Profissao[ id=" + id + " ]";
     }
 
 }

@@ -15,8 +15,8 @@ import org.hibernate.query.Query;
  *
  * @author @Maken.Rosa
  */
-public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long>
-        implements UsuarioDao {
+public class UsuarioDAOImpl extends BaseDAOImpl<Usuario, Long>
+        implements UsuarioDAO {
 
     @Override
     public Usuario pesquisarPorId(Long id, Session sessao) throws HibernateException {

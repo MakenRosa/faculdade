@@ -93,5 +93,13 @@ public class Gerador {
         Collections.shuffle(sobrenome);
         return sobrenome.get(0);
     }
+    
+    public static String gerarProfissao(){
+        List<String> profissoes = Arrays.asList("Maquinista", "Desenvolvedor", "Analista",
+                "Engenheiro", "Autonomo", "Administrador de caixa", "Faxineiro",
+                "Artista plástico", "Tatuador", "Secretário");
+        Collections.shuffle(profissoes);
+        return profissoes.get(0);
+    }
 
 }

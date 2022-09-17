@@ -16,13 +16,20 @@ import org.hibernate.query.Query;
  *
  * @author Maken.Rosa
  */
-public class ClienteDAOImpl extends BaseDaoImpl<Cliente, Long>
+public class ClienteDAOImpl extends BaseDAOImpl<Cliente, Long>
                        implements ClienteDAO, Serializable{
 
     @Override
     public Cliente pesquisarPorId(Long id, Session sessao)
                                  throws HibernateException {
         return sessao.find(Cliente.class, id);
+    }
+    
+    @Override
+    public List<Cliente> pesquisarTodos(Session sessao) throws HibernateException {
+        Query<Cliente> consulta = sessao
+                .createQuery("FROM Cliente c order by c.nome");
+        return consulta.getResultList();
     }
 
     @Override

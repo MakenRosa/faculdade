@@ -20,11 +20,24 @@ import static org.junit.Assert.*;
 public class UsuarioDaoImplTest {
 
     private Usuario usuario;
-    private final UsuarioDao usuarioDao;
+    private final UsuarioDAO usuarioDAO;
     private Session sessao;
 
     public UsuarioDaoImplTest() {
-        usuarioDao = new UsuarioDaoImpl();
+        usuarioDAO = new UsuarioDAOImpl();
+    }
+
+    @Test
+    public void testSalvar() {
+        System.out.println("salvar");
+        PerfilDAOImplTest pdit = new PerfilDAOImplTest();
+        usuario = new Usuario(gerarNome(), (gerarLogin() + gerarSenha(4)),
+                gerarSenha(8));
+        usuario.setPerfil(pdit.buscarPerfilBd());
+        sessao = HibernateUtil.abrirConexao();
+        usuarioDAO.salvarOuAlterar(usuario, sessao);
+        sessao.close();
+        assertNotNull(usuario.getId());
     }
 
 //    @Test
@@ -32,23 +45,11 @@ public class UsuarioDaoImplTest {
         System.out.println("excluir");
         buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        usuarioDao.excluir(usuario, sessao);
-
-        Usuario usuExc = usuarioDao
+        usuarioDAO.excluir(usuario, sessao);
+        Usuario usuExc = usuarioDAO
                 .pesquisarPorId(usuario.getId(), sessao);
         sessao.close();
         assertNull(usuExc);
-    }
-
-//    @Test
-    public void testSalvar() {
-        System.out.println("salvar");
-        usuario = new Usuario(gerarNome(), (gerarLogin() + gerarSenha(4)),
-                gerarSenha(8));
-        sessao = HibernateUtil.abrirConexao();
-        usuarioDao.salvarOuAlterar(usuario, sessao);
-        sessao.close();
-        assertNotNull(usuario.getId());
     }
 
 //    @Test
@@ -57,11 +58,11 @@ public class UsuarioDaoImplTest {
         buscarUsuarioBd();
         usuario.setNome(gerarNome());
         sessao = HibernateUtil.abrirConexao();
-        usuarioDao.salvarOuAlterar(usuario, sessao);
+        usuarioDAO.salvarOuAlterar(usuario, sessao);
         sessao.close();
 
         sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioPesq = usuarioDao
+        Usuario usuarioPesq = usuarioDAO
                 .pesquisarPorId(usuario.getId(), sessao);
         sessao.close();
         assertEquals(usuarioPesq.getNome(), usuario.getNome());
@@ -72,7 +73,7 @@ public class UsuarioDaoImplTest {
         System.out.println("pesquisarPorId");
         buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioPesq = usuarioDao
+        Usuario usuarioPesq = usuarioDAO
                 .pesquisarPorId(usuario.getId(), sessao);
         sessao.close();
         assertNotNull(usuarioPesq);
@@ -83,19 +84,17 @@ public class UsuarioDaoImplTest {
         System.out.println("pesquisarPorNome");
         buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDao
+        List<Usuario> usuarios = usuarioDAO
                 .pesquisarPorNome(usuario.getNome(), sessao);
         sessao.close();
         assertTrue(usuarios.size() > 0);
-
     }
 
-    @Test
+//    @Test
     public void testPesquisarTodos() {
         System.out.println("pesquisarTodos");
-        buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDao
+        List<Usuario> usuarios = usuarioDAO
                 .pesquisarTodos(sessao);
         sessao.close();
         mostrar(usuarios);
@@ -132,7 +131,7 @@ public class UsuarioDaoImplTest {
         System.out.println("logar");
         buscarUsuarioBd();
         sessao = HibernateUtil.abrirConexao();
-        Usuario usuarioLogado = usuarioDao
+        Usuario usuarioLogado = usuarioDAO
                 .logar(usuario.getLogin(), usuario.getSenha(), sessao);
         sessao.close();
         assertNotNull(usuarioLogado);

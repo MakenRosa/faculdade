@@ -18,46 +18,69 @@ import static org.junit.Assert.*;
  * @author Maken.Rosa
  */
 public class PerfilDAOImplTest {
+
     private Perfil perfil;
     private final PerfilDAO perfilDAO;
     private Session sessao;
-    
+
     public PerfilDAOImplTest() {
         perfilDAO = new PerfilDAOImpl();
     }
-    
-    @Test
-    public void testSalvar(){
+
+//    @Test
+    public void testSalvar() {
         System.out.println("salvar");
-        perfil = new Perfil(gerarSenha(7), "Lorem ipsum dolor siamet");
+        perfil = new Perfil(gerarNome(), gerarSenha(20));
         sessao = HibernateUtil.abrirConexao();
         perfilDAO.salvarOuAlterar(perfil, sessao);
         sessao.close();
-        assertNotNull(this.perfil.getId());
+        assertNotNull(perfil.getId());
+    }
+
+//    @Test
+    public void testExcluir() {
+        System.out.println("excluir");
+        buscarPerfilBd();
+        sessao = HibernateUtil.abrirConexao();
+        perfilDAO.excluir(perfil, sessao);
+        Perfil perfilExc = perfilDAO.pesquisarPorId(perfil.getId(), sessao);
+        sessao.close();
+        assertNull(perfilExc);
+    }
+    
+//    @Test
+    public void testAlterar() {
+        System.out.println("alterar");
+        buscarPerfilBd();
+        perfil.setNome(gerarNome());
+        sessao = HibernateUtil.abrirConexao();
+        perfilDAO.salvarOuAlterar(perfil, sessao);
+        sessao.close();
+        sessao = HibernateUtil.abrirConexao();
+        Perfil perfilPesq = perfilDAO.pesquisarPorId(perfil.getId(), sessao);
+        sessao.close();
+        assertEquals(perfilPesq.getNome(), perfil.getNome());
     }
 
 //    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
-        Long id = null;
-        Session sessao = null;
-        PerfilDAOImpl instance = new PerfilDAOImpl();
-        Perfil expResult = null;
-        Perfil result = instance.pesquisarPorId(id, sessao);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        buscarPerfilBd();
+        sessao = HibernateUtil.abrirConexao();
+        Perfil perfilPesq = perfilDAO.pesquisarPorId(perfil.getId(), sessao);
+        sessao.close();
+        assertNotNull(perfilPesq);
     }
+
 
 //    @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
-        String nome = "";
-        Session sessao = null;
-        PerfilDAOImpl instance = new PerfilDAOImpl();
-        List<Perfil> expResult = null;
-        List<Perfil> result = instance.pesquisarPorNome(nome, sessao);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        buscarPerfilBd();
+        sessao = HibernateUtil.abrirConexao();
+        List<Perfil> perfis = perfilDAO.pesquisarPorNome(perfil.getNome(), sessao);
+        sessao.close();
+        assertTrue(perfis.size() > 0);
     }
 
 //    @Test
@@ -66,13 +89,13 @@ public class PerfilDAOImplTest {
         sessao = HibernateUtil.abrirConexao();
         List<Perfil> perfis = perfilDAO.pesquisarTodos(sessao);
         sessao.close();
-        assertFalse(perfis.isEmpty());
+        assertTrue(!perfis.isEmpty());
     }
-    
-        public Perfil buscarPerfilBd() {
+
+    public Perfil buscarPerfilBd() {
         sessao = HibernateUtil.abrirConexao();
         Query<Perfil> consulta = sessao
-                .createQuery("from Usuario u"); //HQL
+                .createQuery("from Perfil p"); //HQL
         List<Perfil> usuarios = consulta.getResultList();
         sessao.close();
         if (usuarios.isEmpty()) {
@@ -82,5 +105,5 @@ public class PerfilDAOImplTest {
         }
         return perfil;
     }
-    
+
 }

@@ -16,7 +16,7 @@ import org.hibernate.query.Query;
  *
  * @author Maken.Rosa
  */
-public class PerfilDAOImpl extends BaseDaoImpl<Perfil, Long>
+public class PerfilDAOImpl extends BaseDAOImpl<Perfil, Long>
         implements PerfilDAO, Serializable {
 
     @Override
