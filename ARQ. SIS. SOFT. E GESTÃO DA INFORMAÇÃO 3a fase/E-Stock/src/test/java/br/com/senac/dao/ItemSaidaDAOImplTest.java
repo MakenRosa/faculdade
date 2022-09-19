@@ -18,6 +18,7 @@ import static br.com.senac.util.Gerador.*;
  * @author Maken.Rosa
  */
 public class ItemSaidaDAOImplTest {
+
     private final ItemSaidaDAO itemDAO;
     private ItemSaida item;
     private Session sessao;
@@ -25,30 +26,33 @@ public class ItemSaidaDAOImplTest {
     public ItemSaidaDAOImplTest() {
         itemDAO = new ItemSaidaDAOImpl();
     }
-    
+
     @Test
-    public void testSalvar(){
+    public void testSalvar() {
         System.out.println("salvar");
+        ProdutoDAOImplTest pdit = new ProdutoDAOImplTest();
+        ClienteDAOImplTest cdit = new ClienteDAOImplTest();
+        ItemEntradaDAOImplTest iedit = new ItemEntradaDAOImplTest();
         sessao = HibernateUtil.abrirConexao();
-        Produto produto = buscarProdutoBd(sessao);
-        Cliente cliente = gerarClienteBd(sessao);
-        ItemEntrada itemEntrada = gerarItemEntradaBd(sessao);
+        Produto produto = pdit.buscarProdutoBd();
+        Cliente cliente = cdit.buscarClienteBd();
+        ItemEntrada itemEntrada = iedit.buscarItemEntradaBd();
         sessao.close();
-        item = new ItemSaida(produto, 
-                cliente, LocalDate.now(), Integer.valueOf(gerarNumero(1)), 
-                itemEntrada.getLote(), 
-                (itemEntrada.getPreco()-(itemEntrada.getPreco()/itemEntrada.getQtdProduto())));
+        String preco = gerarNumero(2) + "." + gerarNumero(2);
+        item = new ItemSaida(produto,
+                cliente, LocalDate.now(), Integer.valueOf(gerarNumero(1)),
+                itemEntrada.getLote(), Double.valueOf(preco));
         sessao = HibernateUtil.abrirConexao();
         itemDAO.salvarOuAlterar(item, sessao);
         sessao.close();
         assertNotNull(produto.getIdProduto());
     }
-    
+
 //    @Test
-    public void testAlterar(){
+    public void testAlterar() {
         System.out.println("alterar");
-        gerarItemSaidaBd();
-        item.setQtdProduto(item.getQtdProduto()-1);
+        buscarItemSaidaBd();
+        item.setQtdProduto(item.getQtdProduto() - 1);
         sessao = HibernateUtil.abrirConexao();
         itemDAO.salvarOuAlterar(item, sessao);
         sessao.close();
@@ -61,50 +65,33 @@ public class ItemSaidaDAOImplTest {
 //    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
-        gerarItemSaidaBd();
+        buscarItemSaidaBd();
         sessao = HibernateUtil.abrirConexao();
         ItemSaida itemPesquisado = itemDAO.pesquisarPorId(item.getIdItemSaida(), sessao);
         sessao.close();
         System.out.println(itemPesquisado.getLote());
         assertNotNull(itemPesquisado);
     }
-    
+
 //    @Test
-    public void testExcluir(){
+    public void testExcluir() {
         System.out.println("excluir");
-        gerarItemSaidaBd();
+        buscarItemSaidaBd();
         sessao = HibernateUtil.abrirConexao();
         itemDAO.excluir(item, sessao);
         ItemSaida itemExcluido = itemDAO.pesquisarPorId(item.getIdItemSaida(), sessao);
         sessao.close();
         assertNull(itemExcluido);
     }
-    public void gerarItemSaidaBd(){
+
+    public void buscarItemSaidaBd() {
         sessao = HibernateUtil.abrirConexao();
         Query<ItemSaida> consulta = sessao.createQuery("from ItemSaida i");
         consulta.setMaxResults(1);
         item = consulta.getSingleResult();
         sessao.close();
-        if (item == null){
+        if (item == null) {
             testSalvar();
         }
-    }
-    public Produto buscarProdutoBd(Session sessao) throws HibernateException{
-        Query<Produto> consulta = sessao.createQuery("from Produto p");
-        consulta.setMaxResults(1);
-        Produto produto = consulta.getSingleResult();
-        return produto;
-    }
-    public Cliente gerarClienteBd(Session sessao) throws HibernateException{
-        Query<Cliente> consulta = sessao.createQuery("from Cliente c");
-        consulta.setMaxResults(1);
-        Cliente cliente = consulta.getSingleResult();
-        return cliente;
-    }
-    public ItemEntrada gerarItemEntradaBd(Session sessao) throws HibernateException{
-    Query<ItemEntrada> consulta = sessao.createQuery("from ItemEntrada ie");
-    consulta.setMaxResults(1);
-    return consulta.getSingleResult();
-     
     }
 }

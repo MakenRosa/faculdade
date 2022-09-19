@@ -37,14 +37,14 @@ public class ItemSaidaDAOImpl extends BaseDAOImpl<ItemSaida, Long> implements It
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         Session sessao = HibernateUtil.abrirConexao();
         List<ItemSaida> itens = pesquisarPorPeriodo(de, ate, sessao);
-        System.out.println("===================================================\n"
+        System.out.println("============================================================\n"
                 + "||           Relatório de Saida            \n"
-                + "===================================================\n"
-                + "|| Produto            || Uni|| Data      || Lote\n"
-                + "===================================================");
+                + "============================================================\n"
+                + "|| Produto          || Uni || Data    || Lote    || Cliente\n"
+                + "============================================================");
         itens.forEach(item -> {
             System.out.println("| " + item.getProduto().getNome() + "         | " + item.getQtdProduto()
-                    + " | " + item.getDataSaida().format(formatter) + "| " + item.getLote());
+                    + " | " + item.getDataSaida().format(formatter) + "| " + item.getLote() + "|  "+item.getCliente().getNome());
         });
     }
 

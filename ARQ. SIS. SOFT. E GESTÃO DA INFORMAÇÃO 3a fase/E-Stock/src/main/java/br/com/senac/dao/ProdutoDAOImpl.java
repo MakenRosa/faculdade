@@ -46,15 +46,15 @@ public class ProdutoDAOImpl extends BaseDAOImpl<Produto, Long> implements Produt
                 for (ItemSaida item : produto.getItensSaida()) {
                     qtdSai += item.getQtdProduto();
                 }
-                List<String> nomeQtd = Arrays.asList(produto.getNome(), "" + (qtdEnt - qtdSai));
+                List<String> nomeQtd = Arrays.asList(produto.getNome(), "" + (qtdEnt - qtdSai), produto.getDescricao());
                 listaDeListas.add(nomeQtd);
             });
             System.out.println("====================================\n"
                     + "||            PRODUTOS             ||\n"
                     + "====================================\n"
-                    + "| Produto              | Uni ");
+                    + "| Produto              | Uni   | Descrição");
             for (List lista : listaDeListas) {
-                System.out.println("| " + lista.get(0) + "    | " + lista.get(1));
+                System.out.println("| " + lista.get(0) + "|  " + lista.get(1) + "|   " + lista.get(2));
             }
         }
     }

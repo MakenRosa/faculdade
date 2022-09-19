@@ -40,7 +40,7 @@ public class ItemEntradaDAOImpl extends BaseDAOImpl<ItemEntrada, Long> implement
         System.out.println("===================================================\n"
                 + "||             Relatório de Entrada            \n"
                 + "===================================================\n"
-                + "|| Produto            || Uni|| Data      || Lote   \n"
+                + "|| Produto            || Uni|| Data da Entrada || Lote   \n"
                 + "===================================================");
         itens.forEach(item -> {
             System.out.println("| " + item.getProduto().getNome() + "         | " + item.getQtdProduto()

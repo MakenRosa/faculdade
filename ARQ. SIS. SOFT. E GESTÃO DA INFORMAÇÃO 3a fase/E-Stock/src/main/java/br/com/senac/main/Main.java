@@ -21,8 +21,8 @@ public class Main {
         ItemEntradaDAO entradaDAO = new ItemEntradaDAOImpl();
         ItemSaidaDAO saidaDAO = new ItemSaidaDAOImpl();
         ProdutoDAO produtoDAO = new ProdutoDAOImpl();
-        entradaDAO.gerarRelatorioEntrada("10/09/2022", "30/09/2022");
-        saidaDAO.gerarRelatorioSaida("10/09/2022", "30/09/2022");
+        entradaDAO.gerarRelatorioEntrada("10/09/2020", "30/09/2022");
+        saidaDAO.gerarRelatorioSaida("10/09/2020", "30/09/2022");
         produtoDAO.verProdutosDisponiveis();
     }
 }
