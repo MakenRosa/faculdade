@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  * @param <T>
  * @param <ID>
  */
-public abstract class BaseDaoImpl<T, ID> implements BaseDao<T, ID> {
+public abstract class BaseDAOImpl<T, ID> implements BaseDAO<T, ID> {
 
     private Transaction transaction;
 

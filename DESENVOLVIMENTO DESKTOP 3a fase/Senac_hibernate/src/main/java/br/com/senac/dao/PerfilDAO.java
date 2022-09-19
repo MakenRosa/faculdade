@@ -14,7 +14,7 @@ import org.hibernate.Session;
  *
  * @author Maken.Rosa
  */
-public interface PerfilDAO extends BaseDao<Perfil, Long> {
+public interface PerfilDAO extends BaseDAO<Perfil, Long> {
 
     List<Perfil> pesquisarPorNome(String nome,
             Session sessao) throws HibernateException;

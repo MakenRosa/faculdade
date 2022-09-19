@@ -14,7 +14,7 @@ import org.hibernate.Session;
  * @param <T>
  * @param <ID>
  */
-public interface BaseDao<T, ID> {
+public interface BaseDAO<T, ID> {
 
     void salvarOuAlterar(T entidade, Session sessao) throws HibernateException;
 
