@@ -26,7 +26,7 @@ public class ProdutoDAOImplTest {
         produtoDAO = new ProdutoDAOImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() {
         List<String> produtoList = Gerador.gerarProduto();
         System.out.println("salvar");

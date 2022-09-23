@@ -26,7 +26,7 @@ public class ClienteDAOImplTest {
         clienteDAO = new ClienteDAOImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() {
         System.out.println("salvar");
         cliente = new Cliente(Gerador.gerarNome(), Gerador.gerarCpf(),

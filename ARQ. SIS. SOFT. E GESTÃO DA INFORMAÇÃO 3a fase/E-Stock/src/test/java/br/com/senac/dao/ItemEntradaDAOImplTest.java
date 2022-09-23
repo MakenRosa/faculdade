@@ -27,7 +27,7 @@ public class ItemEntradaDAOImplTest {
         itemDAO = new ItemEntradaDAOImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() {
         System.out.println("salvar");
         ProdutoDAOImplTest pdit = new ProdutoDAOImplTest();
