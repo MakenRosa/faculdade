@@ -87,10 +87,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="varUser">
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="varUserFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="varUserFocusLost"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -102,10 +98,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="varPassword">
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="varPasswordFocusGained"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="varPasswordActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogar">
       <Properties>

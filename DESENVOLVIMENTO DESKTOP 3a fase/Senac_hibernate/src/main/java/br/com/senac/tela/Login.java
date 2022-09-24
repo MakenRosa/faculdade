@@ -11,7 +11,6 @@ import br.com.senac.dao.UsuarioDAOImpl;
 import br.com.senac.entidade.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import org.hibernate.Session;
 
@@ -61,29 +60,9 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Usuário:");
 
-        varUser.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                varUserFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                varUserFocusLost(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Senha:");
-
-        varPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                varPasswordFocusGained(evt);
-            }
-        });
-        varPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                varPasswordActionPerformed(evt);
-            }
-        });
 
         btnLogar.setText("Efetuar Login");
         btnLogar.addActionListener(new java.awt.event.ActionListener() {
@@ -133,10 +112,6 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void varPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_varPasswordActionPerformed
-
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         String userStr = varUser.getText();
         String passwordStr = String.valueOf(varPassword.getPassword());
@@ -154,18 +129,6 @@ public class Login extends javax.swing.JFrame {
             varPassword.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_btnLogarActionPerformed
-
-    private void varUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_varUserFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_varUserFocusGained
-
-    private void varPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_varPasswordFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_varPasswordFocusGained
-
-    private void varUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_varUserFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_varUserFocusLost
 
     /**
      * @param args the command line arguments

@@ -12,20 +12,26 @@ import br.com.senac.entidade.Usuario;
  * @author maken.rosa
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    private Usuario user;
+    private PesquisaUsuario pesqUser;
+    private CadastroUsuario cadUser;
+
+
 
     /**
      * Creates new form TelaPrincipal
      * @param user
      */
-    private Usuario user;
     
     public TelaPrincipal(Usuario user) {
-        this.user = user;
-        txtWelcome.setText(user.getNome());
         initComponents();
+        this.user = user;
+        varWelcome.setText("Seja bem vindo, "+user.getNome()+ "!");
     }
     
     public TelaPrincipal() {
+        this.pesqUser = new PesquisaUsuario();
+        this.cadUser = new CadastroUsuario();
         initComponents();
     }
 
@@ -38,72 +44,111 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtWelcome = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        varWelcome = new javax.swing.JLabel();
+        iconeCadUser = new javax.swing.JLabel();
+        iconePesqUsuario = new javax.swing.JLabel();
+        varMenu = new javax.swing.JMenuBar();
+        varMenuCad = new javax.swing.JMenu();
+        varCadUser = new javax.swing.JMenuItem();
+        varCadPerfil = new javax.swing.JMenuItem();
+        varMenuPesq = new javax.swing.JMenu();
+        varPesqUser = new javax.swing.JMenuItem();
+        varPesqPerfil = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Senac");
 
-        txtWelcome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        varWelcome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jMenu2.setText("Cadastro");
-
-        jMenuItem1.setText("Usuario");
-        jMenu2.add(jMenuItem1);
-
-        jMenuItem3.setText("Perfil");
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu1.setText("Pesquisa");
-
-        jMenuItem2.setText("Usuario");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem4.setText("Perfil");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+        iconeCadUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadUsuario.png"))); // NOI18N
+        iconeCadUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Adicionar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        iconeCadUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconeCadUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconeCadUserMouseClicked(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
 
-        jMenuBar1.add(jMenu1);
+        iconePesqUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pesqUsuario.png"))); // NOI18N
+        iconePesqUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        iconePesqUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconePesqUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconePesqUsuarioMouseClicked(evt);
+            }
+        });
 
-        setJMenuBar(jMenuBar1);
+        varMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        varMenuCad.setText("Cadastro");
+
+        varCadUser.setText("Usuario");
+        varMenuCad.add(varCadUser);
+
+        varCadPerfil.setText("Perfil");
+        varMenuCad.add(varCadPerfil);
+
+        varMenu.add(varMenuCad);
+
+        varMenuPesq.setText("Pesquisa");
+
+        varPesqUser.setText("Usuario");
+        varMenuPesq.add(varPesqUser);
+
+        varPesqPerfil.setText("Perfil");
+        varMenuPesq.add(varPesqPerfil);
+
+        varMenu.add(varMenuPesq);
+
+        setJMenuBar(varMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(430, Short.MAX_VALUE)
+                .addComponent(varWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconeCadUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(iconePesqUsuario)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(txtWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addComponent(varWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconePesqUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconeCadUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void iconeCadUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconeCadUserMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        if (this.cadUser.isVisible() == false){
+            cadUser.setVisible(true);
+        } else {
+            cadUser.requestFocus();
+        }
+    }//GEN-LAST:event_iconeCadUserMouseClicked
+
+    private void iconePesqUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconePesqUsuarioMouseClicked
+        // TODO add your handling code here:
+        if (this.pesqUser.isVisible() == false){
+            pesqUser.setVisible(true);
+        } else {
+            pesqUser.requestFocus();
+        }
+    }//GEN-LAST:event_iconePesqUsuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -130,20 +175,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new TelaPrincipal(user).setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JLabel txtWelcome;
+    private javax.swing.JLabel iconeCadUser;
+    private javax.swing.JLabel iconePesqUsuario;
+    private javax.swing.JMenuItem varCadPerfil;
+    private javax.swing.JMenuItem varCadUser;
+    private javax.swing.JMenuBar varMenu;
+    private javax.swing.JMenu varMenuCad;
+    private javax.swing.JMenu varMenuPesq;
+    private javax.swing.JMenuItem varPesqPerfil;
+    private javax.swing.JMenuItem varPesqUser;
+    private javax.swing.JLabel varWelcome;
     // End of variables declaration//GEN-END:variables
 }

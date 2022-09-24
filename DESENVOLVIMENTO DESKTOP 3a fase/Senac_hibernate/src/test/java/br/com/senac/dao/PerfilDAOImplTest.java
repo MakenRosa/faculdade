@@ -27,7 +27,7 @@ public class PerfilDAOImplTest {
         perfilDAO = new PerfilDAOImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() {
         System.out.println("salvar");
         perfil = new Perfil(gerarNome(), gerarSenha(20));
