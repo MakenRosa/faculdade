@@ -6,6 +6,7 @@
 package br.com.senac.tela;
 
 import br.com.senac.dao.HibernateUtil;
+import br.com.senac.dao.PerfilDAO;
 import br.com.senac.dao.PerfilDAOImpl;
 import br.com.senac.dao.UsuarioDAO;
 import br.com.senac.dao.UsuarioDAOImpl;
@@ -22,7 +23,9 @@ import org.hibernate.Session;
 public class CadastroUsuario extends javax.swing.JFrame {
     private Usuario user;
     private UsuarioDAO usuarioDAO;
+    private PerfilDAO perfilDAO;
     private Session sessao;
+    
 
     /**
      * Creates new form CadastroUsuario
@@ -30,6 +33,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
     public CadastroUsuario() {
         initComponents();
         sessao = HibernateUtil.abrirConexao();
+        varPerfil.removeAllItems();
         List<Perfil> perfis = new PerfilDAOImpl().pesquisarTodos(sessao);
         if (perfis.isEmpty() == false){
             perfis.forEach(perfil -> {
@@ -115,7 +119,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLogin)
@@ -137,8 +141,11 @@ public class CadastroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (validarFormulario() == true){
             user = new Usuario(varNome.getText(), varLogin.getText(), gerarSenha(5));
+            usuarioDAO = new UsuarioDAOImpl();
+            perfilDAO = new PerfilDAOImpl();
+            user.setPerfil(perfilDAO.pesquisarPorNome((String) varPerfil.getSelectedItem(), sessao));
             sessao = HibernateUtil.abrirConexao();
-            new UsuarioDAOImpl().salvarOuAlterar(user, sessao);
+            usuarioDAO.salvarOuAlterar(user, sessao);
             sessao.close();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -191,6 +198,6 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
     private boolean validarFormulario() {
         
-        return false;
+        return true;
     }
 }

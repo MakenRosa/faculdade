@@ -56,7 +56,7 @@
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblNome" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="varNome" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="varNome" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

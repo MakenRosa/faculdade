@@ -13,8 +13,8 @@ import br.com.senac.entidade.Usuario;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     private Usuario user;
-    private PesquisaUsuario pesqUser;
-    private CadastroUsuario cadUser;
+    private final PesquisaUsuario pesqUser;
+    private final CadastroUsuario cadUser;
 
 
 
@@ -26,13 +26,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal(Usuario user) {
         initComponents();
         this.user = user;
+        this.pesqUser = new PesquisaUsuario();
+        this.cadUser = new CadastroUsuario();
         varWelcome.setText("Seja bem vindo, "+user.getNome()+ "!");
     }
     
     public TelaPrincipal() {
+        initComponents();
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
-        initComponents();
     }
 
     /**

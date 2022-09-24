@@ -26,11 +26,11 @@ public class PerfilDAOImpl extends BaseDAOImpl<Perfil, Long>
     }
 
     @Override
-    public List<Perfil> pesquisarPorNome(String nome, Session sessao) throws HibernateException {
+    public Perfil pesquisarPorNome(String nome, Session sessao) throws HibernateException {
         Query<Perfil> consulta = sessao.createQuery("FROM Perfil p WHERE "
-                + "p.nome LIKE :nome ORDER BY p.nome");
+                + "p.nome LIKE :nome");
         consulta.setParameter("nome", "%" + nome + "%");
-        return consulta.getResultList();
+        return consulta.getSingleResult();
     }
 
     @Override
