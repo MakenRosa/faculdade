@@ -13,6 +13,7 @@ import javax.persistence.*;
  * @author maken.rosa
  */
 @Entity
+@Table(name = "profissao")
 public class Profissao implements Serializable {
 
     private static final long serialVersionUID = 1L;

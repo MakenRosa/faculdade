@@ -82,10 +82,10 @@ public class ClienteDAOImplTest {
         sessao = HibernateUtil.abrirConexao();
         List<Cliente> usuarios = clienteDAO.pesquisarPorNome(cliente.getNome(), sessao);
         sessao.close();
-        assertTrue(usuarios.size() > 0);
+        assertTrue(!usuarios.isEmpty());
     }
 
-    @Test
+//    @Test
     public void testPesquisarTodos() {
         System.out.println("pesquisarTodos");
         sessao = HibernateUtil.abrirConexao();

@@ -14,6 +14,8 @@ import br.com.senac.entidade.Perfil;
 import br.com.senac.entidade.Usuario;
 import static br.com.senac.util.Gerador.*;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
@@ -138,15 +140,23 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
+        usuarioDAO = new UsuarioDAOImpl();
+        sessao = HibernateUtil.abrirConexao();
         if (validarFormulario() == true){
             user = new Usuario(varNome.getText(), varLogin.getText(), gerarSenha(5));
-            usuarioDAO = new UsuarioDAOImpl();
             perfilDAO = new PerfilDAOImpl();
-            user.setPerfil(perfilDAO.pesquisarPorNome((String) varPerfil.getSelectedItem(), sessao));
-            sessao = HibernateUtil.abrirConexao();
-            usuarioDAO.salvarOuAlterar(user, sessao);
-            sessao.close();
+            Perfil perfil = perfilDAO.pesquisarPorNome(varPerfil.getSelectedItem().toString(), sessao);
+            try {
+                user.setPerfil(perfil);
+                usuarioDAO.salvarOuAlterar(user, sessao);
+                JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
+                this.dispose();
+            } catch(HibernateException e){
+                JOptionPane.showConfirmDialog(null, "Erro ao salvar!");
+            } finally{
+                sessao.close();
+            }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 

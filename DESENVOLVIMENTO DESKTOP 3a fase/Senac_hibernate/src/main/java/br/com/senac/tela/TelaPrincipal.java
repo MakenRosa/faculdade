@@ -85,6 +85,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varMenuCad.setText("Cadastro");
 
         varCadUser.setText("Usuario");
+        varCadUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varCadUserActionPerformed(evt);
+            }
+        });
         varMenuCad.add(varCadUser);
 
         varCadPerfil.setText("Perfil");
@@ -151,6 +156,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             pesqUser.requestFocus();
         }
     }//GEN-LAST:event_iconePesqUsuarioMouseClicked
+
+    private void varCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCadUserActionPerformed
+        // TODO add your handling code here:
+        cadUser.setVisible(true);
+    }//GEN-LAST:event_varCadUserActionPerformed
 
     /**
      * @param args the command line arguments

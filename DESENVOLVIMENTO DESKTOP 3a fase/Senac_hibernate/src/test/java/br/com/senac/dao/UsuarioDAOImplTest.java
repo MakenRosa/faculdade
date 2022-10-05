@@ -27,7 +27,7 @@ public class UsuarioDaoImplTest {
         usuarioDAO = new UsuarioDAOImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() {
         System.out.println("salvar");
         PerfilDAOImplTest pdit = new PerfilDAOImplTest();
@@ -113,18 +113,18 @@ public class UsuarioDaoImplTest {
                 });
     }
 
-    private void mostrarSorted(List<Usuario> usuarios) {
-        usuarios.stream()
-                .sorted((usu1, us2)
-                        -> usu1.getNome().compareTo(us2.getNome()))
-                .forEach(usu -> {
-                    System.out.println("ID " + usu.getId());
-                    System.out.println("Nome " + usu.getNome());
-                    System.out.println("Login " + usu.getLogin());
-                    System.out.println("Senha " + usu.getSenha());
-                    System.out.println("");
-                });
-    }
+//    private void mostrarSorted(List<Usuario> usuarios) {
+//        usuarios.stream()
+//                .sorted((usu1, us2)
+//                        -> usu1.getNome().compareTo(us2.getNome()))
+//                .forEach(usu -> {
+//                    System.out.println("ID " + usu.getId());
+//                    System.out.println("Nome " + usu.getNome());
+//                    System.out.println("Login " + usu.getLogin());
+//                    System.out.println("Senha " + usu.getSenha());
+//                    System.out.println("");
+//                });
+//    }
 
 //    @Test
     public void testLogar() {
