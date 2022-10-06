@@ -78,9 +78,9 @@ public class PerfilDAOImplTest {
         System.out.println("pesquisarPorNome");
         buscarPerfilBd();
         sessao = HibernateUtil.abrirConexao();
-        perfil = perfilDAO.pesquisarPorNome(perfil.getNome(), sessao);
+        List<Perfil> perfis = perfilDAO.pesquisarPorNome(perfil.getNome(), sessao);
         sessao.close();
-        assertNotNull(perfil);
+        assertFalse(perfis.isEmpty());
     }
 
 //    @Test
