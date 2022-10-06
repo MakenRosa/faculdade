@@ -24,9 +24,9 @@ import org.hibernate.Session;
  */
 public class CadastroUsuario extends javax.swing.JFrame {
     private Usuario user;
-    private UsuarioDAO usuarioDAO;
-    private PerfilDAO perfilDAO;
+    private final UsuarioDAO usuarioDAO;
     private Session sessao;
+    private List<Perfil> perfis;
     
 
     /**
@@ -34,17 +34,23 @@ public class CadastroUsuario extends javax.swing.JFrame {
      */
     public CadastroUsuario() {
         initComponents();
-        sessao = HibernateUtil.abrirConexao();
-        varPerfil.removeAllItems();
-        List<Perfil> perfis = new PerfilDAOImpl().pesquisarTodos(sessao);
-        if (perfis.isEmpty() == false){
+        usuarioDAO = new UsuarioDAOImpl();
+        carregarComboPerfil();
+    }
+    
+    private void carregarComboPerfil(){
+        try {
+            PerfilDAO perfilDAO = new PerfilDAOImpl();
+            sessao = HibernateUtil.abrirConexao();
+            perfis = perfilDAO.pesquisarTodos(sessao);
             perfis.forEach(perfil -> {
                 varPerfil.addItem(perfil.getNome());
             });
-            
+        } catch (HibernateException ex){
+        } finally {
+            sessao.close();
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +89,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
         lblPerfil.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPerfil.setText("Perfil:");
 
-        varPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        varPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um perfil" }));
+        varPerfil.setName(""); // NOI18N
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,18 +142,18 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addGap(0, 39, Short.MAX_VALUE))
         );
 
+        varPerfil.getAccessibleContext().setAccessibleName("");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here: 
-        usuarioDAO = new UsuarioDAOImpl();
         sessao = HibernateUtil.abrirConexao();
-        if (validarFormulario() == true){
+        if (validarFormulario()){
             user = new Usuario(varNome.getText(), varLogin.getText(), gerarSenha(5));
-            perfilDAO = new PerfilDAOImpl();
-            Perfil perfil = perfilDAO.pesquisarPorNome(varPerfil.getSelectedItem().toString(), sessao);
+            Perfil perfil = setarPerfil();
             try {
                 user.setPerfil(perfil);
                 usuarioDAO.salvarOuAlterar(user, sessao);
@@ -207,7 +214,26 @@ public class CadastroUsuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean validarFormulario() {
-        
-        return true;
+        if (varNome != null && varNome.getText().length() > 1){
+            if (varLogin != null && varLogin.getText().length() > 1){
+                if (varPerfil.getSelectedIndex() > 0){
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Escolha um perfil válido!");
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Login inválido!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Nome inválido!");
+        }
+        return false;
+    }
+    public Perfil setarPerfil(){
+        int index = varPerfil.getSelectedIndex();
+        if (index > 0){
+            return perfis.get(index-1);
+        }
+        return null;
     }
 }
