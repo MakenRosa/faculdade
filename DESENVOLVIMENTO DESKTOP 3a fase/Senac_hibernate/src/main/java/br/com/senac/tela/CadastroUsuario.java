@@ -37,6 +37,18 @@ public class CadastroUsuario extends javax.swing.JFrame {
         usuarioDAO = new UsuarioDAOImpl();
         carregarComboPerfil();
     }
+
+    public CadastroUsuario(Usuario usuario) {
+        initComponents();
+        usuarioDAO = new UsuarioDAOImpl();
+        carregarComboPerfil();
+        this.lblCadUser.setText("Alterar Usuário");
+        this.varLogin.setText(usuario.getLogin());
+        this.varNome.setText(usuario.getNome());
+        this.varPerfil.setSelectedItem(usuario.getPerfil().getNome());
+        user = usuario;
+    }
+    
     
     private void carregarComboPerfil(){
         try {
@@ -152,7 +164,12 @@ public class CadastroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here: 
         sessao = HibernateUtil.abrirConexao();
         if (validarFormulario()){
-            user = new Usuario(varNome.getText(), varLogin.getText(), gerarSenha(5));
+            if (user == null){
+                user = new Usuario(varNome.getText(), varLogin.getText(), gerarSenha(5));
+            } else {
+                user.setLogin(varLogin.getText());
+                user.setNome(varNome.getText());
+            }
             Perfil perfil = setarPerfil();
             try {
                 user.setPerfil(perfil);
@@ -160,7 +177,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
                 this.dispose();
             } catch(HibernateException e){
-                JOptionPane.showConfirmDialog(null, "Erro ao salvar!");
+                JOptionPane.showMessageDialog(null, "Erro ao salvar usuário!");
             } finally{
                 sessao.close();
             }

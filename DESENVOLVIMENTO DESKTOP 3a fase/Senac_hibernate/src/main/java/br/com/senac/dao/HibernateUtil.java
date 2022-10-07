@@ -9,6 +9,7 @@ import br.com.senac.entidade.Cliente;
 import br.com.senac.entidade.Perfil;
 import br.com.senac.entidade.Profissao;
 import br.com.senac.entidade.Usuario;
+import javax.swing.JOptionPane;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -42,6 +43,11 @@ public class HibernateUtil {
     }
 
     public static Session abrirConexao() {
-        return sessionFactory.openSession();
+        try {
+            return sessionFactory.openSession();
+        } catch (HibernateException hibernateException) {
+            JOptionPane.showMessageDialog(null, "Não foi possível conectar ao banco de dados!");
+        }
+        return null;
     }
 }

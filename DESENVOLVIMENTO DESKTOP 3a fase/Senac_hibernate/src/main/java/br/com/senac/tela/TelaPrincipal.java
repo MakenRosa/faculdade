@@ -12,7 +12,6 @@ import br.com.senac.entidade.Usuario;
  * @author maken.rosa
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    private Usuario user;
     private final PesquisaUsuario pesqUser;
     private final CadastroUsuario cadUser;
 
@@ -25,10 +24,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     public TelaPrincipal(Usuario user) {
         initComponents();
-        this.user = user;
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
-        varWelcome.setText("Seja bem vindo, "+user.getNome()+ "!");
+        varWelcome.setText("Seja bem vindo, " + user.getNome()+ "!");
     }
     
     public TelaPrincipal() {
@@ -49,8 +47,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varWelcome = new javax.swing.JLabel();
         iconeCadUser = new javax.swing.JLabel();
         iconePesqUser = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         varMenu = new javax.swing.JMenuBar();
         varMenuCad = new javax.swing.JMenu();
         varCadUser = new javax.swing.JMenuItem();
@@ -82,12 +78,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadPerfil.png"))); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Adicionar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pesqPerfil.png"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-
         varMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         varMenuCad.setText("Cadastro");
@@ -108,6 +98,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varMenuPesq.setText("Pesquisa");
 
         varPesqUser.setText("Usuario");
+        varPesqUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varPesqUserActionPerformed(evt);
+            }
+        });
         varMenuPesq.add(varPesqUser);
 
         varPesqPerfil.setText("Perfil");
@@ -129,15 +124,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(varWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(iconeCadUser)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(iconePesqUser))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)))
+                        .addComponent(iconeCadUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iconePesqUser)
                         .addContainerGap(524, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -148,25 +137,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(iconeCadUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(iconePesqUser, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(43, 43, 43))
+                .addGap(159, 159, 159))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void iconeCadUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconeCadUserMouseClicked
+    private void varCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCadUserActionPerformed
         // TODO add your handling code here:
-        if (this.cadUser.isVisible() == false){
-            cadUser.setVisible(true);
-        } else {
-            cadUser.requestFocus();
-        }
-    }//GEN-LAST:event_iconeCadUserMouseClicked
+        cadUser.setVisible(true);
+    }//GEN-LAST:event_varCadUserActionPerformed
 
     private void iconePesqUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconePesqUserMouseClicked
         // TODO add your handling code here:
@@ -177,10 +158,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_iconePesqUserMouseClicked
 
-    private void varCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCadUserActionPerformed
+    private void iconeCadUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconeCadUserMouseClicked
         // TODO add your handling code here:
-        cadUser.setVisible(true);
-    }//GEN-LAST:event_varCadUserActionPerformed
+        if (this.cadUser.isVisible() == false){
+            cadUser.setVisible(true);
+        } else {
+            cadUser.requestFocus();
+        }
+    }//GEN-LAST:event_iconeCadUserMouseClicked
+
+    private void varPesqUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varPesqUserActionPerformed
+        // TODO add your handling code here:
+        if (this.pesqUser.isVisible() == false){
+            pesqUser.setVisible(true);
+        } else {
+            pesqUser.requestFocus();
+        }
+    }//GEN-LAST:event_varPesqUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,8 +211,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconeCadUser;
     private javax.swing.JLabel iconePesqUser;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem varCadPerfil;
     private javax.swing.JMenuItem varCadUser;
     private javax.swing.JMenuBar varMenu;
