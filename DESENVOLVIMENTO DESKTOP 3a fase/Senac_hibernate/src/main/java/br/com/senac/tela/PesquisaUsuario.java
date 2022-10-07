@@ -30,6 +30,8 @@ public class PesquisaUsuario extends javax.swing.JFrame {
     public PesquisaUsuario() {
         initComponents();
         usuarioDAO = new UsuarioDAOImpl();
+        DefaultTableModel model = (DefaultTableModel) tableUsuarios.getModel();
+        model.setNumRows(0);
     }
 
     /**
@@ -49,8 +51,6 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         tableUsuarios = new javax.swing.JTable();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblPesqUser.setFont(new java.awt.Font("Swis721 Blk BT", 0, 24)); // NOI18N
         lblPesqUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

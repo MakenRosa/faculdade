@@ -14,6 +14,8 @@ import br.com.senac.entidade.Usuario;
 public class TelaPrincipal extends javax.swing.JFrame {
     private final PesquisaUsuario pesqUser;
     private final CadastroUsuario cadUser;
+    private final CadastroPerfil cadPerfil;
+//    private final PesquisaPerfil pesqPerfil;
 
 
 
@@ -26,6 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
+        this.cadPerfil = new CadastroPerfil();
         varWelcome.setText("Seja bem vindo, " + user.getNome()+ "!");
     }
     
@@ -33,6 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
+        this.cadPerfil = new CadastroPerfil();
     }
 
     /**
@@ -47,6 +51,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varWelcome = new javax.swing.JLabel();
         iconeCadUser = new javax.swing.JLabel();
         iconePesqUser = new javax.swing.JLabel();
+        iconePesqPerfil = new javax.swing.JLabel();
+        iconeCadPerfil = new javax.swing.JLabel();
         varMenu = new javax.swing.JMenuBar();
         varMenuCad = new javax.swing.JMenu();
         varCadUser = new javax.swing.JMenuItem();
@@ -75,6 +81,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         iconePesqUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iconePesqUserMouseClicked(evt);
+            }
+        });
+
+        iconePesqPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconePesqPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pesqPerfil.png"))); // NOI18N
+        iconePesqPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        iconePesqPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        iconeCadPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconeCadPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadPerfil.png"))); // NOI18N
+        iconeCadPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Adicionar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        iconeCadPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconeCadPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconeCadPerfilMouseClicked(evt);
             }
         });
 
@@ -124,20 +145,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(varWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(iconeCadUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(iconePesqUser)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(iconeCadPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(iconePesqPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(iconeCadUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(iconePesqUser)))
                         .addContainerGap(524, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(varWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(iconeCadUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(iconePesqUser, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(159, 159, 159))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(iconePesqPerfil)
+                    .addComponent(iconeCadPerfil))
+                .addGap(77, 77, 77))
         );
 
         pack();
@@ -176,6 +207,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_varPesqUserActionPerformed
 
+    private void iconeCadPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconeCadPerfilMouseClicked
+        // TODO add your handling code here:
+        cadPerfil.setVisible(true);
+    }//GEN-LAST:event_iconeCadPerfilMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -209,7 +245,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel iconeCadPerfil;
     private javax.swing.JLabel iconeCadUser;
+    private javax.swing.JLabel iconePesqPerfil;
     private javax.swing.JLabel iconePesqUser;
     private javax.swing.JMenuItem varCadPerfil;
     private javax.swing.JMenuItem varCadUser;

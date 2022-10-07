@@ -49,7 +49,7 @@ public class Login extends javax.swing.JFrame {
         btnLogar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Sistema Senac");
 
         lblLogin.setFont(new java.awt.Font("Swis721 Blk BT", 0, 24)); // NOI18N
         lblLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

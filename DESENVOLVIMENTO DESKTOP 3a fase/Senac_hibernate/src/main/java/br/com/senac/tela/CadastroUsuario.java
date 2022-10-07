@@ -82,6 +82,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de usuário");
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
 
         lblCadUser.setFont(new java.awt.Font("Swis721 Blk BT", 0, 24)); // NOI18N

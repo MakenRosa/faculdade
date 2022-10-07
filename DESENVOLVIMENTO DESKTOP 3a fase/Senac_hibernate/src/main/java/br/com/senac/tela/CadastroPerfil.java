@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package br.com.senac.tela;
 
@@ -16,11 +17,10 @@ import org.hibernate.Session;
  *
  * @author Truen
  */
-public class CadastroPerfil extends javax.swing.JPanel {
+public class CadastroPerfil extends javax.swing.JFrame {
+    private Perfil perfil;
     private Session sessao;
     private final PerfilDAO perfilDAO;
-    private Perfil perfil;
-
     /**
      * Creates new form CadastroPerfil
      */
@@ -39,25 +39,20 @@ public class CadastroPerfil extends javax.swing.JPanel {
     private void initComponents() {
 
         lblCadUser = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
-        lblDescricao = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         varDescricao = new javax.swing.JTextArea();
         btnSalvar = new javax.swing.JButton();
+        lblDescricao = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de perfil");
 
         lblCadUser.setFont(new java.awt.Font("Swis721 Blk BT", 0, 24)); // NOI18N
         lblCadUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCadUser.setText("Cadastro de Perfil");
         lblCadUser.setToolTipText("");
-
-        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblNome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNome.setText("Nome:");
-
-        lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDescricao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDescricao.setText("Descrição:");
 
         varDescricao.setColumns(15);
         varDescricao.setLineWrap(true);
@@ -71,8 +66,16 @@ public class CadastroPerfil extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        lblDescricao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescricao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDescricao.setText("Descrição:");
+
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblNome.setText("Nome:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -110,6 +113,9 @@ public class CadastroPerfil extends javax.swing.JPanel {
                 .addComponent(btnSalvar)
                 .addGap(0, 49, Short.MAX_VALUE))
         );
+
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -126,6 +132,40 @@ public class CadastroPerfil extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CadastroPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CadastroPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CadastroPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CadastroPerfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CadastroPerfil().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
