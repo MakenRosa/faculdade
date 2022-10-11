@@ -10,8 +10,10 @@ import br.com.senac.dao.UsuarioDAO;
 import br.com.senac.dao.UsuarioDAOImpl;
 import br.com.senac.entidade.Usuario;
 import java.awt.Color;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
@@ -115,21 +117,31 @@ public class Login extends javax.swing.JFrame {
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         String userStr = varUser.getText();
         String passwordStr = String.valueOf(varPassword.getPassword());
-        sessao = HibernateUtil.abrirConexao();
-        user = usuarioDAO.logar(userStr, passwordStr, sessao);
-        sessao.close();
-        if (user != null) {
-            this.dispose();
-            new TelaPrincipal(user).setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválidos.");
-            varUser.setText("");
-            varUser.setBorder(new LineBorder(Color.RED));
-            varPassword.setText("");
-            varPassword.setBorder(new LineBorder(Color.RED));
+        try {
+            sessao = HibernateUtil.abrirConexao();
+            user = usuarioDAO.logar(userStr, passwordStr, sessao);
+            if (user != null) {
+                this.dispose();
+                new TelaPrincipal(user).setVisible(true);
+                setAcesso(sessao);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválidos.");
+                varUser.setText("");
+                varUser.setBorder(new LineBorder(Color.RED));
+                varPassword.setText("");
+                varPassword.setBorder(new LineBorder(Color.RED));
+            }
+        } catch (HibernateException ex) {
+            System.out.println("Erro");
+        } finally {
+            sessao.close();
         }
     }//GEN-LAST:event_btnLogarActionPerformed
-
+    
+    private void setAcesso(Session sessao){
+        user.setUltimoAcesso(new Date());
+        usuarioDAO.salvarOuAlterar(user, sessao);
+    }
     /**
      * @param args the command line arguments
      */

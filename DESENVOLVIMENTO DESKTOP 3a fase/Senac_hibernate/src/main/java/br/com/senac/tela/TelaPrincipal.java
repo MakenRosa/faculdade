@@ -6,6 +6,7 @@
 package br.com.senac.tela;
 
 import br.com.senac.entidade.Usuario;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private final PesquisaUsuario pesqUser;
     private final CadastroUsuario cadUser;
     private final CadastroPerfil cadPerfil;
+    private final PesquisaPerfil pesqPerfil;
 //    private final PesquisaPerfil pesqPerfil;
 
 
@@ -29,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
         this.cadPerfil = new CadastroPerfil();
+        this.pesqPerfil = new PesquisaPerfil();
         varWelcome.setText("Seja bem vindo, " + user.getNome()+ "!");
     }
     
@@ -37,6 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
         this.cadPerfil = new CadastroPerfil();
+        this.pesqPerfil = new PesquisaPerfil();
     }
 
     /**
@@ -88,6 +92,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         iconePesqPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pesqPerfil.png"))); // NOI18N
         iconePesqPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         iconePesqPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconePesqPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconePesqPerfilMouseClicked(evt);
+            }
+        });
 
         iconeCadPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconeCadPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadPerfil.png"))); // NOI18N
@@ -112,6 +121,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varMenuCad.add(varCadUser);
 
         varCadPerfil.setText("Perfil");
+        varCadPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varCadPerfilActionPerformed(evt);
+            }
+        });
         varMenuCad.add(varCadPerfil);
 
         varMenu.add(varMenuCad);
@@ -127,6 +141,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varMenuPesq.add(varPesqUser);
 
         varPesqPerfil.setText("Perfil");
+        varPesqPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                varPesqPerfilMouseClicked(evt);
+            }
+        });
+        varPesqPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varPesqPerfilActionPerformed(evt);
+            }
+        });
         varMenuPesq.add(varPesqPerfil);
 
         varMenu.add(varMenuPesq);
@@ -160,7 +184,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(varWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(iconeCadUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(iconePesqUser, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,7 +192,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(iconePesqPerfil)
                     .addComponent(iconeCadPerfil))
-                .addGap(77, 77, 77))
+                .addContainerGap())
         );
 
         pack();
@@ -177,41 +201,72 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void varCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCadUserActionPerformed
         // TODO add your handling code here:
-        cadUser.setVisible(true);
+        abrirCadUser();
     }//GEN-LAST:event_varCadUserActionPerformed
 
     private void iconePesqUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconePesqUserMouseClicked
         // TODO add your handling code here:
-        if (this.pesqUser.isVisible() == false){
-            pesqUser.setVisible(true);
-        } else {
-            pesqUser.requestFocus();
-        }
+        abrirPesqUser();
     }//GEN-LAST:event_iconePesqUserMouseClicked
 
     private void iconeCadUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconeCadUserMouseClicked
         // TODO add your handling code here:
-        if (this.cadUser.isVisible() == false){
-            cadUser.setVisible(true);
-        } else {
-            cadUser.requestFocus();
-        }
+        abrirCadUser();
     }//GEN-LAST:event_iconeCadUserMouseClicked
-
+    private void abrirCadUser(){
+        cadUser.getVarPerfil().setSelectedIndex(0);
+        cadUser.carregarComboPerfil();
+        cadUser.getVarNome().setText("");
+        cadUser.getVarLogin().setText("");
+        cadUser.setVisible(true);
+    }
+    private void abrirPesqUser(){
+        DefaultTableModel modelo = (DefaultTableModel) pesqUser.getTableUsuarios().getModel();
+        pesqUser.getVarNome().setText("");
+        modelo.setNumRows(0);
+        pesqUser.setVisible(true);
+    }
     private void varPesqUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varPesqUserActionPerformed
         // TODO add your handling code here:
-        if (this.pesqUser.isVisible() == false){
-            pesqUser.setVisible(true);
-        } else {
-            pesqUser.requestFocus();
-        }
+        abrirPesqUser();
     }//GEN-LAST:event_varPesqUserActionPerformed
-
+    
     private void iconeCadPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconeCadPerfilMouseClicked
         // TODO add your handling code here:
-        cadPerfil.setVisible(true);
+        abrirCadPerfil();
     }//GEN-LAST:event_iconeCadPerfilMouseClicked
 
+    private void iconePesqPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconePesqPerfilMouseClicked
+        // TODO add your handling code here:
+        abrirPesqPerfil();
+    }//GEN-LAST:event_iconePesqPerfilMouseClicked
+    
+    private void abrirPesqPerfil(){
+        DefaultTableModel modelo = (DefaultTableModel) pesqPerfil.getTablePerfis().getModel();
+        pesqPerfil.getVarNome().setText("");
+        modelo.setNumRows(0);
+        pesqPerfil.setVisible(true);
+    }
+    private void varCadPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCadPerfilActionPerformed
+        // TODO add your handling code here:
+        abrirCadPerfil();
+    }//GEN-LAST:event_varCadPerfilActionPerformed
+
+    private void varPesqPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_varPesqPerfilMouseClicked
+        // TODO add your handling code here:
+        abrirPesqPerfil();
+    }//GEN-LAST:event_varPesqPerfilMouseClicked
+
+    private void varPesqPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varPesqPerfilActionPerformed
+        // TODO add your handling code here:
+        abrirPesqPerfil();
+    }//GEN-LAST:event_varPesqPerfilActionPerformed
+
+    private void abrirCadPerfil(){
+        cadPerfil.getVarNome().setText("");
+        cadPerfil.getVarDescricao().setText("");
+        cadPerfil.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */

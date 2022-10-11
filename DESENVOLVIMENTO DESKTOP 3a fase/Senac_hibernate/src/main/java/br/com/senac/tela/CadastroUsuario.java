@@ -14,7 +14,9 @@ import br.com.senac.entidade.Perfil;
 import br.com.senac.entidade.Usuario;
 import static br.com.senac.util.Gerador.*;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -41,7 +43,6 @@ public class CadastroUsuario extends javax.swing.JFrame {
     public CadastroUsuario(Usuario usuario) {
         initComponents();
         usuarioDAO = new UsuarioDAOImpl();
-        carregarComboPerfil();
         this.lblCadUser.setText("Alterar Usuário");
         this.varLogin.setText(usuario.getLogin());
         this.varNome.setText(usuario.getNome());
@@ -50,7 +51,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }
     
     
-    private void carregarComboPerfil(){
+    public final void carregarComboPerfil(){
         try {
             PerfilDAO perfilDAO = new PerfilDAOImpl();
             sessao = HibernateUtil.abrirConexao();
@@ -176,6 +177,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 user.setPerfil(perfil);
                 usuarioDAO.salvarOuAlterar(user, sessao);
                 JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
+                user = null;
                 this.dispose();
             } catch(HibernateException e){
                 JOptionPane.showMessageDialog(null, "Erro ao salvar usuário!");
@@ -253,5 +255,29 @@ public class CadastroUsuario extends javax.swing.JFrame {
             return perfis.get(index-1);
         }
         return null;
+    }
+
+    public JTextField getVarLogin() {
+        return varLogin;
+    }
+
+    public JTextField getVarNome() {
+        return varNome;
+    }
+
+    public JComboBox<String> getVarPerfil() {
+        return varPerfil;
+    }
+
+    public void setVarLogin(JTextField varLogin) {
+        this.varLogin = varLogin;
+    }
+
+    public void setVarNome(JTextField varNome) {
+        this.varNome = varNome;
+    }
+
+    public void setVarPerfil(JComboBox<String> varPerfil) {
+        this.varPerfil = varPerfil;
     }
 }

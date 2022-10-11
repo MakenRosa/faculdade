@@ -10,6 +10,8 @@ import br.com.senac.dao.PerfilDAO;
 import br.com.senac.dao.PerfilDAOImpl;
 import br.com.senac.entidade.Perfil;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -120,18 +122,29 @@ public class CadastroPerfil extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        perfil = new Perfil(varNome.getText(), varDescricao.getText());
-        try {
-            sessao = HibernateUtil.abrirConexao();
-            perfilDAO.salvarOuAlterar(perfil, sessao);
-            JOptionPane.showMessageDialog(null, "Perfil salvo com sucesso!");
-        } catch (HibernateException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao salvar perfil!");
-        } finally{
-            sessao.close();
+        if (validarFormulario()){
+            perfil = new Perfil(varNome.getText(), varDescricao.getText());
+            try {
+                sessao = HibernateUtil.abrirConexao();
+                perfilDAO.salvarOuAlterar(perfil, sessao);
+                JOptionPane.showMessageDialog(null, "Perfil salvo com sucesso!");
+                perfil = null;
+            } catch (HibernateException ex){
+                JOptionPane.showMessageDialog(null, "Erro ao salvar perfil!");
+            } finally{
+                sessao.close();
+            }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private boolean validarFormulario(){
+        if (varNome.getText().trim().length() > 3){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Nome do perfil deve ter no mínimo 3 caracteres!");
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */
@@ -176,4 +189,12 @@ public class CadastroPerfil extends javax.swing.JFrame {
     private javax.swing.JTextArea varDescricao;
     private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
+
+    public JTextArea getVarDescricao() {
+        return varDescricao;
+    }
+
+    public JTextField getVarNome() {
+        return varNome;
+    }
 }

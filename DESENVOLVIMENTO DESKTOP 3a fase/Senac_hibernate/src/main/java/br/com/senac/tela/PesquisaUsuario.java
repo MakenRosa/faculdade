@@ -9,8 +9,11 @@ import br.com.senac.dao.HibernateUtil;
 import br.com.senac.dao.UsuarioDAO;
 import br.com.senac.dao.UsuarioDAOImpl;
 import br.com.senac.entidade.Usuario;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -51,6 +54,9 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         tableUsuarios = new javax.swing.JTable();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pesquisa de usuário");
 
         lblPesqUser.setFont(new java.awt.Font("Swis721 Blk BT", 0, 24)); // NOI18N
         lblPesqUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,6 +208,7 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         } else {
             sessao = HibernateUtil.abrirConexao();
             CadastroUsuario telaAlterar = new CadastroUsuario(users.get(lineSelected));
+            telaAlterar.carregarComboPerfil();
             telaAlterar.setVisible(true);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
@@ -210,7 +217,7 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tableUsuarios.getModel();
         modelo.setNumRows(0);
         usuarios.stream().forEach((Usuario usuario) -> {
-        modelo.addRow(new Object[]{usuario.getNome(), usuario.getLogin(), usuario.getPerfil().getNome(), usuario.getUltimoAcesso()});
+            modelo.addRow(new Object[]{usuario.getNome(), usuario.getLogin(), usuario.getPerfil().getNome(), usuario.getUltimoAcesso()});
         });
         
     }
@@ -259,4 +266,20 @@ public class PesquisaUsuario extends javax.swing.JFrame {
     private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTableUsuarios() {
+        return tableUsuarios;
+    }
+
+    public void setTableUsuarios(JTable tableUsuarios) {
+        this.tableUsuarios = tableUsuarios;
+    }
+
+    public JTextField getVarNome() {
+        return varNome;
+    }
+
+    public void setVarNome(JTextField varNome) {
+        this.varNome = varNome;
+    }
 }
