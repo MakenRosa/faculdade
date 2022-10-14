@@ -25,6 +25,13 @@ public class ProfissaoDAOImpl extends BaseDAOImpl<Profissao, Long>
     }
 
     @Override
+    public List<Profissao> pesquisarPorNome(String nome, Session sessao) throws HibernateException {
+        Query<Profissao> consulta = sessao.createQuery("from Profissao p where p.nome like :nome order by p.nome");
+        consulta.setParameter("nome", "%" + nome + "%");
+        return consulta.getResultList();
+    }
+
+    @Override
     public List<Profissao> pesquisarTodos(Session sessao) throws HibernateException {
         Query<Profissao> consulta = sessao.createQuery("FROM Profissao p order by p.nome");
         return consulta.getResultList();

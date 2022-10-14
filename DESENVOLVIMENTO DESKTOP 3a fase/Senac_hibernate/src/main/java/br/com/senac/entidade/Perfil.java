@@ -26,6 +26,9 @@ public class Perfil implements Serializable {
 
     @Lob @Column
     private String descricao;
+    
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean ativo;
 
     public Perfil() {
     }
@@ -58,6 +61,15 @@ public class Perfil implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
     
 
     @Override

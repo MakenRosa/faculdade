@@ -17,9 +17,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private final CadastroUsuario cadUser;
     private final CadastroPerfil cadPerfil;
     private final PesquisaPerfil pesqPerfil;
-//    private final PesquisaPerfil pesqPerfil;
-
-
+    private MudarSenha mudarSenha;
+    
 
     /**
      * Creates new form TelaPrincipal
@@ -32,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.cadUser = new CadastroUsuario();
         this.cadPerfil = new CadastroPerfil();
         this.pesqPerfil = new PesquisaPerfil();
+        this.mudarSenha = new MudarSenha(user);
         varWelcome.setText("Seja bem vindo, " + user.getNome()+ "!");
     }
     
@@ -64,6 +64,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varMenuPesq = new javax.swing.JMenu();
         varPesqUser = new javax.swing.JMenuItem();
         varPesqPerfil = new javax.swing.JMenuItem();
+        varMenuConta = new javax.swing.JMenu();
+        varMudarSenha = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Senac");
@@ -154,6 +156,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varMenuPesq.add(varPesqPerfil);
 
         varMenu.add(varMenuPesq);
+
+        varMenuConta.setText("Conta");
+
+        varMudarSenha.setText("Mudar senha");
+        varMudarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varMudarSenhaActionPerformed(evt);
+            }
+        });
+        varMenuConta.add(varMudarSenha);
+
+        varMenu.add(varMenuConta);
 
         setJMenuBar(varMenu);
 
@@ -262,6 +276,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         abrirPesqPerfil();
     }//GEN-LAST:event_varPesqPerfilActionPerformed
 
+    private void varMudarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varMudarSenhaActionPerformed
+        // TODO add your handling code here:
+        mudarSenha.setVisible(true);
+    }//GEN-LAST:event_varMudarSenhaActionPerformed
+
     private void abrirCadPerfil(){
         cadPerfil.getVarNome().setText("");
         cadPerfil.getVarDescricao().setText("");
@@ -308,7 +327,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem varCadUser;
     private javax.swing.JMenuBar varMenu;
     private javax.swing.JMenu varMenuCad;
+    private javax.swing.JMenu varMenuConta;
     private javax.swing.JMenu varMenuPesq;
+    private javax.swing.JMenuItem varMudarSenha;
     private javax.swing.JMenuItem varPesqPerfil;
     private javax.swing.JMenuItem varPesqUser;
     private javax.swing.JLabel varWelcome;

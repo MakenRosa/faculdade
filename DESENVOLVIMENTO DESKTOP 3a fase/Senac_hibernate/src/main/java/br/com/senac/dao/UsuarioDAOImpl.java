@@ -24,11 +24,11 @@ public class UsuarioDAOImpl extends BaseDAOImpl<Usuario, Long>
     }
 
     @Override
-    public List<Usuario> pesquisarPorNome(String nome,
-            Session sessao) throws HibernateException {
+    public List<Usuario> pesquisarPorNome(String nome, boolean status, Session sessao) throws HibernateException {
         Query<Usuario> consulta = sessao
-                .createQuery("FROM Usuario u WHERE u.nome LIKE :vNome");
+                .createQuery("FROM Usuario u WHERE u.nome LIKE :vNome AND u.perfil.ativo = :ativo");
         consulta.setParameter("vNome", "%" + nome + "%");
+        consulta.setParameter("ativo", status);
         return consulta.getResultList();
     }
 

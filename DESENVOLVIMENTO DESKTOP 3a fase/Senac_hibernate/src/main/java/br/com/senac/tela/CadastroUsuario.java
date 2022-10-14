@@ -133,7 +133,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
-                .addGap(163, 163, 163))
+                .addGap(158, 158, 158))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +153,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
                     .addComponent(varPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSalvar)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(0, 60, Short.MAX_VALUE))
         );
 
         varPerfil.getAccessibleContext().setAccessibleName("");
@@ -237,7 +237,11 @@ public class CadastroUsuario extends javax.swing.JFrame {
         if (varNome != null && varNome.getText().length() > 1){
             if (varLogin != null && varLogin.getText().length() > 1){
                 if (varPerfil.getSelectedIndex() > 0){
-                    return true;
+                    if (!perfis.get(varPerfil.getSelectedIndex()).isAtivo()){
+                        return true;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Esse perfil está inativo!");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Escolha um perfil válido!");
                 }

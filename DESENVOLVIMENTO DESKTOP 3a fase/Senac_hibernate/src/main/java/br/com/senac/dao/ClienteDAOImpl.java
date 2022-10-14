@@ -24,13 +24,6 @@ public class ClienteDAOImpl extends BaseDAOImpl<Cliente, Long>
                                  throws HibernateException {
         return sessao.find(Cliente.class, id);
     }
-    
-    @Override
-    public List<Cliente> pesquisarTodos(Session sessao) throws HibernateException {
-        Query<Cliente> consulta = sessao
-                .createQuery("FROM Cliente c order by c.nome");
-        return consulta.getResultList();
-    }
 
     @Override
     public List<Cliente> pesquisarPorNome(String nome, Session sessao) throws HibernateException {

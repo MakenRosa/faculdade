@@ -28,6 +28,18 @@ public class CadastroPerfil extends javax.swing.JFrame {
      */
     public CadastroPerfil() {
         initComponents();
+        varStatus.setSelected(true);
+        varStatus.setVisible(false);
+        perfilDAO = new PerfilDAOImpl();
+    }
+   
+    public CadastroPerfil(Perfil perfil) {
+        initComponents();
+        this.perfil = perfil;
+        varStatus.setSelected(perfil.isAtivo());
+        varNome.setText(perfil.getNome());
+        varDescricao.setText(perfil.getDescricao());
+        lblCadUser.setText("Alterar perfil!");
         perfilDAO = new PerfilDAOImpl();
     }
 
@@ -47,6 +59,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         lblDescricao = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
+        varStatus = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de perfil");
@@ -76,6 +89,8 @@ public class CadastroPerfil extends javax.swing.JFrame {
         lblNome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNome.setText("Nome:");
 
+        varStatus.setText("Ativo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,8 +105,11 @@ public class CadastroPerfil extends javax.swing.JFrame {
                             .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(varStatus)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -106,7 +124,8 @@ public class CadastroPerfil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(varStatus))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescricao)
@@ -123,7 +142,14 @@ public class CadastroPerfil extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         if (validarFormulario()){
-            perfil = new Perfil(varNome.getText(), varDescricao.getText());
+            if (perfil == null){
+                perfil = new Perfil(varNome.getText(), varDescricao.getText());
+                perfil.setAtivo(varStatus.isSelected());
+            } else{
+                perfil.setNome(varNome.getText().trim());
+                perfil.setDescricao(varDescricao.getText().trim());
+                perfil.setAtivo(varStatus.isSelected());
+            }
             try {
                 sessao = HibernateUtil.abrirConexao();
                 perfilDAO.salvarOuAlterar(perfil, sessao);
@@ -138,7 +164,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private boolean validarFormulario(){
-        if (varNome.getText().trim().length() > 3){
+        if (varNome.getText().trim().length() > 2){
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Nome do perfil deve ter no mínimo 3 caracteres!");
@@ -188,6 +214,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JTextArea varDescricao;
     private javax.swing.JTextField varNome;
+    private javax.swing.JCheckBox varStatus;
     // End of variables declaration//GEN-END:variables
 
     public JTextArea getVarDescricao() {

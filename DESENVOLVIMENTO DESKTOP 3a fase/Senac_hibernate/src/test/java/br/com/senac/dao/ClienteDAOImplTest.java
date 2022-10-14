@@ -18,18 +18,20 @@ import static org.junit.Assert.*;
  * @author maken.rosa
  */
 public class ClienteDAOImplTest {
+
     Cliente cliente;
     ClienteDAO clienteDAO;
     Session sessao;
-    
+
     public ClienteDAOImplTest() {
         clienteDAO = new ClienteDAOImpl();
     }
 //    @Test
+
     public void testSalvar() {
         System.out.println("salvar");
         ProfissaoDAOImplTest pdit = new ProfissaoDAOImplTest();
-        cliente = new Cliente(gerarNome(), gerarCpf(), 
+        cliente = new Cliente(gerarNome(), gerarCpf(),
                 gerarNumero(9), Double.valueOf(gerarNumero(4)));
         cliente.setProfissao(pdit.buscarProfissaoBd());
         sessao = HibernateUtil.abrirConexao();
@@ -85,15 +87,6 @@ public class ClienteDAOImplTest {
         assertTrue(!usuarios.isEmpty());
     }
 
-//    @Test
-    public void testPesquisarTodos() {
-        System.out.println("pesquisarTodos");
-        sessao = HibernateUtil.abrirConexao();
-        List<Cliente> clientes = clienteDAO.pesquisarTodos(sessao);
-        sessao.close();
-        assertTrue(!clientes.isEmpty());
-    }
-    
     public Cliente buscarClienteBd() {
         sessao = HibernateUtil.abrirConexao();
         Query<Cliente> consulta = sessao
@@ -107,5 +100,5 @@ public class ClienteDAOImplTest {
         }
         return cliente;
     }
-    
+
 }

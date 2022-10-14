@@ -15,5 +15,8 @@ import org.hibernate.Session;
  * @author Maken.Rosa
  */
 public interface ProfissaoDAO extends BaseDAO<Profissao, Long> {
+
+    List<Profissao> pesquisarPorNome(String nome, Session sessao) throws HibernateException;
+
     List<Profissao> pesquisarTodos(Session sessao) throws HibernateException;
 }
