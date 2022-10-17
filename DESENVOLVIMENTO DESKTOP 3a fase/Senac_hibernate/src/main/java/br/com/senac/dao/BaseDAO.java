@@ -10,11 +10,16 @@ import org.hibernate.Session;
 
 /**
  *
- * @author maken.rosa
+ * @author Maken.Rosa
+ * @param <T>
+ * @param <ID>
  */
 public interface BaseDAO<T, ID> {
 
     void salvarOuAlterar(T entidade, Session sessao) throws HibernateException;
+
     void excluir(T entidade, Session sessao) throws HibernateException;
+
     T pesquisarPorId(Long id, Session sessao) throws HibernateException;
+
 }

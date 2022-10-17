@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 @Table(name = "cliente")
 @Entity
@@ -31,7 +31,7 @@ public class Cliente implements Serializable {
     @Column(length = 50, nullable = false)
     private String telefone;
 
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "cliente")
     private List<ItemSaida> itensSaida;
 
     public Cliente() {

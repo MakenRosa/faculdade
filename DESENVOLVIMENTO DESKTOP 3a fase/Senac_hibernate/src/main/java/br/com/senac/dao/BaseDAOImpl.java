@@ -11,12 +11,17 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author maken.rosa
+ * @author Maken.Rosa
+ * @param <T>
+ * @param <ID>
  */
-public abstract class BaseDAOImpl<T, ID> implements BaseDAO<T, ID>{
+public abstract class BaseDAOImpl<T, ID> implements BaseDAO<T, ID> {
+
     private Transaction transaction;
+
     @Override
-    public void salvarOuAlterar(T entidade, Session sessao) throws HibernateException {
+    public void salvarOuAlterar(T entidade, Session sessao)
+            throws HibernateException {
         transaction = sessao.beginTransaction();
         sessao.saveOrUpdate(entidade);
         transaction.commit();
@@ -28,5 +33,5 @@ public abstract class BaseDAOImpl<T, ID> implements BaseDAO<T, ID>{
         sessao.delete(entidade);
         transaction.commit();
     }
-    
+
 }

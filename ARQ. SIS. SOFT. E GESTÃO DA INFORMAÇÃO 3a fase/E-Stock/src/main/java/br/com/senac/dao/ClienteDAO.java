@@ -8,7 +8,7 @@ import br.com.senac.entidade.Cliente;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public interface ClienteDAO extends BaseDAO<Cliente, Long>{
 }

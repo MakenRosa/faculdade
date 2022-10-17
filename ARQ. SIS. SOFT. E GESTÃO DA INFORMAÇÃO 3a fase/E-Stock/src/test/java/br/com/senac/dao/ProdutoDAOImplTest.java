@@ -14,28 +14,31 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public class ProdutoDAOImplTest {
+
     private final ProdutoDAO produtoDAO;
     private Produto produto;
     private Session sessao;
-    
+
     public ProdutoDAOImplTest() {
         produtoDAO = new ProdutoDAOImpl();
     }
+
     @Test
-    public void testSalvar(){
-        List<String> produtoList= Gerador.gerarProduto();
+    public void testSalvar() {
+        List<String> produtoList = Gerador.gerarProduto();
         System.out.println("salvar");
-        produto = new Produto (produtoList.get(0), produtoList.get(1));
+        produto = new Produto(produtoList.get(0), produtoList.get(1));
         sessao = HibernateUtil.abrirConexao();
         produtoDAO.salvarOuAlterar(produto, sessao);
         sessao.close();
         assertNotNull(produto.getIdProduto());
     }
 //    @Test
-    public void testAlterar(){
+
+    public void testAlterar() {
         System.out.println("alterar");
         buscarProdutoBd();
         List<String> produts = Gerador.gerarProduto();
@@ -61,9 +64,9 @@ public class ProdutoDAOImplTest {
         System.out.println(produtoPesquisado.getNome());
         assertNotNull(produtoPesquisado);
     }
-    
+
 //    @Test
-    public void testExcluir(){
+    public void testExcluir() {
         System.out.println("excluir");
         buscarProdutoBd();
         sessao = HibernateUtil.abrirConexao();
@@ -72,16 +75,16 @@ public class ProdutoDAOImplTest {
         sessao.close();
         assertNull(produtoExcluido);
     }
-    
-    private Produto buscarProdutoBd(){
+
+    public Produto buscarProdutoBd() {
         sessao = HibernateUtil.abrirConexao();
         Query<Produto> consulta = sessao.createQuery("from Produto p");
         consulta.setMaxResults(1);
         produto = consulta.getSingleResult();
         sessao.close();
-        if (produto == null){
+        if (produto == null) {
             testSalvar();
-        } 
+        }
         return produto;
     }
 }

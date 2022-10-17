@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 @Table(name = "item_saida")
 @Entity
@@ -28,7 +28,7 @@ public class ItemSaida implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "saida_id_cliente", referencedColumnName = "id_cliente", nullable = false)
-    private Cliente idCliente;
+    private Cliente cliente;
     
     @Column(name = "data_saida", nullable = false)
     private LocalDate dataSaida;
@@ -45,9 +45,9 @@ public class ItemSaida implements Serializable {
     public ItemSaida() {
     }
 
-    public ItemSaida(Produto produto, Cliente idCliente, LocalDate dataSaida, Integer qtdProduto, String lote, Double preco) {
+    public ItemSaida(Produto produto, Cliente cliente, LocalDate dataSaida, Integer qtdProduto, String lote, Double preco) {
         this.produto = produto;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
         this.dataSaida = dataSaida;
         this.qtdProduto = qtdProduto;
         this.lote = lote;
@@ -70,12 +70,12 @@ public class ItemSaida implements Serializable {
         this.produto = produto;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public LocalDate getDataSaida() {

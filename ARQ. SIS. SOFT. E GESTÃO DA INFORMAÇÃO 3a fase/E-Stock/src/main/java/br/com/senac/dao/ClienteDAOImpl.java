@@ -7,11 +7,10 @@ package br.com.senac.dao;
 import br.com.senac.entidade.Cliente;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 /**
  *
- * @author Truen
+ * @author Maken.Rosa
  */
 public class ClienteDAOImpl extends BaseDAOImpl<Cliente, Long> implements ClienteDAO{
 
