@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6db811d1-d090-4dae-a61a-dbfc807bdd13" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projeto/features/AcessarGoogle.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/AcessarGoogle.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/CadastrarSala.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/project-template.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/Projeto.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/out/production/Projeto/features/AcessarGoogle.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/src/com/company/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/src/features/AcessarGoogle.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/src/features/CadastrarSala.feature" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,8 +97,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE 3a fase/Projeto" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Cucumber Java.Scenario: Acessar págima do google">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -150,7 +152,8 @@
       <updated>1663198607207</updated>
       <workItem from="1663198608535" duration="2998000" />
       <workItem from="1663796621720" duration="7348000" />
-      <workItem from="1665006585798" duration="1357000" />
+      <workItem from="1665006585798" duration="486000" />
+      <workItem from="1665008887927" duration="1784000" />
     </task>
     <servers />
   </component>
