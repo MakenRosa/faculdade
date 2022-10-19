@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6db811d1-d090-4dae-a61a-dbfc807bdd13" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/features/ExportarDocumento.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/GridPesquisarSalas.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/GridPesquisarSalas.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../QUALIDADE E TESTES DE SOFTWARE/Projeto/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,14 +85,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Truen/Documents/GitHub/Faculdade/QUALIDADE E TESTES DE SOFTWARE 3a fase/Projeto"
-  }
-}]]></component>
   <component name="RunManager" selected="Cucumber Java.Scenario: Acessar págima do google">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
