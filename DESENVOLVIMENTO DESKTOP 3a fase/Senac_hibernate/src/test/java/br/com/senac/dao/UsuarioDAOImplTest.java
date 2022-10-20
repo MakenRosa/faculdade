@@ -79,16 +79,6 @@ public class UsuarioDaoImplTest {
         assertNotNull(usuarioPesq);
     }
 
-//    @Test
-    public void testPesquisarPorNome() {
-        System.out.println("pesquisarPorNome");
-        buscarUsuarioBd();
-        sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDAO
-                .pesquisarPorNome(usuario.getNome(), sessao);
-        sessao.close();
-        assertTrue(usuarios.size() > 0);
-    }
 
 //    @Test
     public void testPesquisarTodos() {
