@@ -49,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         varPassword = new javax.swing.JPasswordField();
         btnLogar = new javax.swing.JButton();
+        showPassword = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Senac");
@@ -73,6 +74,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        showPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hidePassword.png"))); // NOI18N
+        showPassword.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/showPassword.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,7 +91,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(varUser)
                     .addComponent(varPassword))
-                .addGap(96, 96, 96))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(showPassword)
+                .addGap(84, 84, 84))
             .addGroup(layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addComponent(btnLogar)
@@ -104,10 +110,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
-                    .addComponent(varPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(varPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(btnLogar)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +126,7 @@ public class Login extends javax.swing.JFrame {
         String passwordStr = String.valueOf(varPassword.getPassword());
         try {
             sessao = HibernateUtil.abrirConexao();
+            System.out.println("Abriu conexao");
             user = usuarioDAO.logar(userStr, passwordStr, sessao);
             if (user != null) {
                 this.dispose();
@@ -132,7 +140,7 @@ public class Login extends javax.swing.JFrame {
                 varPassword.setBorder(new LineBorder(Color.RED));
             }
         } catch (HibernateException ex) {
-            System.out.println("Erro");
+            System.err.println("Erro " + ex);
         } finally {
             sessao.close();
         }
@@ -170,10 +178,8 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
 
@@ -182,6 +188,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JCheckBox showPassword;
     private javax.swing.JPasswordField varPassword;
     private javax.swing.JTextField varUser;
     // End of variables declaration//GEN-END:variables

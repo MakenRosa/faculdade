@@ -45,7 +45,7 @@ public class HibernateUtil {
     public static Session abrirConexao() {
         try {
             return sessionFactory.openSession();
-        } catch (HibernateException hibernateException) {
+        } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível conectar ao banco de dados!");
         }
         return null;

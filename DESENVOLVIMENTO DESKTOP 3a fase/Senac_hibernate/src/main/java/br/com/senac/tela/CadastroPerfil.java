@@ -159,6 +159,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro ao salvar perfil!");
             } finally{
                 sessao.close();
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed

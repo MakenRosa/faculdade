@@ -26,21 +26,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     
     public TelaPrincipal(Usuario user) {
-        initComponents();
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
         this.cadPerfil = new CadastroPerfil();
         this.pesqPerfil = new PesquisaPerfil();
         this.mudarSenha = new MudarSenha(user);
+        initComponents();
         varWelcome.setText("Seja bem vindo, " + user.getNome()+ "!");
     }
     
     public TelaPrincipal() {
-        initComponents();
         this.pesqUser = new PesquisaUsuario();
         this.cadUser = new CadastroUsuario();
         this.cadPerfil = new CadastroPerfil();
         this.pesqPerfil = new PesquisaPerfil();
+        initComponents();
     }
 
     /**
@@ -73,6 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         varWelcome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         iconeCadUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadUsuario.png"))); // NOI18N
+        iconeCadUser.setLabelFor(iconeCadUser);
         iconeCadUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Adicionar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         iconeCadUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconeCadUser.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,9 +258,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void abrirPesqPerfil(){
         DefaultTableModel modelo = (DefaultTableModel) pesqPerfil.getTablePerfis().getModel();
-        pesqPerfil.getVarNome().setText("");
         modelo.setNumRows(0);
         pesqPerfil.setVisible(true);
+        pesqPerfil.pesquisarPerfis();
     }
     private void varCadPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varCadPerfilActionPerformed
         // TODO add your handling code here:

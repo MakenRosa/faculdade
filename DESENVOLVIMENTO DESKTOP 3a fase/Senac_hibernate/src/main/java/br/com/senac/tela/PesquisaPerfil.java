@@ -12,8 +12,8 @@ import br.com.senac.entidade.Perfil;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -22,16 +22,30 @@ import org.hibernate.Session;
  * @author Truen
  */
 public class PesquisaPerfil extends javax.swing.JFrame {
+
     private Session sessao;
     private final PerfilDAO perfilDAO;
     private List<Perfil> perfis;
-    
+
     /**
      * Creates new form PesquisaPerfil
      */
     public PesquisaPerfil() {
         initComponents();
         perfilDAO = new PerfilDAOImpl();
+        setJTableColumnsWidth(tablePerfis, 225, 30, 58, 12);
+    }
+
+    public void pesquisarPerfis() {
+        try {
+            sessao = HibernateUtil.abrirConexao();
+            perfis = perfilDAO.pesquisarTodos(sessao);
+            carregarTabelaPerfis(perfis);
+        } catch (HibernateException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível pesquisar perfis!");
+        } finally {
+            sessao.close();
+        }
     }
 
     /**
@@ -44,9 +58,6 @@ public class PesquisaPerfil extends javax.swing.JFrame {
     private void initComponents() {
 
         lblPesqPerfil = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
-        varNome = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePerfis = new javax.swing.JTable();
         btnAlterar = new javax.swing.JButton();
@@ -59,30 +70,19 @@ public class PesquisaPerfil extends javax.swing.JFrame {
         lblPesqPerfil.setText("Pesquisa de Perfil");
         lblPesqPerfil.setToolTipText("");
 
-        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblNome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNome.setText("Nome:");
-
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
-
         tablePerfis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Descrição"
+                "Nome", "Descrição", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -111,14 +111,7 @@ public class PesquisaPerfil extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAlterar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblNome)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(varNome)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -126,12 +119,7 @@ public class PesquisaPerfil extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblPesqPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addGap(33, 33, 33)
+                .addGap(73, 73, 73)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAlterar)
@@ -142,23 +130,6 @@ public class PesquisaPerfil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
-        try {
-            sessao = HibernateUtil.abrirConexao();
-            perfis = perfilDAO.pesquisarPorNome(varNome.getText(), sessao);
-            if (!perfis.isEmpty()){
-                carregarTabelaPerfis(perfis);
-            } else {
-                JOptionPane.showMessageDialog(null, "Não há perfil com esse nome cadastrado!");
-            }
-        } catch (HibernateException ex){
-            JOptionPane.showMessageDialog(null, "Não foi possível pesquisar perfis!");
-        } finally {
-            sessao.close();
-        }
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         int lineSelected = tablePerfis.getSelectedRow();
@@ -168,19 +139,22 @@ public class PesquisaPerfil extends javax.swing.JFrame {
             sessao = HibernateUtil.abrirConexao();
             CadastroPerfil telaAlterar = new CadastroPerfil(perfis.get(lineSelected));
             telaAlterar.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void carregarTabelaPerfis(List<Perfil> perfis){
+    private void carregarTabelaPerfis(List<Perfil> perfis) {
         DefaultTableModel modelo = (DefaultTableModel) tablePerfis.getModel();
         modelo.setNumRows(0);
-        perfis.stream().forEach((Perfil perfil) ->{
-            modelo.addRow(new Object[]{perfil.getNome(), perfil.getDescricao()});
+        perfis.stream().forEach((Perfil perfil) -> {
+            String ativo;
+            if (perfil.isAtivo()) {
+                ativo = "ativo";
+            } else {
+                ativo = "inativo";
+            }
+            modelo.addRow(new Object[]{perfil.getNome(), perfil.getDescricao(), ativo});
         });
-    }
-    
-    public JTextField getVarNome() {
-        return varNome;
     }
 
     public JTable getTablePerfis() {
@@ -215,20 +189,27 @@ public class PesquisaPerfil extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PesquisaPerfil().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new PesquisaPerfil().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPesqPerfil;
     private javax.swing.JTable tablePerfis;
-    private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
+    public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
+            double... percentages) {
+        double total = 0;
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            total += percentages[i];
+        }
+
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            TableColumn column = table.getColumnModel().getColumn(i);
+            column.setPreferredWidth((int) (tablePreferredWidth * (percentages[i] / total)));
+        }
+    }
 }
