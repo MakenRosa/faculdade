@@ -104,15 +104,13 @@ public class Endereco implements Serializable {
             return false;
         }
         Endereco other = (Endereco) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
-        return "br.com.senac.entidade.Endereco[ id=" + id + " ]";
+        return "Endereco{" + "id=" + id + ", cep=" + cep + ", logradouro=" + logradouro + ", bairro=" + bairro + ", localidade=" + localidade + ", uf=" + uf + '}';
     }
+    
     
 }

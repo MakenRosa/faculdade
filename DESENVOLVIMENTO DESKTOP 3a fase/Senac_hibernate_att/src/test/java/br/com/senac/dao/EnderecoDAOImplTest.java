@@ -29,6 +29,7 @@ public class EnderecoDAOImplTest {
     @Test
     public void testSalvar(){
         endereco = new CepRest().pesquisaCep("88111670");
+        System.out.println(endereco);
         sessao = HibernateUtil.abrirConexao();
         enderecoDAO.salvarOuAlterar(endereco, sessao);
         sessao.close();
@@ -36,16 +37,16 @@ public class EnderecoDAOImplTest {
     }
 
 //    @Test
-    public void testPesquisarPorId() {
-        System.out.println("pesquisarPorId");
-        Long id = null;
-        Session sessao = null;
-        EnderecoDAOImpl instance = new EnderecoDAOImpl();
-        Endereco expResult = null;
-        Endereco result = instance.pesquisarPorId(id, sessao);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
+//    public void testPesquisarPorId() {
+//        System.out.println("pesquisarPorId");
+//        Long id = null;
+//        Session sessao = null;
+//        EnderecoDAOImpl instance = new EnderecoDAOImpl();
+//        Endereco expResult = null;
+//        Endereco result = instance.pesquisarPorId(id, sessao);
+//        assertEquals(expResult, result);
+//        fail("The test case is a prototype.");
+//    }
     
         public Endereco buscarEnderecoBD(){
         String sql = "from Endereco e ";
