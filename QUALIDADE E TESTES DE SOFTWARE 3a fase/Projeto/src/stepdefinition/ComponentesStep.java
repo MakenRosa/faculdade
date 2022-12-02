@@ -10,91 +10,116 @@ public class ComponentesStep {
     Componentes componentes = new Componentes();
 
 
-
     @Dado("que o usuário acessou o arquivo Campo de Treinamento")
     public void que_o_usuário_acessou_o_arquivo_Campo_de_Treinamento() {
         componentes.inicializa();
     }
 
-    @Quando("o usuário digitar batatinha no campo textfield")
-    public void o_usuário_digitar_batatinha_no_campo_textfield() {
+    @Quando("o usuário preencher o campo Nome com a palavra Maken")
+    public void o_usuário_preencher_o_campo_Nome_com_a_palavra_Maken() {
         // Write code here that turns the phrase above into concrete actions
-        componentes.testarTextField();
+        componentes.testarTextFieldNome();
     }
 
-    @Então("o resultado no campo textfield deve ser batatinha")
-    public void o_resultado_no_campo_textfield_deve_ser_batatinha() {
-        componentes.validarTextField();
+    @Quando("o usuário preencher o campo Sobrenome com a palavra Rosa")
+    public void o_usuário_preencher_o_campo_Sobrenome_com_a_palavra_Rosa() {
+        componentes.testarTextFieldSobrenome();
+    }
+
+    @Quando("o usuário marcar o radio button Sexo a opção Masculino")
+    public void o_usuário_marcar_o_radio_button_Sexo_a_opção_Masculino() {
+        componentes.clicarRadioButtonMasculino();
+    }
+
+    @Quando("o usuário marcar a checkbox de Comida Favorita a opção Pizza")
+    public void o_usuário_marcar_a_checkbox_de_Comida_Favorita_a_opção_Pizza() {
+        componentes.clicarCheckBoxPizza();
+    }
+
+    @Quando("o usuário escolher a opção Superior na combo box Escolaridade")
+    public void o_usuário_escolher_a_opção_Superior_na_combo_box_Escolaridade() {
+        componentes.selecionarComboboxSuperior();
+    }
+
+    @Quando("o usuário selecionar a opção O que eh esporte? na listbox Esportes")
+    public void o_usuário_selecionar_a_opção_O_que_eh_esporte_na_listbox_Esportes() {
+        componentes.clicarListboxEsporte();
+    }
+
+    @Quando("clicar no botão Cadastrar")
+    public void clicar_no_botão_Cadastrar() {
+        componentes.clicarBotaoCadastrar();
+    }
+
+
+    @Então("a div descNome deve conter a palavra do campo Nome")
+    public void a_div_descNome_deve_conter_a_palavra_do_campo_Nome() {
+        componentes.validarTextFieldNome();
+    }
+
+    @Então("a div descSobrenome deve conter a palavra do campo Sobrenome")
+    public void a_div_descSobrenome_deve_conter_a_palavra_do_campo_Sobrenome() {
+        componentes.validarTextFieldSobrenome();
+    }
+
+    @Então("a div descSexo deve conter o valor marcado no radio button Sexo")
+    public void a_div_descSexo_deve_conter_o_valor_marcado_no_radio_button_Sexo() {
+        componentes.validarRadioButtonMasculino();
+    }
+
+    @Então("a div descComida deve conter os valores marcados na checkbox Comida")
+    public void a_div_descComida_deve_conter_os_valores_marcados_na_checkbox_Comida() {
+        componentes.validarCheckBoxPizza();
+    }
+
+    @Então("a div descEscolaridade deve conter o valor selecionado na combobox Escolaridade")
+    public void a_div_descEscolaridade_deve_conter_o_valor_selecionado_na_combobox_Escolaridade() {
+        componentes.validarComboboxSuperior();
+    }
+
+    @Então("a div descEsportes deve conter o valor selecionado na listbox Esportes")
+    public void a_div_descEsportes_deve_conter_o_valor_selecionado_na_listbox_Esportes() {
+        componentes.validarListbox();
+    }
+
+    @Então("a div resultado deve conter a palavra Cadastrado!")
+    public void a_div_resultado_deve_conter_a_palavra_Cadastrado() {
+        componentes.validarBotaoCadastrar();
         componentes.fecharNavegador();
     }
 
-    @Quando("o usuário digitar batatinha\nbatatinha no campo textarea")
-    public void o_usuário_digitar_batatinha_batatinha_no_campo_textarea() {
-        componentes.testarTextArea();
+    @Quando("o usuário Nao digitar nada no campo nome")
+    public void o_usuário_Nao_digitar_nada_no_campo_nome() {
     }
 
-    @Então("o resultado no campo textarea deve ser batatinha\nbatatinha")
-    public void o_resultado_no_campo_textarea_deve_ser_batatinha_batatinha() {
-        componentes.validarTextArea();
-        componentes.fecharNavegador();
+    @Quando("pressionar o botao cadastrar")
+    public void pressionar_o_botao_cadastrar() {
+        componentes.clicarBotaoCadastrar();
     }
 
-
-    @Quando("o usuário marcar masculino no componente radiobutton")
-    public void o_usuário_marcar_masculino_no_componente_radiobutton() {
-        componentes.clicarRadioButton();
+    @Então("deve aparecer um alerta com uma frase informando que o nome é obrigatorio")
+    public void deve_aparecer_um_alerta_com_uma_frase_informando_que_o_nome_é_obrigatorio() {
+        componentes.validarNomeObrigatorio();
     }
 
-    @Então("o resultado no radiobutton deve ser masculino")
-    public void o_resultado_no_radiobutton_deve_ser_masculino() {
-        componentes.validarRadioButton();
-        componentes.fecharNavegador();
+    @Quando("o usuário Nao digitar nada no campo sobrenome")
+    public void o_usuário_Nao_digitar_nada_no_campo_sobrenome() {
+        componentes.testarTextFieldNome();
     }
 
-    @Quando("o usuário marcar frango no componente checkbox")
-    public void o_usuário_marcar_frango_no_componente_checkbox() {
-        componentes.clicarCheckBox();
+    @Então("deve aparecer um alerta com uma frase informando que o sobrenome é obrigatorio")
+    public void deve_aparecer_um_alerta_com_uma_frase_informando_que_o_sobrenome_é_obrigatorio() {
+        componentes.validarSobrenomeObrigatorio();
     }
 
-    @Então("o resultado no checkbox deve ser frango")
-    public void o_resultado_no_checkbox_deve_ser_frango() {
-        componentes.validarCheckBox();
-        componentes.fecharNavegador();
+    @Quando("o usuário Nao marcar opcao no radion button sexo")
+    public void o_usuário_Nao_marcar_opcao_no_radion_button_sexo() {
+        componentes.testarTextFieldNome();
+        componentes.testarTextFieldSobrenome();
     }
 
-    @Quando("o usuario visualizar a tela")
-    public void o_usuario_visualizar_a_tela() {
-        componentes.pegarSelecaoCombobox();
+    @Então("deve aparecer um alerta com uma frase informando que o sexo é obrigatorio")
+    public void deve_aparecer_um_alerta_com_uma_frase_informando_que_o_sexo_é_obrigatorio() {
+        componentes.validarSexoObrigatorio();
     }
-
-    @Então("devera estar selecionado a primeira opcao")
-    public void devera_estar_selecionado_a_primeira_opcao() {
-        componentes.validarSelecaoCombobox();
-        componentes.fecharNavegador();
-    }
-
-    @Quando("o usuário clicar na combobox")
-    public void o_usuário_clicar_na_combobox() {
-        componentes.clicarCombobox();
-
-    }
-
-    @Então("devera ser visivel {int} opcoes")
-    public void devera_ser_visivel_opcoes(Integer int1) {
-        componentes.validarQuantidadeCombobox(int1);
-        componentes.fecharNavegador();
-    }
-
-    @Quando("selecionar a opcao Mestrado")
-    public void selecionar_a_opcao_Mestrado() {
-        componentes.selecionarMestradoCombobox();
-    }
-
-    @Então("devera ser selecionado a opcao mestrado")
-    public void devera_ser_selecionado_a_opcao_mestrado() {
-        componentes.validarSelecaoMestradoCombobox();
-        componentes.fecharNavegador();
-    }
-
-
 }
