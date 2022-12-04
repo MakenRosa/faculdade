@@ -148,6 +148,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         new TelaUsuario().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void btAdmSuporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdmSuporteActionPerformed

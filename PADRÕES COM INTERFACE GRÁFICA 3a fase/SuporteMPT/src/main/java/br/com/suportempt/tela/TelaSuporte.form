@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="item_cad_usuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+                <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_cad_usuarioActionPerformed"/>
@@ -42,7 +42,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="item_pesq_usuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+                <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_pesq_usuarioActionPerformed"/>
@@ -138,11 +138,9 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="icone_cad_chamado" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="icone_cad_usuario" max="32767" attributes="0"/>
-                      <Component id="icone_pesq_chamado" max="32767" attributes="0"/>
-                      <Component id="icone_pesq_usuario" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="icone_cad_usuario" max="32767" attributes="0"/>
+                  <Component id="icone_pesq_chamado" max="32767" attributes="0"/>
+                  <Component id="icone_pesq_usuario" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
           </Group>

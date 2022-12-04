@@ -1,13 +1,9 @@
 package br.com.suportempt.entidade;
 
-import br.com.suportempt.dao.ChamadoDaoImpl;
-import br.com.suportempt.dao.HibernateUtil;
 import bt.com.suportempt.exceptions.ChamadoAtivoException;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 @Entity
@@ -93,13 +89,14 @@ public class Chamado implements Serializable {
         this.equipamento = equipamento;
     }
 
-    public String getNumero_sala() {
+    public String getSala() {
         return sala;
     }
 
-    public void setNumero_sala(String numero_sala) {
-        this.sala = numero_sala;
+    public void setSala(String sala) {
+        this.sala = sala;
     }
+
 
     public String getProblema() {
         return problema;

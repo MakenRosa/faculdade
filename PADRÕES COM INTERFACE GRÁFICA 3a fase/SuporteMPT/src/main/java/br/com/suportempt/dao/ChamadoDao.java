@@ -8,18 +8,13 @@ import org.hibernate.Session;
 
 public interface ChamadoDao extends BaseDao<Chamado, Long> {
 
-    List<Chamado> pesquisarPorPatrimonio(String patrimonio, Session sessao) throws HibernateException;
-    
-    List<Chamado> pesquisarPorPatrimonioEAtivo(String patrimonio, Session sessao) throws HibernateException;
+    List<Chamado> pesquisarPorPatrimonio(String patrimonio, Boolean ativo, Session sessao) throws HibernateException;
 
-    List<Chamado> pesquisarPorEquipamento(String equipamento, Session sessao) throws HibernateException;
+    List<Chamado> pesquisarPorEquipamento(String equipamento, Boolean ativo, Session sessao) throws HibernateException;
 
-    List<Chamado> pesquisarPorSala(String sala, Session sessao) throws HibernateException;
+    List<Chamado> pesquisarPorSala(String sala, Boolean ativo, Session sessao) throws HibernateException;
 
-    List<Chamado> pesquisarPorData(Date data, Session sessao) throws HibernateException;
+    List<Chamado> pesquisarPorData(Date data, Boolean ativo, Session sessao) throws HibernateException;
 
-    List<Chamado> pesquisarTodosAtivo(Session sessao) throws HibernateException;
-
-    List<Chamado> pesquisarTodos(Session sessao) throws HibernateException;
-
+    List<Chamado> pesquisarTodos(Boolean ativo, Session sessao) throws HibernateException;
 }

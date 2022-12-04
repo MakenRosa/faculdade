@@ -1,6 +1,30 @@
 package br.com.suportempt.tela;
 
+import br.com.suportempt.dao.ChamadoDao;
+import br.com.suportempt.dao.ChamadoDaoImpl;
+import br.com.suportempt.dao.HibernateUtil;
+import br.com.suportempt.entidade.Chamado;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+
 public class PesquisarChamado extends javax.swing.JFrame {
+
+    private List<Chamado> chamados;
+    private final ChamadoDao chamadoDAO = new ChamadoDaoImpl();
+    private Session sessao;
 
     /**
      * Creates new form PesquisaChamado
@@ -26,6 +50,8 @@ public class PesquisarChamado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbChamado = new javax.swing.JTable();
         varPesquisa = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        varSituacao = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pesquisar Chamado");
@@ -38,67 +64,162 @@ public class PesquisarChamado extends javax.swing.JFrame {
         lb_chamado.setText("Selecione um filtro:");
 
         btPesquisar.setText("Pesquisar");
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarActionPerformed(evt);
+            }
+        });
 
         btAlterar.setText("Alterar");
+        btAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlterarActionPerformed(evt);
+            }
+        });
 
         tbChamado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Nº Chamado", "Patrimônio", "Equipamento", "Local", "Problema", "Situação", "Data de Cadastro"
+                "Nº", "Patrimônio", "Equipamento", "Sala", "Problema", "Situação", "Abertura", "Fechamento"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbChamado.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbChamado.setName(""); // NOI18N
         tbChamado.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbChamado);
+        if (tbChamado.getColumnModel().getColumnCount() > 0) {
+            tbChamado.getColumnModel().getColumn(0).setPreferredWidth(45);
+            tbChamado.getColumnModel().getColumn(0).setMaxWidth(80);
+            tbChamado.getColumnModel().getColumn(1).setPreferredWidth(85);
+            tbChamado.getColumnModel().getColumn(1).setMaxWidth(140);
+            tbChamado.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tbChamado.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tbChamado.getColumnModel().getColumn(4).setPreferredWidth(199);
+            tbChamado.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tbChamado.getColumnModel().getColumn(6).setPreferredWidth(90);
+            tbChamado.getColumnModel().getColumn(7).setPreferredWidth(90);
+        }
 
-        varPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um filtro...", "Nº Chamado", "Patrimônio", "Equipamento", "Local", "Situação", "Data de Cadastro" }));
+        varPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um filtro...", "Nº Chamado", "Patrimônio", "Equipamento", "Sala", "Data de Cadastro" }));
+
+        jLabel1.setText("Pesquisar por:");
+
+        varSituacao.setSelected(true);
+        varSituacao.setText("Em aberto");
+        varSituacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varSituacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lb_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_chamado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lb_chamado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(varPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(varChamado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btPesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btAlterar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(varChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btPesquisar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(varSituacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lb_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btAlterar)
-                        .addComponent(btPesquisar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lb_chamado)
-                        .addComponent(varChamado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(varPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_chamado)
+                    .addComponent(varChamado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(varPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPesquisar)
+                    .addComponent(btAlterar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 113, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(varSituacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAlterarActionPerformed
+
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        if (validarPesquisa()) {
+            String pesquisar = varChamado.getText().trim();
+            int opcaoFiltro = varPesquisa.getSelectedIndex();
+            try {
+                sessao = HibernateUtil.abrirConexao();
+                if (opcaoFiltro == 1){
+                    Chamado chamado = chamadoDAO.pesquisarPorId(Long.parseLong(pesquisar), sessao);
+                    if (chamado == null) {
+                        JOptionPane.showMessageDialog(null, "Nenhum chamado com esse número!");
+                    } else {
+                        chamados = new ArrayList();
+                        chamados.add(chamado);
+                    }
+                } else if (opcaoFiltro == 2){
+                    chamados = chamadoDAO.pesquisarPorPatrimonio(pesquisar, varSituacao.isSelected(),sessao);
+                } else if (opcaoFiltro == 3){
+                    chamados = chamadoDAO.pesquisarPorEquipamento(pesquisar, varSituacao.isSelected(), sessao);
+                } else if (opcaoFiltro == 4){
+                    chamados = chamadoDAO.pesquisarPorSala(pesquisar, varSituacao.isSelected(),sessao);
+                } else if (opcaoFiltro == 5){
+                    chamados = chamadoDAO.pesquisarPorData(new SimpleDateFormat("dd/MM/yyyy").parse(pesquisar), varSituacao.isSelected(), sessao);
+                }
+                if (chamados.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Nenhum chamado encontrado!");
+                } else{
+                    carregarTabelaChamado();
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(PesquisarChamado.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (HibernateException ex){
+                JOptionPane.showMessageDialog(null, "Não foi possível pesquisar os chamados!");
+            } finally{
+                sessao.close();
+            }
+        }
+    }//GEN-LAST:event_btPesquisarActionPerformed
+
+    private void varSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varSituacaoActionPerformed
+        if (varSituacao.isSelected()){
+            varSituacao.setText("Em aberto");
+        } else {
+            varSituacao.setText("Fechados");
+        }
+    }//GEN-LAST:event_varSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,11 +258,91 @@ public class PesquisarChamado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
     private javax.swing.JButton btPesquisar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_chamado;
     private javax.swing.JLabel lb_titulo;
     private javax.swing.JTable tbChamado;
     private javax.swing.JTextField varChamado;
     private javax.swing.JComboBox<String> varPesquisa;
+    private javax.swing.JToggleButton varSituacao;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarTabelaChamado() {
+        DefaultTableModel defaultTable = (DefaultTableModel) tbChamado.getModel();
+        defaultTable.setNumRows(0);
+        chamados.stream()
+                .forEach(chamado -> {
+                    String situacao;
+                    String fechamento = "";
+                    if (chamado.isAtivo()){
+                        situacao = "Ativo";
+                    } else {
+                        situacao = "Inativo";
+                        fechamento = new SimpleDateFormat("dd/MM/yyyy").format(chamado.getDtFechamento());
+                    }
+                    defaultTable.addRow(new Object[]{
+                        chamado.getId(),
+                        chamado.getPatrimonio(),
+                        chamado.getEquipamento(),
+                        chamado.getSala(),
+                        chamado.getProblema(),
+                        situacao,
+                        new SimpleDateFormat("dd/MM/yyyy").format(chamado.getDtAbertura()),
+                        fechamento
+                    });
+                });
+    }
+    private boolean validarPesquisa() {
+        if (varPesquisa.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um filtro!");
+            return false;
+        } else if (varChamado.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Digite um valor para filtrar");
+            return false;
+        } else if (varChamado.getText().trim().length() > 30) {
+            JOptionPane.showMessageDialog(null, "Valor de filtro não pode ultrapassar 30 caracteres!");
+            return false;
+        } else if (!validarFiltro()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validarFiltro() {
+        int opcaoPesquisa = varPesquisa.getSelectedIndex();
+        String valorFiltro = varChamado.getText().trim();
+        if (opcaoPesquisa == 1 && !valorFiltro.matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(null, "Digite um valor número para pesquisar por N° do chamado!");
+            return false;
+        } else if (opcaoPesquisa == 2 && valorFiltro.length() < 6) {
+            JOptionPane.showMessageDialog(null, "Digite pelo menos 6 caracteres para pesquisar por patrimônio!");
+            return false;
+        } else if (opcaoPesquisa == 3 && valorFiltro.length() < 3) {
+            JOptionPane.showMessageDialog(null, "Digite pelo menos 3 caracteres para pesquisar por equipamento!");
+            return false;
+        } else if (opcaoPesquisa == 4 && valorFiltro.length() < 1) {
+            JOptionPane.showMessageDialog(null, "Digite o número de uma sala!");
+            return false;
+        } else if (opcaoPesquisa == 5 && !isDateValid(valorFiltro.trim())){
+            JOptionPane.showMessageDialog(null, "Digite uma data válida no formato dd/MM/yyyy");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isDateValid(String strDate) {
+        String dateFormat = "dd/MM/uuuu";
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter
+                .ofPattern(dateFormat)
+                .withResolverStyle(ResolverStyle.STRICT);
+        try {
+            LocalDate.parse(strDate, dateTimeFormatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
 }

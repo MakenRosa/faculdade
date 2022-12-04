@@ -23,6 +23,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         lb_chamado = new javax.swing.JLabel();
         lb_observacao1 = new javax.swing.JLabel();
         icone_cad_chamado = new javax.swing.JLabel();
+        icone_pesq_chamado = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuCadastrar = new javax.swing.JMenu();
         item_cad_chamado = new javax.swing.JMenuItem();
@@ -42,23 +43,35 @@ public class TelaUsuario extends javax.swing.JFrame {
         lb_observacao.setText("E-mail da instituição e código do Patrimônio obrigátorios para registrar uma ocorrência.");
 
         lb_chamado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_chamado.setText("Se você é um usuário do sistema, clique no botão abaixo para abrir um chamado:");
+        lb_chamado.setText("Clique no botão abaixo para criar um chamado, ou verificar se já há chamado aberto.");
 
         lb_observacao1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lb_observacao1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_observacao1.setText("Importante:");
 
+        icone_cad_chamado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icone_cad_chamado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/cad_chamado.png"))); // NOI18N
         icone_cad_chamado.setToolTipText("Cadastrar Chamado");
-        icone_cad_chamado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        icone_cad_chamado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        icone_cad_chamado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Criar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
+        icone_cad_chamado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         icone_cad_chamado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 icone_cad_chamadoMouseClicked(evt);
             }
         });
 
-        menuCadastrar.setText("Cadastrar");
+        icone_pesq_chamado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icone_pesq_chamado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/pesq_chamado.png"))); // NOI18N
+        icone_pesq_chamado.setToolTipText("");
+        icone_pesq_chamado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Verificar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
+        icone_pesq_chamado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icone_pesq_chamado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icone_pesq_chamadoMouseClicked(evt);
+            }
+        });
+
+        menuCadastrar.setText("Cadastro");
 
         item_cad_chamado.setText("Chamado");
         item_cad_chamado.addActionListener(new java.awt.event.ActionListener() {
@@ -70,9 +83,9 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         menuBar.add(menuCadastrar);
 
-        menuPesquisar.setText("Pesquisar");
+        menuPesquisar.setText("Pesquisa");
 
-        item_pesq_chamado.setText("Chamados Cadastrados");
+        item_pesq_chamado.setText("Verificar chamado");
         item_pesq_chamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 item_pesq_chamadoActionPerformed(evt);
@@ -92,14 +105,16 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lb_observacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lb_observacao, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                .addComponent(lb_observacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(lb_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lb_chamado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(icone_cad_chamado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(209, Short.MAX_VALUE)
+                .addComponent(icone_cad_chamado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(icone_pesq_chamado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(209, 209, 209))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,8 +123,10 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lb_chamado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(icone_cad_chamado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(icone_cad_chamado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(icone_pesq_chamado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_observacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_observacao1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -120,7 +137,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void item_pesq_chamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_pesq_chamadoActionPerformed
-        new PesquisarChamado().setVisible(true);
+        new VerificarChamado().setVisible(true);
     }//GEN-LAST:event_item_pesq_chamadoActionPerformed
 
     private void item_cad_chamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cad_chamadoActionPerformed
@@ -130,6 +147,10 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void icone_cad_chamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icone_cad_chamadoMouseClicked
         new CadastrarChamado().setVisible(true);
     }//GEN-LAST:event_icone_cad_chamadoMouseClicked
+
+    private void icone_pesq_chamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icone_pesq_chamadoMouseClicked
+        new VerificarChamado().setVisible(true);
+    }//GEN-LAST:event_icone_pesq_chamadoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -169,6 +190,7 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel icone_cad_chamado;
+    private javax.swing.JLabel icone_pesq_chamado;
     private javax.swing.JMenuItem item_cad_chamado;
     private javax.swing.JMenuItem item_pesq_chamado;
     private javax.swing.JLabel lb_chamado;

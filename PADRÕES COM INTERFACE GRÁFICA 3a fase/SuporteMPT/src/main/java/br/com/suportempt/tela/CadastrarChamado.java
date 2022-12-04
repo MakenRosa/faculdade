@@ -22,8 +22,7 @@ public class CadastrarChamado extends javax.swing.JFrame {
     public CadastrarChamado() {
         initComponents();
         chamadoDAO = new ChamadoDaoImpl();
-        lb_situacao.setVisible(false);
-        btSituacao.setVisible(false);
+        btnFecharChamado.setVisible(false);
     }
 
     /**
@@ -48,8 +47,7 @@ public class CadastrarChamado extends javax.swing.JFrame {
         lb_problema = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         varProblema = new javax.swing.JTextArea();
-        lb_situacao = new javax.swing.JLabel();
-        btSituacao = new javax.swing.JToggleButton();
+        btnFecharChamado = new javax.swing.JToggleButton();
         btCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -81,16 +79,14 @@ public class CadastrarChamado extends javax.swing.JFrame {
         lb_problema.setText("Descrição do Problema:");
 
         varProblema.setColumns(20);
+        varProblema.setLineWrap(true);
         varProblema.setRows(5);
         jScrollPane1.setViewportView(varProblema);
 
-        lb_situacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lb_situacao.setText("Situação:");
-
-        btSituacao.setText("Aberto");
-        btSituacao.addActionListener(new java.awt.event.ActionListener() {
+        btnFecharChamado.setText("Fechar chamado");
+        btnFecharChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSituacaoActionPerformed(evt);
+                btnFecharChamadoActionPerformed(evt);
             }
         });
 
@@ -114,14 +110,11 @@ public class CadastrarChamado extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lb_local, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lb_problema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lb_situacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(15, 15, 15)))
+                            .addComponent(btnFecharChamado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btSituacao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(varSala, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
@@ -164,11 +157,9 @@ public class CadastrarChamado extends javax.swing.JFrame {
                     .addComponent(lb_problema)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btCadastrar)
-                        .addComponent(lb_situacao))
-                    .addComponent(btSituacao))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCadastrar)
+                    .addComponent(btnFecharChamado))
                 .addGap(19, 19, 19))
         );
 
@@ -176,9 +167,9 @@ public class CadastrarChamado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSituacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btSituacaoActionPerformed
+    private void btnFecharChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharChamadoActionPerformed
+        
+    }//GEN-LAST:event_btnFecharChamadoActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         // TODO add your handling code here:
@@ -188,10 +179,11 @@ public class CadastrarChamado extends javax.swing.JFrame {
                         varPatrimonio.getText().trim(),
                         varEquipamento.getSelectedItem().toString(),
                         varSala.getText().trim(), varProblema.getText().trim());
-
                 sessao = HibernateUtil.abrirConexao();
-
                 chamadoDAO.salvarOuAlterar(chamado, sessao);
+                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso!\n"
+                        + "O número do seu chamado é "+ chamado.getId());
+                this.dispose();
             } catch (ChamadoAtivoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (HibernateException ex) {
@@ -238,7 +230,7 @@ public class CadastrarChamado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
-    private javax.swing.JToggleButton btSituacao;
+    private javax.swing.JToggleButton btnFecharChamado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_email;
     private javax.swing.JLabel lb_equipamento;
@@ -246,7 +238,6 @@ public class CadastrarChamado extends javax.swing.JFrame {
     private javax.swing.JLabel lb_observacao;
     private javax.swing.JLabel lb_patrimonio;
     private javax.swing.JLabel lb_problema;
-    private javax.swing.JLabel lb_situacao;
     private javax.swing.JLabel lb_titulo;
     private javax.swing.JTextField varEmail;
     private javax.swing.JComboBox<String> varEquipamento;
@@ -263,7 +254,7 @@ public class CadastrarChamado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um tipo de equipamento!");
             return false;
         } else if (varPatrimonio.getText().trim().length() < 6) {
-            JOptionPane.showMessageDialog(null, "Digite o código do equipamento!");
+            JOptionPane.showMessageDialog(null, "O código do equipamento deve ter no mínimo 6 caracteres!");
             return false;
         } else if (varProblema.getText().trim().length() < 10) {
             JOptionPane.showMessageDialog(null, "Descreva o defeito que o equipamento apresenta!");
@@ -274,7 +265,7 @@ public class CadastrarChamado extends javax.swing.JFrame {
         }
         try {
             sessao = HibernateUtil.abrirConexao();
-            List<Chamado> ativosPatrimonio = chamadoDAO.pesquisarPorPatrimonioEAtivo(varPatrimonio.getText().trim(), sessao);
+            List<Chamado> ativosPatrimonio = chamadoDAO.pesquisarPorPatrimonio(varPatrimonio.getText().trim(), true, sessao);
             if (ativosPatrimonio.size() > 0) {
                 throw new ChamadoAtivoException();
             }
