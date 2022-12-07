@@ -174,6 +174,9 @@ public class VerificarChamado extends javax.swing.JFrame {
                 List<Chamado> chamados = chamadoDAO.pesquisarPorPatrimonio(varPatrimonio.getText().trim(), true, sessao);
                 if (chamados.isEmpty()){
                     varResultado.setForeground(new Color(0, 102, 0));
+                    varResultado.setText("");
+                    varProblema.setText("");
+                    varAbertura.setText("");
                     varResultado.setText("Não há chamado em aberto para esse patrimônio!");
                 } else{
                     varResultado.setForeground(Color.red);

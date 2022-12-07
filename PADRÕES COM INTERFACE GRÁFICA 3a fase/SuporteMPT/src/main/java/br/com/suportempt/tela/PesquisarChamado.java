@@ -4,7 +4,6 @@ import br.com.suportempt.dao.ChamadoDao;
 import br.com.suportempt.dao.ChamadoDaoImpl;
 import br.com.suportempt.dao.HibernateUtil;
 import br.com.suportempt.entidade.Chamado;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -82,11 +81,11 @@ public class PesquisarChamado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nº", "Patrimônio", "Equipamento", "Sala", "Problema", "Situação", "Abertura", "Fechamento"
+                "Nº", "Patrimônio", "Equipamento", "Sala", "Problema", "Situação", "Abertura", "Fechamento", "Solução"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -98,16 +97,17 @@ public class PesquisarChamado extends javax.swing.JFrame {
         tbChamado.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbChamado);
         if (tbChamado.getColumnModel().getColumnCount() > 0) {
-            tbChamado.getColumnModel().getColumn(0).setPreferredWidth(45);
+            tbChamado.getColumnModel().getColumn(0).setPreferredWidth(40);
             tbChamado.getColumnModel().getColumn(0).setMaxWidth(80);
             tbChamado.getColumnModel().getColumn(1).setPreferredWidth(85);
             tbChamado.getColumnModel().getColumn(1).setMaxWidth(140);
             tbChamado.getColumnModel().getColumn(2).setPreferredWidth(100);
             tbChamado.getColumnModel().getColumn(3).setPreferredWidth(60);
-            tbChamado.getColumnModel().getColumn(4).setPreferredWidth(199);
-            tbChamado.getColumnModel().getColumn(5).setPreferredWidth(80);
-            tbChamado.getColumnModel().getColumn(6).setPreferredWidth(90);
-            tbChamado.getColumnModel().getColumn(7).setPreferredWidth(90);
+            tbChamado.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tbChamado.getColumnModel().getColumn(5).setPreferredWidth(70);
+            tbChamado.getColumnModel().getColumn(6).setPreferredWidth(85);
+            tbChamado.getColumnModel().getColumn(7).setPreferredWidth(85);
+            tbChamado.getColumnModel().getColumn(8).setPreferredWidth(130);
         }
 
         varPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um filtro...", "Nº Chamado", "Patrimônio", "Equipamento", "Sala", "Data de Cadastro" }));
@@ -172,16 +172,25 @@ public class PesquisarChamado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        // TODO add your handling code here:
+        if (tbChamado.getSelectedRow() < 0){
+            JOptionPane.showMessageDialog(null, "Selecione um chamado para alterar!");
+        } else {
+            new CadastrarChamado(chamados.get(tbChamado.getSelectedRow())).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        DefaultTableModel defaultTable = (DefaultTableModel) tbChamado.getModel();
+        defaultTable.setNumRows(0);
         if (validarPesquisa()) {
             String pesquisar = varChamado.getText().trim();
             int opcaoFiltro = varPesquisa.getSelectedIndex();
             try {
                 sessao = HibernateUtil.abrirConexao();
-                if (opcaoFiltro == 1){
+                if (opcaoFiltro == 0){
+                    chamados = chamadoDAO.pesquisarTodos(varSituacao.isSelected(), sessao);
+                } else if (opcaoFiltro == 1){
                     Chamado chamado = chamadoDAO.pesquisarPorId(Long.parseLong(pesquisar), sessao);
                     if (chamado == null) {
                         JOptionPane.showMessageDialog(null, "Nenhum chamado com esse número!");
@@ -275,11 +284,13 @@ public class PesquisarChamado extends javax.swing.JFrame {
                 .forEach(chamado -> {
                     String situacao;
                     String fechamento = "";
+                    String solucao = "";
                     if (chamado.isAtivo()){
                         situacao = "Ativo";
                     } else {
                         situacao = "Inativo";
                         fechamento = new SimpleDateFormat("dd/MM/yyyy").format(chamado.getDtFechamento());
+                        solucao = chamado.getSolucao();
                     }
                     defaultTable.addRow(new Object[]{
                         chamado.getId(),
@@ -289,18 +300,13 @@ public class PesquisarChamado extends javax.swing.JFrame {
                         chamado.getProblema(),
                         situacao,
                         new SimpleDateFormat("dd/MM/yyyy").format(chamado.getDtAbertura()),
-                        fechamento
+                        fechamento,
+                        solucao
                     });
                 });
     }
     private boolean validarPesquisa() {
-        if (varPesquisa.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Selecione um filtro!");
-            return false;
-        } else if (varChamado.getText().trim().length() == 0) {
-            JOptionPane.showMessageDialog(null, "Digite um valor para filtrar");
-            return false;
-        } else if (varChamado.getText().trim().length() > 30) {
+        if (varChamado.getText().trim().length() > 30) {
             JOptionPane.showMessageDialog(null, "Valor de filtro não pode ultrapassar 30 caracteres!");
             return false;
         } else if (!validarFiltro()) {

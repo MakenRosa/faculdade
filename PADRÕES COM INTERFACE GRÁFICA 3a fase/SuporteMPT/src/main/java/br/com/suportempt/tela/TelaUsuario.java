@@ -62,7 +62,7 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         icone_pesq_chamado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icone_pesq_chamado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagem/pesq_chamado.png"))); // NOI18N
-        icone_pesq_chamado.setToolTipText("");
+        icone_pesq_chamado.setToolTipText("Verificar Chamado");
         icone_pesq_chamado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Verificar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
         icone_pesq_chamado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         icone_pesq_chamado.addMouseListener(new java.awt.event.MouseAdapter() {

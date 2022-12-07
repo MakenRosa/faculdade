@@ -240,7 +240,7 @@ public class TelaSuporte extends javax.swing.JFrame {
     }//GEN-LAST:event_item_pesq_usuarioActionPerformed
 
     private void item_alterar_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_alterar_senhaActionPerformed
-        new AlterarSenha().setVisible(true);
+        new AlterarSenha(funcionario).setVisible(true);
     }//GEN-LAST:event_item_alterar_senhaActionPerformed
 
     /**

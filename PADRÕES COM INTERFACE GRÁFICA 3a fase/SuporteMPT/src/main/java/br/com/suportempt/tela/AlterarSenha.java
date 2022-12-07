@@ -4,6 +4,7 @@ import br.com.suportempt.dao.FuncionarioDao;
 import br.com.suportempt.dao.FuncionarioDaoImpl;
 import br.com.suportempt.dao.HibernateUtil;
 import br.com.suportempt.entidade.Funcionario;
+import java.awt.Window;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -178,8 +179,12 @@ public class AlterarSenha extends javax.swing.JFrame {
             funcionario.setSenha(senhaNova);
             try {
                 funcionarioDao.salvarOuAlterar(funcionario, sessao);
+                this.dispose();
+                Window[] windows = Window.getWindows();
+                for (Window window : windows) {
+                    window.dispose();
+                }
                 new Login().setVisible(true);
-                dispose();
             } catch (HibernateException e) {
                 System.out.println("Erro ao salvar senha " + e.getMessage());
                 new TelaSuporte(funcionario).setVisible(true);

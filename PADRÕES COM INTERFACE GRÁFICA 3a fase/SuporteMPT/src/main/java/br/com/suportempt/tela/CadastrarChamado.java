@@ -4,7 +4,9 @@ import br.com.suportempt.dao.ChamadoDao;
 import br.com.suportempt.dao.ChamadoDaoImpl;
 import br.com.suportempt.dao.HibernateUtil;
 import br.com.suportempt.entidade.Chamado;
+import br.com.suportempt.util.EnviarEmail;
 import bt.com.suportempt.exceptions.ChamadoAtivoException;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -13,7 +15,7 @@ import org.hibernate.Session;
 public class CadastrarChamado extends javax.swing.JFrame {
 
     private Chamado chamado;
-    private final ChamadoDao chamadoDAO;
+    private final ChamadoDao chamadoDAO = new ChamadoDaoImpl();
     private Session sessao;
 
     /**
@@ -21,8 +23,22 @@ public class CadastrarChamado extends javax.swing.JFrame {
      */
     public CadastrarChamado() {
         initComponents();
-        chamadoDAO = new ChamadoDaoImpl();
         btnFecharChamado.setVisible(false);
+    }
+
+    CadastrarChamado(Chamado chamado) {
+        initComponents();
+        this.chamado = chamado;
+        varEmail.setEditable(false);
+        varPatrimonio.setEditable(false);
+        varProblema.setEditable(false);
+        varSala.setEditable(false);
+        varEmail.setText(chamado.getEmail());
+        varEquipamento.setSelectedItem(chamado.getEquipamento());
+        varPatrimonio.setText(chamado.getPatrimonio());
+        varProblema.setText(chamado.getProblema());
+        varSala.setText(chamado.getSala());
+        btCadastrar.setText("Salvar");
     }
 
     /**
@@ -168,29 +184,37 @@ public class CadastrarChamado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharChamadoActionPerformed
-        
+        new FecharChamado(chamado).setVisible(true);
     }//GEN-LAST:event_btnFecharChamadoActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        // TODO add your handling code here:
-        if (validarFormulario()) {
-            try {
-                chamado = new Chamado(varEmail.getText().trim().toLowerCase(),
-                        varPatrimonio.getText().trim(),
-                        varEquipamento.getSelectedItem().toString(),
-                        varSala.getText().trim(), varProblema.getText().trim());
-                sessao = HibernateUtil.abrirConexao();
-                chamadoDAO.salvarOuAlterar(chamado, sessao);
-                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso!\n"
-                        + "O número do seu chamado é "+ chamado.getId());
-                this.dispose();
-            } catch (ChamadoAtivoException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            } catch (HibernateException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao emitir chamado!");
-            } finally {
-                sessao.close();
+        boolean cadastrado = true;
+        if (chamado == null) {
+            cadastrado = false;
+            if (validarFormulario()) {
+                try {
+                    chamado = new Chamado(varEmail.getText().trim().toLowerCase(),
+                            varPatrimonio.getText().trim(),
+                            varEquipamento.getSelectedItem().toString(),
+                            varSala.getText().trim(), varProblema.getText().trim());
+                } catch (ChamadoAtivoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
             }
+        }
+        try {
+            sessao = HibernateUtil.abrirConexao();
+            chamadoDAO.salvarOuAlterar(chamado, sessao);
+            JOptionPane.showMessageDialog(null, "Chamado criado/alterado com sucesso!\n"
+                    + "O número do seu chamado é " + chamado.getId());
+            this.dispose();
+            if (!cadastrado){
+                EnviarEmail.enviarMensagem(chamado);
+            }
+        } catch (HibernateException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao emitir chamado!");
+        } finally {
+            sessao.close();
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
@@ -247,7 +271,7 @@ public class CadastrarChamado extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean validarFormulario() {
-        if (!varEmail.getText().toLowerCase().contains("alunos.sc.senac.br")) {
+        if (!varEmail.getText().toLowerCase().contains("sc.senac.br")) {
             JOptionPane.showMessageDialog(null, "Digite um email institucional Senac!");
             return false;
         } else if (varEquipamento.getSelectedIndex() == 0) {
@@ -273,7 +297,8 @@ public class CadastrarChamado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao pesquisar se código do patrimônio está ativo!");
         } catch (ChamadoAtivoException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } finally{
+            return false;
+        } finally {
             sessao.close();
         }
         return true;

@@ -16,8 +16,8 @@ public class ChamadoDaoImpl extends BaseDaoImpl<Chamado, Long> implements Chamad
 
     @Override
     public List<Chamado> pesquisarPorPatrimonio(String patrimonio, Boolean ativo, Session sessao) throws HibernateException {
-        Query<Chamado> consulta = sessao.createQuery("FROM Chamado c WHERE c.patrimonio LIKE :patrimonio AND c.ativo = :ativo ORDER BY c.patrimonio");
-        consulta.setParameter("patrimonio", "%" + patrimonio + "%");
+        Query<Chamado> consulta = sessao.createQuery("FROM Chamado c WHERE c.patrimonio = :patrimonio AND c.ativo = :ativo ORDER BY c.patrimonio");
+        consulta.setParameter("patrimonio", patrimonio);
         consulta.setParameter("ativo", ativo);
         return consulta.getResultList();
     }
@@ -48,7 +48,7 @@ public class ChamadoDaoImpl extends BaseDaoImpl<Chamado, Long> implements Chamad
 
     @Override
     public List<Chamado> pesquisarTodos(Boolean ativo, Session sessao) throws HibernateException {
-        Query<Chamado> consulta = sessao.createQuery("FROM Chamado c WHERE c.ativo = true AND c.ativo = :ativo ORDER BY c.id");
+        Query<Chamado> consulta = sessao.createQuery("FROM Chamado c WHERE c.ativo = :ativo ORDER BY c.id");
         consulta.setParameter("ativo", ativo);
         return consulta.getResultList();
     }
