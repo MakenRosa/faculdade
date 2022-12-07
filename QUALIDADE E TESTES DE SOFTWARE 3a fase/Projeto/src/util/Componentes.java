@@ -1,6 +1,7 @@
 package util;
 
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.ui.Select;
 public class Componentes {
     private WebDriver driver;
     private Select select;
+
+    private Alert alert;
 
     public void inicializa(){
         String chromeDriver = System.getProperty("user.dir") + "/Driver/chromedriver.exe";
@@ -19,70 +22,84 @@ public class Componentes {
         driver.get("file:///" + System.getProperty("user.dir") + "/Driver/componentes.html");
     }
 
-    public void testarTextField() {
-        driver.findElement(By.id("elementosForm:nome")).sendKeys("batatinha");
+    public void testarTextFieldNome() {
+        driver.findElement(By.id("elementosForm:nome")).sendKeys("Maken");
     }
 
-    public void testarTextArea() {
-        driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("batatinha\n" +
-                                                                                    "batatinha");
+    public void testarTextFieldSobrenome() {
+        driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Rosa");
     }
-
-    public void validarTextField() {
-        Assert.assertEquals("batatinha", driver.findElement(By.id("elementosForm:nome"))
-                .getAttribute("value"));
-    }
-
-    public void validarTextArea() {
-        Assert.assertEquals("batatinha\nbatatinha", driver.findElement(By.id("elementosForm:sugestoes"))
-                .getAttribute("value"));
-    }
-
-    public void clicarRadioButton() {
+    public void clicarRadioButtonMasculino() {
         driver.findElement(By.id("elementosForm:sexo:0")).click();
     }
 
-    public void validarRadioButton() {
-        Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
+    public void clicarCheckBoxPizza() {
+        driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
     }
 
-    public void clicarCheckBox() {
-        driver.findElement(By.id("elementosForm:comidaFavorita:1")).click();
-    }
-
-    public void validarCheckBox() {
-        Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:1")).isSelected());
-    }
-
-    public void clicarCombobox(){
-        driver.findElement(By.id("elementosForm:escolaridade")).click();
-    }
-
-    public void validarQuantidadeCombobox(int qtd) {
-        pegarSelecaoCombobox();
-        Assert.assertEquals(select.getOptions().size(), qtd);
-    }
-
-    public void selecionarMestradoCombobox(){
-        pegarSelecaoCombobox();
-        select.selectByValue("mestrado");
-    }
-
-    public void validarSelecaoMestradoCombobox(){
-        pegarSelecaoCombobox();
-        Assert.assertEquals("Mestrado", select.getFirstSelectedOption().getText());
-    }
-
-    public void pegarSelecaoCombobox() {
+    public void selecionarComboboxSuperior(){
         select = new Select(driver.findElement(By.id("elementosForm:escolaridade")));
+        select.selectByValue("superior");
     }
 
-    public void validarSelecaoCombobox(){
-        Assert.assertEquals("1o grau incompleto", select.getFirstSelectedOption().getText());
+    public void clicarListboxEsporte(){
+        select = new Select(driver.findElement(By.id("elementosForm:esportes")));
+        select.selectByValue("nada");
+    }
 
+    public void clicarBotaoCadastrar() {
+        driver.findElement(By.id("elementosForm:cadastrar")).click();
+    }
+
+    public void validarTextFieldNome() {
+        Assert.assertTrue(driver.findElement(By.id("descNome")).getText().contains(driver.findElement(By.id("elementosForm:nome")).getAttribute("value")));
+    }
+
+    public void validarTextFieldSobrenome() {
+        Assert.assertTrue(driver.findElement(By.id("descSobrenome")).getText().contains(driver.findElement(By.id("elementosForm:sobrenome")).getAttribute("value")));
+    }
+
+    public void validarRadioButtonMasculino() {
+        Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected() && driver.findElement(By.id("descSexo")).getText().contains("Masculino"));
+    }
+
+    public void validarCheckBoxPizza() {
+        Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:2")).isSelected() && driver.findElement(By.id("descComida")).getText().contains("Pizza"));
+    }
+
+    public void validarComboboxSuperior(){
+        select = new Select(driver.findElement(By.id("elementosForm:escolaridade")));
+        Assert.assertTrue(driver.findElement(By.id("descEscolaridade")).getText().contains(select.getFirstSelectedOption().getText().toLowerCase()));
+    }
+
+    public void validarListbox() {
+        select = new Select(driver.findElement(By.id("elementosForm:esportes")));
+        Assert.assertTrue(driver.findElement(By.id("descEsportes")).getText().contains(select.getFirstSelectedOption().getText()));
+    }
+
+    public void validarBotaoCadastrar() {
+        Assert.assertTrue(driver.findElement(By.id("resultado")).getText().contains("Cadastrado!"));
     }
 
     public void fecharNavegador() {
         driver.quit();
+    }
+
+    public void validarNomeObrigatorio(){
+        alert = driver.switchTo().alert();
+        Assert.assertEquals(alert.getText(), "Nome eh obrigatorio");
+        alert.accept();
+    }
+
+    public void validarSobrenomeObrigatorio(){
+        alert = driver.switchTo().alert();
+        Assert.assertEquals(alert.getText(), "Sobrenome eh obrigatorio");
+        alert.accept();
+    }
+
+    public void validarSexoObrigatorio(){
+        alert = driver.switchTo().alert();
+        Assert.assertEquals(alert.getText(), "Sexo eh obrigatorio");
+        alert.accept();
     }
 }

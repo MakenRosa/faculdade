@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6db811d1-d090-4dae-a61a-dbfc807bdd13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Driver/chromedriver.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Driver/componentes.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Driver/frame.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projeto/features/AcessarGoogle.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/AcessarGoogle.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/CadastrarSala.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/ExportarDocumento.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/GridPesquisarSalas.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Projeto/features/Componentes.feature" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projeto/features/Componentes.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src.rar" beforeDir="false" afterPath="$PROJECT_DIR$/src.rar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/Componentes.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Componentes.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stepdefinition/ComponentesStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/stepdefinition/ComponentesStep.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/Componentes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Componentes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,15 +89,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Truen/Downloads/Bibliotecas_2022_2/Bibliotecas_2021_1/tag-expressions-1.1.1.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Truen/Downloads/Bibliotecas_2022_2/Bibliotecas_2021_1/tag-expressions-1.1.1.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Truen\Documents\GitHub\Faculdade\QUALIDADE E TESTES DE SOFTWARE 3a fase\Projeto\Driver" />
@@ -127,15 +123,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Validar combobox" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Validar Campos Obrigatórios" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="4" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/features/Componentes.feature" />
       <option name="GLUE" value="stepdefinition" />
       <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
       <module name="Projeto" />
-      <option name="NAME_FILTER" value="^Validar combobox$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm4SMFormatter --name &quot;^Validar combobox$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Validar combobox" />
+      <option name="NAME_FILTER" value="^Validar Campos Obrigatórios$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm4SMFormatter --name &quot;^Validar Campos Obrigatórios$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Validar Campos Obrigatórios" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cucumber.api.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Validar Campos" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="4" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/features/Componentes.feature" />
+      <option name="GLUE" value="stepdefinition" />
+      <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
+      <module name="Projeto" />
+      <option name="NAME_FILTER" value="^Validar Campos$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm4SMFormatter --name &quot;^Validar Campos$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Validar Campos" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -165,23 +181,20 @@
     <configuration name="componentes.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Projeto/Driver/componentes.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="frame.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Projeto/Driver/frame.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="Cucumber Java.Scenario: Validar Campos" />
+      <item itemvalue="Cucumber Java.Scenario: Validar Campos Obrigatórios" />
       <item itemvalue="Cucumber Java.Feature: Componentes" />
-      <item itemvalue="Cucumber Java.Scenario: Validar combobox" />
       <item itemvalue="JavaScript Debug.componentes.html" />
-      <item itemvalue="JavaScript Debug.frame.html" />
       <item itemvalue="JUnit.TestRunner" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestRunner" />
-        <item itemvalue="JavaScript Debug.componentes.html" />
+        <item itemvalue="Cucumber Java.Scenario: Validar Campos Obrigatórios" />
+        <item itemvalue="Cucumber Java.Scenario: Validar Campos" />
         <item itemvalue="Cucumber Java.Feature: Componentes" />
-        <item itemvalue="Cucumber Java.Scenario: Validar combobox" />
-        <item itemvalue="JavaScript Debug.frame.html" />
+        <item itemvalue="JavaScript Debug.componentes.html" />
       </list>
     </recent_temporary>
   </component>
@@ -199,6 +212,8 @@
       <workItem from="1665008887927" duration="1784000" />
       <workItem from="1666113816917" duration="5181000" />
       <workItem from="1668628628181" duration="9381000" />
+      <workItem from="1669581887910" duration="6990000" />
+      <workItem from="1669997569714" duration="6775000" />
     </task>
     <servers />
   </component>
