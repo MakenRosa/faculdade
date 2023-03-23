@@ -1,8 +1,4 @@
-/* media query 
-celular: 320px
-tablet: 768px
-desktop: 1366px
-*/
+
 
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
@@ -26,13 +22,15 @@ body {
     font-family: var(--main-font);
     font-size: 16px;
     line-height: 1.5;
-    color: var(black);
+    color: black;
+    background-color: rgb(241, 241, 241);
 }
 
 header {
     position: relative;
     width: 100vw;
     height: 80px;
+    background-color: rgb(245, 245, 245);
 }
 
 header a {
@@ -53,6 +51,7 @@ header a > i.fa-search{
 
 .pos-header {
     margin-bottom: 30px;
+    background-color: white;
 }
 
 .pos-header > ul {
@@ -83,12 +82,12 @@ header a > i.fa-search{
 .pos-header > h1 {
     text-align: center;
     font: 30px 'Raleway', sans-serif;
-    padding: 20px;
+    margin: 20px;
 }
 
 .pos-header > label {
     display: block;
-    padding: 0px 20px;
+    margin: 0px 20px;
     margin-top: 10px;
 }
 
@@ -101,7 +100,7 @@ header a > i.fa-search{
 .pos-header > input.submit {
     width: 60%;
     padding: 10px 10px;
-    margin: 10px 20px;
+    margin: 10px 20px 40px 20px;
     background-color: var(--second-color);
     color: white;
     font: 20px 'Raleway', sans-serif;
@@ -113,10 +112,10 @@ section.offers {
     flex-direction: column;
     align-items: left;
     justify-content: left;
-    padding: 20px;
+    margin: 20px;
 }
 
-section.offers > .images {
+section.offers .grid-item {
     position: relative;
     display: block;
     flex-direction: row;
@@ -125,14 +124,14 @@ section.offers > .images {
     color: rgb(255, 255, 255);
 }
 
-section.offers > .images > span{
+.grid-item > span{
     position: absolute;
     transform: translate(20%, -150%);
     font-weight: 300;
     font-family: var(--main-font);
     font-size: 20px;
 }
-section.offers > .images > img {
+img {
     display: block;
     width: 100%;
     height: 100%;
@@ -140,7 +139,7 @@ section.offers > .images > img {
 }
 
 section.nature {
-    padding: 20px;
+    margin: 20px;
 }
 
 section.nature > p.normal {
@@ -154,22 +153,29 @@ section.nature > img {
     margin-bottom: 10px;
 }
 
-section.nature > span.nature {
+section.nature > .card-nature {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+section.nature > .card-nature > span.nature {
+    display: block;
+    padding-top: 20px;
     font: 25px 'Raleway', sans-serif;
-    padding: 0px 20px;
+    margin: 0px 20px;
 }
 
 p.price {
-    padding: 15px 20px;
+    margin: 15px 20px;
     color: #5c5c5c;
 }
 
 .recuo {
-    padding: 20px 20px;
+    margin: 20px 20px;
 }
 
 .buy {
-    padding: 20px 40px;
+    margin: 20px 40px;
 }
 
 section.newsletter {
@@ -206,8 +212,52 @@ section.newsletter > input#email-newsletter {
     border: none;
 }
 
-section.contact > h1 {
-    font: 30px 'Raleway', sans-serif;
-    margin: 20px 20px;
+section.contact {
+    margin: 40px 20px;
 }
 
+section.contact > p {
+    font: 20px 'Raleway', sans-serif;
+    margin: 20px 0px;
+}
+
+.contacts > p {
+    font: 18px 'Raleway', sans-serif;
+    margin: 10px 0px;
+}
+
+.contacts > p > i {
+    padding: 0px 20px 0px 0px;
+}
+
+.ct-input {
+    width: 100%;
+    padding: 10px 10px;
+    font: 20px 'Raleway', sans-serif;
+    margin: 0px 0px 10px 0px;
+}
+
+#send-msg {
+    width: 200px;
+    padding: 15px 10px;
+    font: 20px 'Raleway', sans-serif;
+    margin: 0px 0px 10px 0px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+footer {
+    background-color: rgb(241, 241, 241);
+    text-align: center;
+    color: #5c5c5c;
+}
+
+footer p, .social p{
+    font: 20px 'Raleway', sans-serif;
+    margin: 20px 0px;
+}
+
+footer i {
+    font-size: 30px;
+}

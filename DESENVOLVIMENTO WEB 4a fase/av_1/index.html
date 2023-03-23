@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Arquivo de estilo principal para dispositivos móveis -->
     <link rel="stylesheet" href="style.css">
+    <!-- Arquivo de estilo para desktops e tablets -->
+    <link rel="stylesheet" href="others.css" media="(min-width: 768px)">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Avaliação 1</title>
 </head>
@@ -29,40 +32,51 @@
                 <label for="to">To</label>
                 <input type="text" name="to" id="to" placeholder="Arriving at">
                 <input type="submit" value="Search and find dates" class="submit">
-            </section>
+            </div>
         </div>
         <section class="offers">
             <h1>Good Offers Right Now</h1>
             <p>Up to <strong>50%</strong> discount</p>
             <div class="images">
-                <img src="images/cinqueterre.jpg" alt="Cinque Terre" class="cinque">
-                <span class="cinque">Cinque Terre</span>
-                <img src="images/newyork.jpg" alt="New York" class="york">
-                <span class="york">New York</span>
-                <img src="images/sanfran.jpg" alt="San Francisco" class="sanfran">
-                <span class="sanfran">San Francisco</span>
-                <img src="images/pisa.jpg" alt="Pisa" class="pisa">
-                <span class="pisa">Pisa</span>
-                <img src="images/paris.jpg" alt="Paris" class="paris">
-                <span class="paris">Paris</span>
+              <div class="grid-container">
+                <div class="grid-item cinque"><img src="images/cinqueterre.jpg" alt="Cinque Terre">
+                    <span class="cinque">Cinque Terre</span>
+                </div>
+                <div class="grid-item york"><img src="images/newyork.jpg" alt="New York">
+                    <span class="york">New York</span>
+                </div>
+                <div class="grid-item sanfran"><img src="images/sanfran.jpg" alt="San Francisco">
+                    <span class="sanfran">San Francisco</span>
+                </div>
+                <div class="grid-item pisa"><img src="images/pisa.jpg" alt="Pisa">
+                    <span class="pisa">Pisa</span>
+                </div>
+                <div class="grid-item paris"><img src="images/paris.jpg" alt="Paris">
+                    <span class="paris">Paris</span>
+                </div>
+              </div>
             </div>
-        </section>
+          </section> 
         <section class="nature">
             <h1>Explore Nature</h1>
             <p class="normal">Travel with us and see nature at its finest</p>
-            <img src="images/ocean.jpg" alt="West Coast, Norway" class="nature">
-            <span class="nature">West Coast, Norway</span>
-            <p class="price">Roundtrip from $79</p>
-            <p class="recuo">Praesent tincidunt sed tellus ut rutrum sed vitae justo</p>
-            <div class="buy">
-                <p>Buy Tickets</p>
+            <div class="card-nature">
+                <img src="images/ocean.jpg" alt="West Coast, Norway" class="nature">
+                <span class="nature">West Coast, Norway</span>
+                <p class="price">Roundtrip from $79</p>
+                <p class="recuo">Praesent tincidunt sed tellus ut rutrum sed vitae justo</p>
+                <div class="buy">
+                    <p>Buy Tickets</p>
+                </div>
             </div>
-            <img src="images/mountains.jpg" alt="Mountains, Austria" class="nature">
-            <span class="nature">Mountains, Austria</span>
-            <p class="price">One-way from $39</p>
-            <p class="recuo">Praesent tincidunt sed tellus ut rutrum sed vitae justo</p>
-            <div class="buy">
-                <p>Buy Tickets</p>
+            <div class="card-nature">
+                <img src="images/mountains.jpg" alt="Mountains, Austria" class="nature">
+                <span class="nature">Mountains, Austria</span>
+                <p class="price">One-way from $39</p>
+                <p class="recuo">Praesent tincidunt sed tellus ut rutrum sed vitae justo</p>
+                <div class="buy">
+                    <p>Buy Tickets</p>
+                </div>
             </div>
         </section>
         <section class="newsletter">
@@ -79,21 +93,21 @@
                 <p><i class="fa fa-map-marker"></i>Chicago, US</p>
                 <p><i class="fa fa-phone"></i>+00 1515151515</p>
                 <p><i class="fa fa-envelope"></i>Email: mail@mail.com</p>
-                <input type="text" name="name" id="name" placeholder="Name">
-                <input type="email" name="email" id="email" placeholder="Email">
-                <input type="text" name="message" id="message" placeholder="Message">
-                <input type="button" value="SEND MESSAGE">
+                <input type="text" name="name" id="name" placeholder="Name" class="ct-input">
+                <input type="email" name="email" id="email" placeholder="Email" class="ct-input">
+                <input type="text" name="message" id="message" placeholder="Message" class="ct-input">
+                <input type="button" value="SEND MESSAGE" id="send-msg">
             </div>
         </section>
         <footer>
             <p>Find Us On</p>
             <div class="social">
-                <i class="fa fa-facebook"></i>
-                <i class="fa fa-instagram"></i>
-                <i class="fa fa-snapchat"></i>
-                <i class="fa fa-pinterest"></i>
-                <i class="fa fa-twitter"></i>
-                <i class="fa fa-linkedin"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-snapchat"></i>
+                <i class="fa-brands fa-pinterest"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
                 <p>Powered by w3.css</p>
         </footer>
     </main>

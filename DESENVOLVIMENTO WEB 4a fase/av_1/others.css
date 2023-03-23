@@ -1,0 +1,85 @@
+/* media query 
+celular: 320px - já está no css
+tablet: 768px
+desktop: 1366px
+*/
+
+@media (min-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .initial {
+        position: relative;
+        background: fixed no-repeat url(./images/london.jpg) center;
+        background-size: cover;
+        height: 500px;
+    }
+
+    .pos-header {
+        position: relative;
+        background-color: white;
+        width: 60%;
+        height: 270px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .pos-header > h1 {
+        text-align: left;
+        font: 30px 'Raleway', sans-serif;
+        margin: 20px;
+    }
+
+    .pos-header > label {
+        position: absolute;
+        display: inline-flex;
+        margin-top: -20px;
+    }
+
+    .pos-header > input {
+        display: inline-flex;
+        margin: 0px 0px 0px 20px;
+        width: 43%;
+        max-width: 100%;
+    }
+
+    .pos-header > input.submit {
+        width:220px;
+        padding: 10px 10px;
+        margin: 20px 20px 40px 20px;
+        background-color: var(--second-color);
+        color: white;
+        font: 20px 'Raleway', sans-serif;
+        border: none;
+        text-align: center;
+    }
+
+    .images {
+        display: flex;
+        justify-content: center;
+        }
+        
+        .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+        margin-top: 20px;
+        }
+        
+        .grid-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--main-font);
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        }
+
+        .cinque {
+            grid-row: span 2;
+        }
+}
