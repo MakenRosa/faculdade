@@ -98,7 +98,7 @@ header a > i.fa-search{
 }
 
 .pos-header > input.submit {
-    width: 60%;
+    width: fit-content;
     padding: 10px 10px;
     margin: 10px 20px 40px 20px;
     background-color: var(--second-color);
@@ -126,10 +126,11 @@ section.offers .grid-item {
 
 .grid-item > span{
     position: absolute;
-    transform: translate(20%, -150%);
+    transform: translate(0%, -150%);
     font-weight: 300;
     font-family: var(--main-font);
     font-size: 20px;
+    margin-left: 20px;
 }
 img {
     display: block;
