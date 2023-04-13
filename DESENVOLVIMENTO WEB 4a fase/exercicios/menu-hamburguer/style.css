@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    background: #3f3f3f;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.navbar .logo {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+}   
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0px 30px;
+    transition: all 0.5s ease;
+}
+
+
+
+.nav-link {
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+
+.bar {
+    display: block;
+    height: 3px;
+    background: #fff;
+    width: 40px;
+    margin: 8px;
+    border-radius: 5px;
+}
+
+.bar1 {
+    animation: bar1 0.5s ease-in-out 0s forwards;
+    animation-play-state: paused;
+}
+
+.bar2 {
+    animation: bar2 0.5s ease-in-out 0.1s forwards;
+    animation-play-state: paused;
+}
+
+.bar3 {
+    animation: bar3 0.5s ease-in-out 0.2s forwards;
+    animation-play-state: paused;
+}
+
+@keyframes bar1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg) translate(13px, 5px);
+    }
+}
+
+@keyframes bar2 {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes bar3 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-45deg) translate(13px, -5px);
+    }
+}
+.hamburguer {
+    display: none;
+}
+
+.slider {
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    transform: translateX(0);
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+}
+
+@media(max-width: 768px) {
+    .hamburguer {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        top: 80px;
+        position: fixed;
+        right: -100%;
+        background: #000000;
+        width: 100%;
+        text-align: center;
+    }
+
+    .bar {
+        margin: 10px 0;
+    }
+    .active {
+        right: 0;
+    }
+}
+
