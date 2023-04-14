@@ -18,7 +18,7 @@ h1{
 main{
     width: 50%;
     margin: 20px auto;
-    display: flex;
+    display: block;
     justify-content: center;
     background-color: white;
     padding: 50px;
@@ -27,7 +27,7 @@ main{
 
 .pesquisa{
     height: 30px;
-    width: 400px;
+    width: 330px;
     padding: 0 5px;
 }
 
