@@ -1,2 +1,2 @@
 # Faculdade
- Atividades desenvolvidas na/para faculdade
+ Atividades desenvolvidas durante a faculdade
