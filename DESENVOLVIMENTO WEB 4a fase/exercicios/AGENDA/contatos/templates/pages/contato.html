@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <title>Contato</title>
+</head>
+<body>
+    <div id="container">
+        <h1 id="titulo">Contato</h1>
+        {% if contato %}
+        <div class="img-contato">
+            <img src="{{contato.foto_url}}" alt="Foto de {{contato.nome}}">
+        </div>
+        <div id="info-contato">
+            <p class="item-info"><strong>Nome:</strong> {{contato.nome}}</p>
+            <p class="item-info"><strong>CPF:</strong> {{contato.cpf}}</p>
+            <p class="item-info"><strong>Email:</strong> {{contato.email}}</p>
+            <p class="item-info"><strong>Telefone:</strong> {{contato.telefone}}</p>
+            <p class="item-info"><strong>Altura:</strong> {{contato.altura}}</p>
+            <p class="item-info"><strong>Descrição:</strong> {{contato.descricao}}</p>
+            <p class="item-info"><strong>Data de nascimento:</strong> {{contato.data_nascimento}}</p>
+            {% if contato.ativo == True %}
+            <p class="item-info"><strong>Ativo:</strong> Sim</p>
+            {% else %}
+            <p class="item-info"><strong>Ativo:</strong> Não</p>
+            {% endif %}
+        </div>
+        {% else %}
+        <p id="contato-nao-encontrado">Contato não encontrado</p>
+        {% endif %}
+        <a id="apagar" href="{% url 'delete' contato.id %}">Apagar</a>
+        <a id="editar" href="{% url 'edit' contato.id %}">Editar</a>
+    </div>
+</body>
+</html>
