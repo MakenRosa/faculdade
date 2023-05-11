@@ -4,7 +4,11 @@ from . models import Contatos
 
 # Create your views here.
 def index(request):
-    contatos_list = Contatos.objects.all()
+    # if you want reverse order, use this:
+    # contatos_list = Contatos.objects.all().order_by('-id')
+    # if you want to filter, use this:
+
+    contatos_list = Contatos.objects.filter(ativo=True).order_by('-id')
     paginator = Paginator(contatos_list, 10)
     page_number = request.GET.get('page')
     contatos = paginator.get_page(page_number)
