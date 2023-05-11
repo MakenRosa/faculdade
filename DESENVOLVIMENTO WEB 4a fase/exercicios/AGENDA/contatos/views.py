@@ -1,10 +1,15 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.core.paginator import Paginator
 from . models import Contatos
 
 # Create your views here.
 def index(request):
-    contatos = Contatos.objects.all()    
+    contatos_list = Contatos.objects.all()
+    paginator = Paginator(contatos_list, 10)
+    page_number = request.GET.get('page')
+    contatos = paginator.get_page(page_number)
     return render(request, 'pages/index.html', {'contatos':contatos})
+    
 
 
 def search(request): 
@@ -37,7 +42,7 @@ def contato(request, id):
     contato = Contatos.objects.get(id=id)
     return render(request, 'pages/contato.html', {'contato':contato})
 
-def delete(request, id):
+def delete(id):
     contato = Contatos.objects.get(id=id)
     contato.delete()
     return redirect('home')

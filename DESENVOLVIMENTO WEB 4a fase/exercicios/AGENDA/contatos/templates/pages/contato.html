@@ -13,6 +13,7 @@
     <title>Contato</title>
 </head>
 <body>
+    <button id="voltar"><i class="fas fa-arrow-left"></i></button>
     <div id="container">
         <h1 id="titulo">Contato</h1>
         {% if contato %}
@@ -39,5 +40,12 @@
         <a id="apagar" href="{% url 'delete' contato.id %}">Apagar</a>
         <a id="editar" href="{% url 'edit' contato.id %}">Editar</a>
     </div>
+
+    <script>
+        const voltar = document.querySelector('#voltar')
+        voltar.addEventListener('click', () => {
+            window.location.href = "{% url 'home' %}"
+        })
+    </script>
 </body>
 </html>
