@@ -44,11 +44,11 @@
           <td><a href="{% url 'contato' contato.id %}">{{contato.nome}}</a></td>
           <td>{{contato.email}}</td>
           <td>{{contato.cpf}}</td>
-          {% if contato.ativo == True %}
-          {% comment %} Checked green, unchecked red {% endcomment %}
+          {% if contato.ativo == True %} {% comment %} Checked green, unchecked
+          red {% endcomment %}
           <td><i id="checked" class="fa-solid fa-circle-check"></i></td>
           {% else %}
-            <td><i id="unchecked" class="fa-solid fa-circle-xmark"></i></td>
+          <td><i id="unchecked" class="fa-solid fa-circle-xmark"></i></td>
           {% endif %}
         </tr>
         {% endfor %}
@@ -57,8 +57,8 @@
     <a id="adicionar" href="{% url 'create' %}">Novo Contato</a>
     <div class="pagination">
       {% if contatos.has_previous %}
-      <a href="?page=1">&laquo; Primeira</a>
-      <a href="?page={{ contatos.previous_page_number }}"
+      <a href="?search={{q}}&page=1">&laquo; Primeira</a>
+      <a href="?search={{q}}&page={{ contatos.previous_page_number }}"
         >{{ contatos.previous_page_number }}</a
       >
       {% endif %}
@@ -66,9 +66,18 @@
       <span class="current-page">{{ contatos.number }}</span>
 
       {% if contatos.has_next %}
-      <a href="?page={{ contatos.next_page_number }}">{{ contatos.next_page_number }}</a>
-      <a href="?page={{ contatos.paginator.num_pages }}">Última &raquo;</a>
+      <a href="?search={{q}}&page={{ contatos.next_page_number }}"
+        >{{ contatos.next_page_number }}</a
+      >
+      <a href="?search={{q}}&page={{ contatos.paginator.num_pages }}"
+        >Última &raquo;</a
+      >
       {% endif %}
     </div>
+    <script>
+      {% for message in messages %}
+          alert('{{message}}')
+        {% endfor %}
+    </script>
   </body>
 </html>

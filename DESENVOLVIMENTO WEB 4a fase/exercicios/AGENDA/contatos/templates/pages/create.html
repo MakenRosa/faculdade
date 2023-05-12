@@ -41,7 +41,10 @@
             <label for="ativo">Ativo:</label>
             <input type="hidden" id="ativo_hidden" name="ativo" value="False">
             <input type="checkbox" id="ativo" onchange="updateAtivoValue()">
-            
+
+            <label for="foto">URL Foto:</label>
+            <input type="text" id="foto_url" name="foto_url">
+
             <div class="container-btn">
                 <button id="submit" type="submit">Criar Contato</button>
                 <a href="{% url 'home' %}"><button id="cancelar" type="button">Cancelar</button></a>

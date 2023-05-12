@@ -137,6 +137,15 @@ button {
     margin-bottom: 1rem;
 }
 
+.img-contato {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
 .item-info {
     color: #555;
     margin-bottom: 0.5rem;

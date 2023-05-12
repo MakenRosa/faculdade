@@ -42,7 +42,9 @@
             <label for="ativo">Ativo:</label>
             <input type="hidden" id="ativo_hidden" name="ativo" value="{% if contato.ativo %}True{% else %}False{% endif %}">
             <input type="checkbox" id="ativo" {% if contato.ativo %}checked{% endif %} onchange="updateAtivoValue()">
-            
+
+            <label for="foto">URL Foto:</label>
+            <input type="text" id="foto_url" name="foto_url" value="{{ contato.foto }}">
             <button id="submit" type="submit">Atualizar Contato</button>
         </form>
         {% else %}
