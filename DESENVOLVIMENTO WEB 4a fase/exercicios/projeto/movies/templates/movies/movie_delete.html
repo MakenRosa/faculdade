@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="delete-movie-title">Delete Movie</h1>
+<p class="delete-movie-message">Are you sure you want to delete "{{ movie.title }}"?</p>
+<form method="post" class="delete-movie-form">
+  {% csrf_token %}
+  <button type="submit" class="delete-movie-button">Delete</button>
+</form>
+{% endblock %}

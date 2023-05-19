@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Teste</h1>
-<ul>
-    {% for movie in movies %}
-    <li>{{ movie.title }}</li>
-    {% endfor %}
-
+<h1 class="movie-list-title">Movie List</h1>
+<ul class="movie-list">
+  {% for movie in movies %}
+    <li class="movie-item">
+      {{ movie.title }}
+      <a href="{% url 'movie_detail' movie.id %}" class="view-details-link">View Details</a>
+    </li>
+  {% endfor %}
 </ul>
 
+<a href="{% url 'create_movie' %}" class="create-movie-link">Create Movie</a>
+<a href="{% url 'logout' %}" class="logout-link">Logout</a>
 {% endblock %}

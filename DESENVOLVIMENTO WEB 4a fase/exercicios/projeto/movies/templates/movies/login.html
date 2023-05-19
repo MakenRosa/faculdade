@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="login-title">Login</h1>
+{% if error_message %}
+<p class="error-message">{{ error_message }}</p>
+{% endif %}
+<form method="post" class="login-form">
+  {% csrf_token %}
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required class="login-input"><br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required class="login-input"><br>
+  <button type="submit" class="login-button">Login</button>
+</form>
+{% endblock %}

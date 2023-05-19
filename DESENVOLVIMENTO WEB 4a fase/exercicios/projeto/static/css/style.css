@@ -1,0 +1,230 @@
+/* layout.css */
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Estilos do cabeçalho */
+  .header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  /* Estilos do menu de navegação */
+  .navbar {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .navbar li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  /* Estilos das mensagens de erro */
+  .error-message {
+    color: #ff0000;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos do formulário de login */
+  .login-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .login-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos do formulário de criação de filme */
+  .create-movie-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .create-movie-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .create-movie-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .create-movie-textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .create-movie-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .create-movie-button:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos da página de detalhes do filme */
+  .movie-detail-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .movie-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .release-year, .director, .description, .created-at {
+    margin-bottom: 5px;
+  }
+  
+  .movie-image {
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+  
+  .no-image-message {
+    color: #999;
+  }
+  
+  .edit-link, .delete-button {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .edit-link:hover, .delete-button:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos do formulário de edição de filme */
+  .edit-movie-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .edit-movie-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .edit-movie-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .edit-movie-textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .edit-movie-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-movie-button:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos da lista de filmes */
+  .movie-list-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .movie-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movie-item {
+    margin-bottom: 5px;
+  }
+  
+  .view-details-link {
+    color: #333;
+    text-decoration: none;
+    background-color: #eee;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .view-details-link:hover {
+    background-color: #ccc;
+  }
+  
+  .create-movie-link, .logout-link {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .create-movie-link:hover, .logout-link:hover {
+    background-color: #555;
+  }
+  
