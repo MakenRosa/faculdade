@@ -21,8 +21,10 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Set up npm auth token
-              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+            - name: Set up GitHub auth token
+              env:
+                GH_TOKEN: ${{ secrets.GH_TOKEN }}
+              run: echo "//npm.pkg.github.com/:_authToken=${GH_TOKEN}" >> ~/.npmrc
 
             - name: Run Semantic Release
               run: npm run release
