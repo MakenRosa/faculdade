@@ -8,7 +8,11 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
-
+        
+        permissions:
+          contents: write
+          issues: write
+          pull-requests: write
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
@@ -21,10 +25,9 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Set up GitHub auth token
-              env:
-                GH_TOKEN: ${{ secrets.GH_TOKEN }}
-              run: echo "//npm.pkg.github.com/:_authToken=${GH_TOKEN}" >> ~/.npmrc
+            
 
             - name: Run Semantic Release
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npm run release

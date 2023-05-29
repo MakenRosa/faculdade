@@ -12,9 +12,7 @@
         "repositoryUrl": "https://github.com/makenrosa/faculdade"
       }
     ],
-    [
       "@semantic-release/github"
-    ]
   ]
 }
 
