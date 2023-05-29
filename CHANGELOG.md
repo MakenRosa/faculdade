@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MakenRosa/faculdade/compare/v1.1.0...v1.2.0) (2023-05-29)
+
+
+### Features
+
+* **core:** added teste.txt ([cac2c53](https://github.com/MakenRosa/faculdade/commit/cac2c53d692c884e3061c2048c1c5763c1d8e810))
+
 # [1.1.0](https://github.com/MakenRosa/faculdade/compare/v1.0.0...v1.1.0) (2023-05-29)
 
 
