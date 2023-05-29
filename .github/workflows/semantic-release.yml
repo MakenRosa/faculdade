@@ -23,3 +23,6 @@ jobs:
 
       - name: Run Semantic Release
         run: npm run release
+
+      - name: Set up npm auth token
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
