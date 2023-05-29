@@ -1,3 +1,10 @@
+# 1.0.0 (2023-05-29)
+
+
+### Features
+
+* **core:** added teste.txt ([c8bac4d](https://github.com/MakenRosa/faculdade/commit/c8bac4d62913ab03f10be60ba56af1091189f357))
+
 14/06/2022 - Perfeito ex ass 02
 14/06/2022 - Merge branch 'main' of https://github.com/MakenRosa/Faculdade
 14/06/2022 - Terminado ex 2 associacao
