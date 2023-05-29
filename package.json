@@ -19,11 +19,6 @@
     "url": "https://github.com/MakenRosa/faculdade/issues"
   },
   "homepage": "https://github.com/MakenRosa/faculdade#readme",
-  "husky": {
-    "hooks": {
-      "commit-msg": "npm run commitmsg"
-    }
-  },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
