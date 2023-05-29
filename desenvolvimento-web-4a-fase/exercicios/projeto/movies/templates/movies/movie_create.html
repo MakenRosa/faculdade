@@ -1,24 +1,52 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <h1 class="create-movie-title">Create Movie</h1>
 <form method="post" enctype="multipart/form-data" class="create-movie-form">
   {% csrf_token %}
   <label for="title">Title:</label>
-  <input type="text" id="title" name="title" required class="create-movie-input"><br><br>
-  
+  <input
+    type="text"
+    id="title"
+    name="title"
+    required
+    class="create-movie-input"
+  /><br /><br />
+
   <label for="release_year">Release Year:</label>
-  <input type="text" id="release_year" name="release_year" required class="create-movie-input"><br><br>
-  
+  <input
+    type="text"
+    id="release_year"
+    name="release_year"
+    required
+    class="create-movie-input"
+  /><br /><br />
+
   <label for="director">Director:</label>
-  <input type="text" id="director" name="director" required class="create-movie-input"><br><br>
-  
-  <label for="description">Description:</label><br>
-  <textarea id="description" name="description" required class="create-movie-textarea"></textarea><br><br>
-  
+  <input
+    type="text"
+    id="director"
+    name="director"
+    required
+    class="create-movie-input"
+  /><br /><br />
+
+  <label for="description">Description:</label><br />
+  <textarea
+    id="description"
+    name="description"
+    required
+    class="create-movie-textarea"
+  ></textarea
+  ><br /><br />
+
   <label for="image">Image:</label>
-  <input type="file" id="image" name="image" required class="create-movie-input"><br><br>
-  
+  <input
+    type="file"
+    id="image"
+    name="image"
+    required
+    class="create-movie-input"
+  /><br /><br />
+
   <button type="submit" class="create-movie-button">Create</button>
 </form>
 {% endblock %}

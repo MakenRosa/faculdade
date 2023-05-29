@@ -118,19 +118,18 @@ var pessoa = {
   */
 
 async function getUsers() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await response.json();
-    return data;
+    const response = await fetch("https://jsonplaceholder.typicode.com/users")
+    const data = await response.json()
+    return data
 }
 
 function shownames() {
-    var users = getUsers();
+    var users = getUsers()
     users.then(function (data) {
         data.forEach(function (user) {
-            console.log(user.name);
-        });
-    }
-    );
+            console.log(user.name)
+        })
+    })
 }
 
-shownames();
+shownames()

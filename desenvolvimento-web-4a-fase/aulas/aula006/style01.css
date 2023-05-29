@@ -1,63 +1,67 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    height: 100vh;
-    display: grid;
-    grid-template-areas: "amarelo azul" "vermelho verde";
-    gap: 10px;
-    padding: 10px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    background-color: #5f5f5f;
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "amarelo azul" "vermelho verde";
+  gap: 10px;
+  padding: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: #5f5f5f;
 }
 
-.vermelho, .azul, .amarelo, .verde, .roxo{
-    border-radius: 10px;
+.vermelho,
+.azul,
+.amarelo,
+.verde,
+.roxo {
+  border-radius: 10px;
 }
 
-.vermelho{
-    background-color: red;
-    grid-area: vermelho;
+.vermelho {
+  background-color: red;
+  grid-area: vermelho;
 }
 
-body > .azul{
-    background-color: blue;
-    grid-area: azul;
+body > .azul {
+  background-color: blue;
+  grid-area: azul;
 }
 
-body > .amarelo{
-    background-color: yellow;
-    grid-area: amarelo;
+body > .amarelo {
+  background-color: yellow;
+  grid-area: amarelo;
 }
 
-body > .verde{
-    background-color: green;
-    grid-area: verde;
-    gap: 10px;
-    padding: 10px;
-    display: grid;
-    grid-template-areas:
-        "azuld azuld"
-        "verded amarelod";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+body > .verde {
+  background-color: green;
+  grid-area: verde;
+  gap: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    "azuld azuld"
+    "verded amarelod";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
-.verde > div.azul{
-    background-color: blue;
-    grid-area: azuld;
+.verde > div.azul {
+  background-color: blue;
+  grid-area: azuld;
 }
 
-.verde > div.verde{
-    background-color: rgb(59, 196, 59);
-    grid-area: verded;
+.verde > div.verde {
+  background-color: rgb(59, 196, 59);
+  grid-area: verded;
 }
 
-.verde > div.amarelo{
-    background-color: yellow;
-    grid-area: amarelod;
+.verde > div.amarelo {
+  background-color: yellow;
+  grid-area: amarelod;
 }
