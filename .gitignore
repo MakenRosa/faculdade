@@ -11,3 +11,6 @@ POO/build/*
 /DESENVOLVIMENTO DESKTOP 3a fase/ConsumindoCepAPI/target/
 venv/*
 venv/
+node_modules/
+node_modules/*
+```
