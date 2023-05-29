@@ -5,143 +5,143 @@ desktop: 1366px
 */
 
 @media (min-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
+    body {
+        overflow-x: hidden;
+    }
 
-  .initial {
-    position: relative;
-    background: fixed no-repeat url(./images/london.jpg) bottom center;
-    background-size: cover;
-    height: 500px;
-    margin-bottom: 50px;
-  }
+    .initial {
+        position: relative;
+        background: fixed no-repeat url(./images/london.jpg) bottom center;
+        background-size: cover;
+        height: 500px;
+        margin-bottom: 50px;
+    }
 
-  .pos-header {
-    position: relative;
-    background-color: white;
-    width: 60%;
-    height: 270px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    .pos-header {
+        position: relative;
+        background-color: white;
+        width: 60%;
+        height: 270px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-  .pos-header > h1 {
-    text-align: left;
-    font: 30px "Raleway", sans-serif;
-    margin: 20px;
-  }
+    .pos-header > h1 {
+        text-align: left;
+        font: 30px 'Raleway', sans-serif;
+        margin: 20px;
+    }
 
-  .pos-header > label {
-    position: absolute;
-    display: inline-flex;
-    margin-top: -20px;
-  }
+    .pos-header > label {
+        position: absolute;
+        display: inline-flex;
+        margin-top: -20px;
+    }
 
-  .pos-header > input {
-    display: inline-flex;
-    margin: 0px 0px 0px 20px;
-    width: 43%;
-    max-width: 100%;
-  }
+    .pos-header > input {
+        display: inline-flex;
+        margin: 0px 0px 0px 20px;
+        width: 43%;
+        max-width: 100%;
+    }
 
-  .pos-header > input.submit {
-    width: 220px;
-    padding: 10px 10px;
-    margin: 20px 20px 40px 20px;
-    background-color: var(--second-color);
-    color: white;
-    font: 20px "Raleway", sans-serif;
-    border: none;
-    text-align: center;
-  }
+    .pos-header > input.submit {
+        width: 220px;
+        padding: 10px 10px;
+        margin: 20px 20px 40px 20px;
+        background-color: var(--second-color);
+        color: white;
+        font: 20px 'Raleway', sans-serif;
+        border: none;
+        text-align: center;
+    }
 
-  section.offers {
-    margin-bottom: 40px;
-  }
+    section.offers {
+        margin-bottom: 40px;
+    }
 
-  .images {
-    display: flex;
-    justify-content: center;
-  }
+    .images {
+        display: flex;
+        justify-content: center;
+    }
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 10px;
-    margin-top: 20px;
-  }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+        margin-top: 20px;
+    }
 
-  .grid-item {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--main-font);
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
-  }
+    .grid-item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--main-font);
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+    }
 
-  .grid-item > span {
-    bottom: -50px;
-    left: 0px;
-  }
+    .grid-item > span {
+        bottom: -50px;
+        left: 0px;
+    }
 
-  div.cinque {
-    grid-row: span 2;
-  }
+    div.cinque {
+        grid-row: span 2;
+    }
 
-  .card-nature {
-    width: 49%;
-    display: inline-block;
-    margin: 0px;
-  }
+    .card-nature {
+        width: 49%;
+        display: inline-block;
+        margin: 0px;
+    }
 
-  img.nature {
-    width: 100%;
-    height: 100%;
-    margin-top: 0px;
-  }
+    img.nature {
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+    }
 
-  .autria {
-    margin-left: 10px;
-  }
+    .autria {
+        margin-left: 10px;
+    }
 }
 
 @media (min-width: 1366px) {
-  main {
-    margin: 0 auto;
-  }
+    main {
+        margin: 0 auto;
+    }
 
-  .initial {
-    width: 100vw;
-  }
+    .initial {
+        width: 100vw;
+    }
 
-  .pos-header {
-    width: 60%;
-    max-width: 800px;
-  }
+    .pos-header {
+        width: 60%;
+        max-width: 800px;
+    }
 
-  section.offers {
-    max-width: 1366px;
-    margin: 0 auto;
-  }
+    section.offers {
+        max-width: 1366px;
+        margin: 0 auto;
+    }
 
-  section.nature {
-    max-width: 1366px;
-    margin: 100px auto;
-  }
+    section.nature {
+        max-width: 1366px;
+        margin: 100px auto;
+    }
 
-  section.newsletter {
-    max-width: 1366px;
-    margin: 0px auto;
-  }
+    section.newsletter {
+        max-width: 1366px;
+        margin: 0px auto;
+    }
 
-  section.contact {
-    max-width: 1366px;
-    margin: 60px auto;
-  }
+    section.contact {
+        max-width: 1366px;
+        margin: 60px auto;
+    }
 }

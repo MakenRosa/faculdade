@@ -1,61 +1,61 @@
 {
-  "name": "faculdade",
-  "version": "1.0.0",
-  "description": "Atividades desenvolvidas durante a faculdade",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "semantic-release",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
-    "format": "prettier --write ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MakenRosa/faculdade.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MakenRosa/faculdade/issues"
-  },
-  "homepage": "https://github.com/MakenRosa/faculdade#readme",
-  "devDependencies": {
-    "@commitlint/cli": "^17.6.3",
-    "@commitlint/config-conventional": "^17.6.3",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.7",
-    "@typescript-eslint/parser": "^5.59.7",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.41.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
-    "prettier": "^2.8.8",
-    "semantic-release": "^19.0.5"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+    "name": "faculdade",
+    "version": "1.0.0",
+    "description": "Atividades desenvolvidas durante a faculdade",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "release": "semantic-release",
+        "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+        "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+        "prettier": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MakenRosa/faculdade.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MakenRosa/faculdade/issues"
+    },
+    "homepage": "https://github.com/MakenRosa/faculdade#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.3",
+        "@commitlint/config-conventional": "^17.6.3",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "@typescript-eslint/eslint-plugin": "^5.59.7",
+        "@typescript-eslint/parser": "^5.59.7",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^8.41.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.2",
+        "prettier": "^2.8.8",
+        "semantic-release": "^19.0.5"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "eslint --fix",
+            "git add"
+        ],
+        "*.json": [
+            "prettier --write",
+            "git add"
+        ],
+        "*.jsx": [
+            "eslint --fix",
+            "git add"
+        ]
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.jsx": [
-      "eslint --fix",
-      "git add"
-    ]
-  }
 }
