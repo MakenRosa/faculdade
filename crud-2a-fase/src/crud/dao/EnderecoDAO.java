@@ -1,5 +1,5 @@
 package crud.dao;
-// teste
+
 import crud.entidades.Endereco;
 import java.util.List;
 
